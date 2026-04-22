@@ -7,7 +7,7 @@
   <ItemGroup>
     <Folder Include="White/" />
   </ItemGroup>
-
+  
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
