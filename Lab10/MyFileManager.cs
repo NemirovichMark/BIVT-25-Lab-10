@@ -2,7 +2,7 @@ namespace Lab10;
 
 public abstract class MyFileManager : IFileManager, IFileLifeController
 {
-    public MyFileManager(string name) => Name = name;
+    public MyFileManager (string name) => Name = name;
     public MyFileManager    (string name,
                             string fileName, 
                             string folderPath, 
@@ -38,9 +38,17 @@ public abstract class MyFileManager : IFileManager, IFileLifeController
         Directory.CreateDirectory(_folderPath);
         using FileStream fs = File.Create(FullPath);
     }
-    public void DeleteFile() => File.Delete(FullPath);
-    public void EditFile (string change_file) => 
-        File.WriteAllText(FullPath, change_file);    
+    public void DeleteFile()
+    {
+        if (File.Exists(FullPath))
+            File.Delete(FullPath);
+    }
+    public void EditFile (string change_file)
+    {
+        if (File.Exists(FullPath))
+            File.WriteAllText(FullPath,change_file);
+    }
+         
     public void ChangeFileExtension(string new_extension)
     {
         File.Move($"{_fileName}.{_fileExtension}", $"{_fileName}.{new_extension}");
