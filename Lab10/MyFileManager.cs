@@ -4,8 +4,8 @@ public abstract class MyFileManager : IFileManager, IFileLifeController
 {
     public MyFileManager (string name) => Name = name;
     public MyFileManager    (string name,
-                            string fileName, 
                             string folderPath, 
+                            string fileName, 
                             string fileExtension = "")
     {
         Name = name;
@@ -23,8 +23,15 @@ public abstract class MyFileManager : IFileManager, IFileLifeController
     public string FolderPath => _folderPath;
     public string FileName => _fileName;
     public string FileExtension => _fileExtension;
-    public string FullPath => 
-        Path.Combine(_folderPath, $"{_fileName}.{_fileExtension}");
+    public string FullPath
+    {
+        get
+        {
+            if (_fileExtension != null && _fileExtension != string.Empty)
+                return Path.Combine(_folderPath, $"{_fileName}.{_fileExtension}");
+            else return Path.Combine(_folderPath, $"{_fileName}");
+        }
+    }
 
     public void SelectFolder(string path_to_folder) =>
         _folderPath = path_to_folder;
@@ -38,10 +45,10 @@ public abstract class MyFileManager : IFileManager, IFileLifeController
         Directory.CreateDirectory(_folderPath);
         using FileStream fs = File.Create(FullPath);
     }
-    public void DeleteFile()
+    public void DeleteFile() 
     {
-        if (File.Exists(FullPath))
-            File.Delete(FullPath);
+        if (File.Exists(FullPath)) 
+            File.Delete(FullPath);  
     }
     public void EditFile (string change_file)
     {
@@ -51,7 +58,11 @@ public abstract class MyFileManager : IFileManager, IFileLifeController
          
     public void ChangeFileExtension(string new_extension)
     {
-        File.Move($"{_fileName}.{_fileExtension}", $"{_fileName}.{new_extension}");
+        if (File.Exists(FullPath))
+        {
+            string new_file_ex = Path.Combine(_folderPath,$"{_fileName}.{new_extension}");
+            File.Move(FullPath, new_file_ex);   
+        }
         _fileExtension = new_extension;
     }
 }
