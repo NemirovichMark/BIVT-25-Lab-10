@@ -3,10 +3,11 @@ namespace Lab10;
 public abstract class MyFileManager : IFileManager, IFileLifeController
 {
     public MyFileManager (string name) => Name = name;
-    public MyFileManager    (string name,
-                            string folderPath, 
-                            string fileName, 
-                            string fileExtension = "")
+    public MyFileManager(
+        string name,
+        string folderPath, 
+        string fileName, 
+        string fileExtension = "")
     {
         Name = name;
         _fileName = fileName;
