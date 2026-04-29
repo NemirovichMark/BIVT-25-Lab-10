@@ -53,8 +53,36 @@ public class Purple<T> where T : Lab9.Purple.Purple
 
     public void SaveTasks()
     {
-        // ChangeFileName
-        // Serialize
+        if (Manager != null)
+        {
+            for (int i=0; i<_tasks.Length; i++)
+            {
+                Manager.ChangeFileName($"task{i}");
+                Manager.Serialize(_tasks[i]);
+            }
+        }
+    }
+    public void LoadTasks()
+    {
+        if (Manager != null)
+        {
+            for (int i=0; i<_tasks.Length; i++)
+            {
+                Manager.ChangeFileName($"task{i}");
+                _tasks[i] = Manager.Deserialize();
+            }
+        }
     }
     
+    public void ChangeManager(PurpleFileManager<T> manager)
+    {
+        string parent_folder = string.IsNullOrEmpty(Manager.FolderPath) 
+            ? Directory.GetCurrentDirectory() 
+            : Manager.FolderPath;
+
+        string folder_path = Path.Combine(parent_folder, manager.Name);
+        Directory.CreateDirectory(folder_path);
+        manager.SelectFolder(folder_path);
+        Manager = manager;     
+    }
 }
