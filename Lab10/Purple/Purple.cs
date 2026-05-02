@@ -7,6 +7,7 @@ public class Purple<T> where T : Lab9.Purple.Purple
     public PurpleFileManager<T> Manager {get; private set;}
     public T[] Tasks => _tasks;
 
+    public Purple() => _tasks = Array.Empty<T>();
     public Purple (T[] tasks) => _tasks = tasks ?? Array.Empty<T>();
     public Purple (PurpleFileManager<T> manager, T[]? tasks)
     {
@@ -76,7 +77,7 @@ public class Purple<T> where T : Lab9.Purple.Purple
     
     public void ChangeManager(PurpleFileManager<T> manager)
     {
-        string parent_folder = string.IsNullOrEmpty(Manager.FolderPath) 
+        string parent_folder = Manager == null || string.IsNullOrEmpty(Manager.FolderPath) 
             ? Directory.GetCurrentDirectory() 
             : Manager.FolderPath;
 
