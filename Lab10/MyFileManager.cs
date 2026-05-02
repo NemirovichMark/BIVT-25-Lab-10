@@ -38,8 +38,14 @@ public abstract class MyFileManager : IFileManager, IFileLifeController
         _folderPath = path_to_folder;
     public void ChangeFileName(string new_file_name) =>
         _fileName = new_file_name;
-    public void ChangeFileFormat(string new_file_format) =>
+    public void ChangeFileFormat(string new_file_format)
+    {
         _fileFormat = new_file_format;
+        ChangeFileExtension(new_file_format);
+
+        if (!File.Exists(FullPath))
+            CreateFile();
+    }
 
     public void CreateFile()
     {
@@ -51,13 +57,13 @@ public abstract class MyFileManager : IFileManager, IFileLifeController
         if (File.Exists(FullPath)) 
             File.Delete(FullPath);  
     }
-    public void EditFile (string change_file)
+    public virtual void EditFile (string change_file)
     {
         if (File.Exists(FullPath))
             File.WriteAllText(FullPath,change_file);
     }
          
-    public void ChangeFileExtension(string new_extension)
+    public virtual void ChangeFileExtension(string new_extension)
     {
         if (File.Exists(FullPath))
         {

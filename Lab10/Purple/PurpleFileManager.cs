@@ -18,4 +18,10 @@ public abstract class PurpleFileManager<T> : MyFileManager, ISerializer<T>
 
     public abstract T Deserialize();
     public abstract void Serialize(T obj);
+
+    public override void EditFile(string change_file) =>
+        base.EditFile(change_file);
+    
+    public override void ChangeFileExtension(string new_extension) =>
+        base.ChangeFileExtension(new_extension);
 }
