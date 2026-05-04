@@ -31,7 +31,7 @@ public class PurpleJsonFileManager<T> : PurpleFileManager<T>
         if (obj == null) return;
 
         JObject json_object = JObject.FromObject(obj);
-        json_object.Add("Type", obj.GetType().AssemblyQualifiedName);
+        json_object["Type"] = obj.GetType().AssemblyQualifiedName;
         string json_object_string = json_object.ToString();
 
         Directory.CreateDirectory(FolderPath);
