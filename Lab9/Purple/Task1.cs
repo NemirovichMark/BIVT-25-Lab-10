@@ -1,10 +1,17 @@
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Lab9.Purple;
 
 public class Task1 : Purple
 {
     public Task1(string input) : base(input) {}
+    
+    [JsonConstructor]
+    public Task1 (string input, string output) 
+        : base(input)
+        => Output = output;
+
     public string Output {get; private set;}
     public override string ToString() => Output;  
     public override void Review()
