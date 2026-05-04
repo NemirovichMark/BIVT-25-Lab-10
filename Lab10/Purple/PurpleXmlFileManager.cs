@@ -1,3 +1,6 @@
+using System.Xml.Serialization;
+using Lab9;
+
 namespace Lab10.Purple;
 
 public class PurpleXmlFileManager<T> : PurpleFileManager<T>
@@ -24,15 +27,37 @@ public class PurpleXmlFileManager<T> : PurpleFileManager<T>
     }
 
     public override void ChangeFileExtension(string new_extension) =>
-        base.ChangeFileExtension("xml");
+        base.ChangeFileFormat("xml");
     
 
     public override void Serialize(T obj)
     {
+        if (obj == null) return;
+        Directory.CreateDirectory(FolderPath);
+
+        var dto_object = new DTOPurple(obj);
+        var ser = new XmlSerializer(typeof(DTOPurple));
+
+        using (StreamWriter sw = new StreamWriter(FullPath))
+        {
+            ser.Serialize(sw, dto_object);
+        }
     }
 
     public override T Deserialize()
     {
-        return null!;
+        if (!File.Exists(FullPath)) return null!;
+        Lab9.Purple.Purple purple_object;
+
+        var ser = new XmlSerializer(typeof(DTOPurple));
+        using (var sr = new StreamReader(FullPath))
+        {
+            DTOPurple? dto_object = ser.Deserialize(sr) as DTOPurple;
+            if (dto_object == null) return null!;
+
+            purple_object = dto_object.GetPurpleTask();
+            if (purple_object == null) return null!;
+        }
+        return (T)purple_object;
     }
 }
