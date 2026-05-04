@@ -9,7 +9,7 @@ public class Purple<T> where T : Lab9.Purple.Purple
 
     public Purple() => _tasks = Array.Empty<T>();
     public Purple (T[] tasks) => _tasks = tasks ?? Array.Empty<T>();
-    public Purple (PurpleFileManager<T> manager, T[]? tasks)
+    public Purple (PurpleFileManager<T> manager, T[] tasks)
     {
         Manager = manager;
         _tasks = tasks ?? Array.Empty<T>();
@@ -23,7 +23,7 @@ public class Purple<T> where T : Lab9.Purple.Purple
     public void Add (T task)
     {
         if (task == null) return;
-        Array.Resize(ref _tasks, Tasks.Length+1);
+        Array.Resize(ref _tasks, _tasks.Length+1);
         _tasks[^1] = task;
     }
     public void Add (T[] tasks)
@@ -77,10 +77,10 @@ public class Purple<T> where T : Lab9.Purple.Purple
     
     public void ChangeManager(PurpleFileManager<T> manager)
     {
-        string parent_folder = Manager == null || string.IsNullOrEmpty(Manager.FolderPath) 
-            ? Directory.GetCurrentDirectory() 
-            : Manager.FolderPath;
-
+        string parent_folder = Manager != null ? 
+                                Manager.FolderPath : 
+                                Directory.GetCurrentDirectory();
+                                
         string folder_path = Path.Combine(parent_folder, manager.Name);
         Directory.CreateDirectory(folder_path);
         manager.SelectFolder(folder_path);
