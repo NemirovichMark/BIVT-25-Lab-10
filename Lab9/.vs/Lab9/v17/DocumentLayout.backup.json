@@ -1,0 +1,364 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B2E3F85B-E0BB-5DAC-B080-DF387544CAE1}|..\\Lab9Test\\Lab9Test.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9test\\blue\\task2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2E3F85B-E0BB-5DAC-B080-DF387544CAE1}|..\\Lab9Test\\Lab9Test.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9test\\blue\\task3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2E3F85B-E0BB-5DAC-B080-DF387544CAE1}|..\\Lab9Test\\Lab9Test.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9test\\blue\\task4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2E3F85B-E0BB-5DAC-B080-DF387544CAE1}|..\\Lab9Test\\Lab9Test.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9test\\green\\task1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2E3F85B-E0BB-5DAC-B080-DF387544CAE1}|..\\Lab9Test\\Lab9Test.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9test\\purple\\task1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2E3F85B-E0BB-5DAC-B080-DF387544CAE1}|..\\Lab9Test\\Lab9Test.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9test\\purple\\task2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2E3F85B-E0BB-5DAC-B080-DF387544CAE1}|..\\Lab9Test\\Lab9Test.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9test\\purple\\task3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2E3F85B-E0BB-5DAC-B080-DF387544CAE1}|..\\Lab9Test\\Lab9Test.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9test\\purple\\task4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2E3F85B-E0BB-5DAC-B080-DF387544CAE1}|..\\Lab9Test\\Lab9Test.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9test\\white\\task1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2E3F85B-E0BB-5DAC-B080-DF387544CAE1}|..\\Lab9Test\\Lab9Test.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9test\\white\\task2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2E3F85B-E0BB-5DAC-B080-DF387544CAE1}|..\\Lab9Test\\Lab9Test.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9test\\white\\task4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2E3F85B-E0BB-5DAC-B080-DF387544CAE1}|..\\Lab9Test\\Lab9Test.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9test\\white\\task3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2E3F85B-E0BB-5DAC-B080-DF387544CAE1}|..\\Lab9Test\\Lab9Test.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9test\\blue\\task1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab9.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9\\green\\task2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab9.csproj|solutionrelative:green\\task2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab9.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9\\green\\task3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab9.csproj|solutionrelative:green\\task3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab9.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9\\green\\task1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab9.csproj|solutionrelative:green\\task1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2E3F85B-E0BB-5DAC-B080-DF387544CAE1}|..\\Lab9Test\\Lab9Test.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9test\\green\\task4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab9.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9\\green\\task4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab9.csproj|solutionrelative:green\\task4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2E3F85B-E0BB-5DAC-B080-DF387544CAE1}|..\\Lab9Test\\Lab9Test.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9test\\green\\task3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab9.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9\\green\\green.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab9.csproj|solutionrelative:green\\green.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2E3F85B-E0BB-5DAC-B080-DF387544CAE1}|..\\Lab9Test\\Lab9Test.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-9\\lab9test\\green\\data.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 13,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Green.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9\\Green\\Green.cs",
+              "RelativeDocumentMoniker": "Green\\Green.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9\\Green\\Green.cs",
+              "RelativeToolTip": "Green\\Green.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T10:16:04.631Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "data.json",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Green\\data.json",
+              "RelativeDocumentMoniker": "..\\Lab9Test\\Green\\data.json",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Green\\data.json",
+              "RelativeToolTip": "..\\Lab9Test\\Green\\data.json",
+              "ViewState": "AgIAAMsAAAAAAAAAAADwv+EAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-17T15:53:08.287Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Task4.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\White\\Task4.cs",
+              "RelativeDocumentMoniker": "..\\Lab9Test\\White\\Task4.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\White\\Task4.cs",
+              "RelativeToolTip": "..\\Lab9Test\\White\\Task4.cs",
+              "ViewState": "AgIAAGQAAAAAAAAAAADwv3oAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T13:59:44.475Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Task3.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\White\\Task3.cs",
+              "RelativeDocumentMoniker": "..\\Lab9Test\\White\\Task3.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\White\\Task3.cs",
+              "RelativeToolTip": "..\\Lab9Test\\White\\Task3.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAADwv40AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T13:59:41.356Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Task2.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\White\\Task2.cs",
+              "RelativeDocumentMoniker": "..\\Lab9Test\\White\\Task2.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\White\\Task2.cs",
+              "RelativeToolTip": "..\\Lab9Test\\White\\Task2.cs",
+              "ViewState": "AgIAAJMAAAAAAAAAAADwv7MAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T13:59:38.453Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Task1.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\White\\Task1.cs",
+              "RelativeDocumentMoniker": "..\\Lab9Test\\White\\Task1.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\White\\Task1.cs",
+              "RelativeToolTip": "..\\Lab9Test\\White\\Task1.cs",
+              "ViewState": "AgIAAJEAAAAAAAAAAADwv7EAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T13:59:35.719Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Task4.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Purple\\Task4.cs",
+              "RelativeDocumentMoniker": "..\\Lab9Test\\Purple\\Task4.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Purple\\Task4.cs",
+              "RelativeToolTip": "..\\Lab9Test\\Purple\\Task4.cs",
+              "ViewState": "AgIAAHgAAAAAAAAAAADwv5gAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T13:59:30.718Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Task3.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Purple\\Task3.cs",
+              "RelativeDocumentMoniker": "..\\Lab9Test\\Purple\\Task3.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Purple\\Task3.cs",
+              "RelativeToolTip": "..\\Lab9Test\\Purple\\Task3.cs",
+              "ViewState": "AgIAAIsAAAAAAAAAAADwv6sAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T13:59:27.748Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Task2.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Purple\\Task2.cs",
+              "RelativeDocumentMoniker": "..\\Lab9Test\\Purple\\Task2.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Purple\\Task2.cs",
+              "RelativeToolTip": "..\\Lab9Test\\Purple\\Task2.cs",
+              "ViewState": "AgIAAJoAAAAAAAAAAADwv7oAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T13:59:24.915Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Task1.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Purple\\Task1.cs",
+              "RelativeDocumentMoniker": "..\\Lab9Test\\Purple\\Task1.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Purple\\Task1.cs",
+              "RelativeToolTip": "..\\Lab9Test\\Purple\\Task1.cs",
+              "ViewState": "AgIAAJAAAAAAAAAAAADwv7AAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T13:59:21.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Task1.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Green\\Task1.cs",
+              "RelativeDocumentMoniker": "..\\Lab9Test\\Green\\Task1.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Green\\Task1.cs",
+              "RelativeToolTip": "..\\Lab9Test\\Green\\Task1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T13:59:18.115Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Task4.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Blue\\Task4.cs",
+              "RelativeDocumentMoniker": "..\\Lab9Test\\Blue\\Task4.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Blue\\Task4.cs",
+              "RelativeToolTip": "..\\Lab9Test\\Blue\\Task4.cs",
+              "ViewState": "AgIAAHQAAAAAAAAAAADwv5QAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T13:59:14.947Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Task3.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Blue\\Task3.cs",
+              "RelativeDocumentMoniker": "..\\Lab9Test\\Blue\\Task3.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Blue\\Task3.cs",
+              "RelativeToolTip": "..\\Lab9Test\\Blue\\Task3.cs",
+              "ViewState": "AgIAAIQAAAAAAAAAAADwv6QAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T13:59:11.838Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Task2.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Blue\\Task2.cs",
+              "RelativeDocumentMoniker": "..\\Lab9Test\\Blue\\Task2.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Blue\\Task2.cs",
+              "RelativeToolTip": "..\\Lab9Test\\Blue\\Task2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIQAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T13:59:08.615Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Task1.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Blue\\Task1.cs",
+              "RelativeDocumentMoniker": "..\\Lab9Test\\Blue\\Task1.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Blue\\Task1.cs",
+              "RelativeToolTip": "..\\Lab9Test\\Blue\\Task1.cs",
+              "ViewState": "AgIAAIUAAAAAAAAAAADwv6UAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T13:58:57.875Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Task4.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9\\Green\\Task4.cs",
+              "RelativeDocumentMoniker": "Green\\Task4.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9\\Green\\Task4.cs",
+              "RelativeToolTip": "Green\\Task4.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAgwC8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T11:12:37.56Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Task4.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Green\\Task4.cs",
+              "RelativeDocumentMoniker": "..\\Lab9Test\\Green\\Task4.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Green\\Task4.cs",
+              "RelativeToolTip": "..\\Lab9Test\\Green\\Task4.cs",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAAwJAAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T11:12:30.056Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Task1.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9\\Green\\Task1.cs",
+              "RelativeDocumentMoniker": "Green\\Task1.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9\\Green\\Task1.cs",
+              "RelativeToolTip": "Green\\Task1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T16:06:57.786Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Task3.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9\\Green\\Task3.cs",
+              "RelativeDocumentMoniker": "Green\\Task3.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9\\Green\\Task3.cs",
+              "RelativeToolTip": "Green\\Task3.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T15:05:55.751Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Task3.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Green\\Task3.cs",
+              "RelativeDocumentMoniker": "..\\Lab9Test\\Green\\Task3.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Green\\Task3.cs",
+              "RelativeToolTip": "..\\Lab9Test\\Green\\Task3.cs",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAuwJQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T15:06:37.93Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Task2.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9\\Green\\Task2.cs",
+              "RelativeDocumentMoniker": "Green\\Task2.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-9\\Lab9\\Green\\Task2.cs",
+              "RelativeToolTip": "Green\\Task2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T16:05:00.96Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
