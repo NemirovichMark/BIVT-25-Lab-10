@@ -50,20 +50,7 @@ namespace Lab10
         public string FileName => _fileName;
         public string FileExtension => _fileExtension;
 
-        public string FullPath
-        {
-            get
-            {
-                string file = _fileName + "." + _fileExtension;
-
-                if (_folderPath == null || _folderPath == string.Empty)
-                {
-                    return file;
-                }
-
-                return _folderPath + "\\" + file;
-            }
-        }
+        public string FullPath => _folderPath + "\\" + _fileName + "." + _fileExtension;
 
         public void SelectFolder(string folderPath)
         {
@@ -81,34 +68,17 @@ namespace Lab10
 
             if (_fileName == null || _fileName == string.Empty) return;
 
-            if (!File.Exists(FullPath))
-            {
-                CreateFile();
-            }
+            if (!File.Exists(FullPath)) CreateFile();
         }
 
         public void CreateFile()
         {
-            if (_folderPath != null && _folderPath != string.Empty)
-            {
-                if (!Directory.Exists(_folderPath))
-                {
-                    Directory.CreateDirectory(_folderPath);
-                }
-            }
-
-            if (!File.Exists(FullPath))
-            {
-                File.Create(FullPath).Close();
-            }
+            if (!File.Exists(FullPath)) File.Create(FullPath).Close();
         }
 
         public void DeleteFile()
         {
-            if (File.Exists(FullPath))
-            {
-                File.Delete(FullPath);
-            }
+            if (File.Exists(FullPath)) File.Delete(FullPath);
         }
 
         public virtual void EditFile(string content)
@@ -119,20 +89,20 @@ namespace Lab10
         public virtual void ChangeFileExtension(string fileExtension)
         {
             string oldPath = FullPath;
-            string oldContent = string.Empty;
+            string content = string.Empty;
 
             if (File.Exists(oldPath))
             {
-                oldContent = File.ReadAllText(oldPath);
+                content = File.ReadAllText(oldPath);
                 File.Delete(oldPath);
             }
 
             _fileExtension = fileExtension ?? string.Empty;
 
-            if (oldContent != string.Empty)
+            if (content != string.Empty)
             {
                 CreateFile();
-                File.WriteAllText(FullPath, oldContent);
+                File.WriteAllText(FullPath, content);
             }
         }
     }

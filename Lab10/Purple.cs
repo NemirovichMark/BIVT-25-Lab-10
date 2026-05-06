@@ -39,10 +39,7 @@ namespace Lab10.Purple
 
             _tasks = new T[tasks.Length];
 
-            for (int i = 0; i < tasks.Length; i++)
-            {
-                _tasks[i] = tasks[i];
-            }
+            for (int i = 0; i < tasks.Length; i++) _tasks[i] = tasks[i];
         }
 
         public void Add(T task)

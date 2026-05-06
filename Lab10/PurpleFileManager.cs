@@ -5,14 +5,10 @@ namespace Lab10.Purple
     public abstract class PurpleFileManager<T> : Lab10.MyFileManager, Lab10.ISerializer<T>
         where T : Lab9.Purple.Purple
     {
-        public PurpleFileManager(string name) : base(name)
-        {
-        }
+        public PurpleFileManager(string name) : base(name) {}
 
         public PurpleFileManager(string name, string folderPath, string fileName, string fileExtension = "txt")
-            : base(name, folderPath, fileName, fileExtension)
-        {
-        }
+            : base(name, folderPath, fileName, fileExtension) {}
 
         public abstract void Serialize(T obj);
 
@@ -20,15 +16,11 @@ namespace Lab10.Purple
 
         public override void EditFile(string content)
         {
-            if (FullPath == null || FullPath == string.Empty) return;
-
             File.WriteAllText(FullPath, content ?? string.Empty);
         }
 
         public override void ChangeFileExtension(string fileExtension)
         {
-            if (FullPath == null || FullPath == string.Empty) return;
-
             string oldPath = FullPath;
             string oldContent = string.Empty;
 
