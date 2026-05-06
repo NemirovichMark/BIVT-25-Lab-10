@@ -167,12 +167,12 @@
         }
       }
     },
-    "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab9\\Lab9.csproj": {
+    "C:\\Users\\root\\Source\\Repos\\BIVT-25-Lab-10\\Lab9\\Lab9.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab9\\Lab9.csproj",
+        "projectUniqueName": "C:\\Users\\root\\Source\\Repos\\BIVT-25-Lab-10\\Lab9\\Lab9.csproj",
         "projectName": "Lab9",
-        "projectPath": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab9\\Lab9.csproj",
+        "projectPath": "C:\\Users\\root\\Source\\Repos\\BIVT-25-Lab-10\\Lab9\\Lab9.csproj",
         "packagesPath": "C:\\Users\\root\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab9\\obj\\",
         "projectStyle": "PackageReference",
