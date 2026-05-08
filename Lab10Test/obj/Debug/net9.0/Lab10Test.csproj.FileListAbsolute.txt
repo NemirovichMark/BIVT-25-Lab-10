@@ -1,0 +1,12 @@
+/home/egorb/BIVT-25-LABS/BIVT-25-Lab-10/Lab10Test/bin/Debug/net9.0/.msCoverageSourceRootsMapping_Lab10Test
+/home/egorb/BIVT-25-LABS/BIVT-25-Lab-10/Lab10Test/bin/Debug/net9.0/.msCoverageExtensionSourceRootsMapping_Lab10Test
+/home/egorb/BIVT-25-LABS/BIVT-25-Lab-10/Lab10Test/obj/Debug/net9.0/Lab10Test.csproj.AssemblyReference.cache
+/home/egorb/BIVT-25-LABS/BIVT-25-Lab-10/Lab10Test/obj/Debug/net9.0/Lab10Test.GeneratedMSBuildEditorConfig.editorconfig
+/home/egorb/BIVT-25-LABS/BIVT-25-Lab-10/Lab10Test/obj/Debug/net9.0/Lab10Test.AssemblyInfoInputs.cache
+/home/egorb/BIVT-25-LABS/BIVT-25-Lab-10/Lab10Test/obj/Debug/net9.0/Lab10Test.AssemblyInfo.cs
+/home/egorb/BIVT-25-LABS/BIVT-25-Lab-10/Lab10Test/obj/Debug/net9.0/Lab10Test.csproj.CoreCompileInputs.cache
+/home/egorb/BIVT-25-LABS/BIVT-25-Lab-10/Lab10Test/obj/Debug/net9.0/Lab10Test.gentestingplatformentrypointinputcache.cache
+/home/egorb/BIVT-25-LABS/BIVT-25-Lab-10/Lab10Test/obj/Debug/net9.0/Lab10Test.genautoregisteredextensionsinputcache.cache
+/home/egorb/BIVT-25-LABS/BIVT-25-Lab-10/Lab10Test/obj/Debug/net9.0/AutoRegisteredExtensions.cs
+/home/egorb/BIVT-25-LABS/BIVT-25-Lab-10/Lab10Test/obj/Debug/net9.0/TestPlatformEntryPoint.cs
+/home/egorb/BIVT-25-LABS/BIVT-25-Lab-10/Lab10Test/obj/Debug/net9.0/Lab10Test.sourcelink.json
