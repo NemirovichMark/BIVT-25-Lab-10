@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jUCH2+NSjQQ=",
+  "dgSpecHash": "JTN+iv3G8Y0=",
   "success": true,
   "projectFilePath": "/Users/shulezhenkov/Documents/C#/BIVT-25-Lab-10/Lab10Test/Lab10Test.csproj",
   "expectedPackageFiles": [
@@ -26,7 +26,7 @@
     "/Users/shulezhenkov/.nuget/packages/mstest.analyzers/3.6.4/mstest.analyzers.3.6.4.nupkg.sha512",
     "/Users/shulezhenkov/.nuget/packages/mstest.testadapter/3.6.4/mstest.testadapter.3.6.4.nupkg.sha512",
     "/Users/shulezhenkov/.nuget/packages/mstest.testframework/3.6.4/mstest.testframework.3.6.4.nupkg.sha512",
-    "/Users/shulezhenkov/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
+    "/Users/shulezhenkov/.nuget/packages/newtonsoft.json/13.0.4/newtonsoft.json.13.0.4.nupkg.sha512",
     "/Users/shulezhenkov/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",
     "/Users/shulezhenkov/.nuget/packages/system.collections.immutable/8.0.0/system.collections.immutable.8.0.0.nupkg.sha512",
     "/Users/shulezhenkov/.nuget/packages/system.componentmodel.annotations/5.0.0/system.componentmodel.annotations.5.0.0.nupkg.sha512",
