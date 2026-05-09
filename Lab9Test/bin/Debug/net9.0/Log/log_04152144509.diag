@@ -1,0 +1,16 @@
+2026-04-15T21:40:44.5154571+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.4.3+c252b64ad913ea9411fc5d17bfd5580d2d061497
+2026-04-15T21:40:44.5391380+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-04-15T21:40:44.5406598+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-04-15T21:40:44.5406657+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 21:40:44.487
+2026-04-15T21:40:44.5426099+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 34924
+2026-04-15T21:40:44.5426316+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 9.0.8
+2026-04-15T21:40:44.5426405+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\9.0.8\System.Private.CoreLib.dll
+2026-04-15T21:40:44.5426492+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-04-15T21:40:44.5426566+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\aknik\Source\Repos\BIVT-25-Lab-9\Lab9Test\bin\Debug\net9.0\Lab9Test.dll
+2026-04-15T21:40:44.5427821+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\aknik\Source\Repos\BIVT-25-Lab-9\Lab9Test\bin\Debug\net9.0\Log --results-directory C:\Users\aknik\source\repos\BIVT-25-Lab-9\Lab9\TestResults --client-port 61114'
+2026-04-15T21:40:44.5441351+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-04-15T21:40:44.5851288+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-04-15T21:40:44.5913064+00:00 Microsoft.Testing.Platform.Configurations.JsonConfigurationSource+JsonConfigurationProvider INFORMATION Config file 'C:\Users\aknik\Source\Repos\BIVT-25-Lab-9\Lab9Test\bin\Debug\net9.0\Lab9Test.testconfig.json' not found.
+2026-04-15T21:40:44.5938532+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable:  VSTest mode: False
+2026-04-15T21:40:44.7909959+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: 'MSTestExtension' Version: '3.6.4' DisplayName: 'MSTest' Description: 'MSTest Framework for Microsoft Testing Platform'
+2026-04-15T21:40:44.9025296+00:00 Microsoft.Testing.Extensions.VSTestBridge.ObjectModel.MessageLoggerAdapter INFORMATION Включена параллелизация тестов для C:\Users\aknik\Source\Repos\BIVT-25-Lab-9\Lab9Test\bin\Debug\net9.0\Lab9Test.dll (рабочие роли: 1, область: MethodLevel)
