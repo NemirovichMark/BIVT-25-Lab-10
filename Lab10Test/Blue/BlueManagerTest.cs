@@ -1,195 +1,195 @@
-﻿//using Lab10.Blue;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
-//using System.Text.Json;
+using lab10.blue;
+using microsoft.visualstudio.testtools.unittesting;
+using system.text.json;
 
-//namespace Lab10Test.Blue
-//{
-//    [TestClass]
-//    public sealed class BlueManagerTest
-//    {
-//        private Lab9.Blue.Blue[] _tasks;
-//        private string[] _input;
-//        private string[] _sequence;
+namespace lab10test.blue
+{
+    [testclass]
+    public sealed class bluemanagertest
+    {
+        private lab9.blue.blue[] _tasks;
+        private string[] _input;
+        private string[] _sequence;
 
-//        [TestInitialize]
-//        public void LoadData()
-//        {
-//            var folder = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
-//            var file = Path.Combine(folder, "Lab10Test", "Blue", "data.json");
+        [testinitialize]
+        public void loaddata()
+        {
+            var folder = directory.getparent(directory.getcurrentdirectory()).parent.parent.parent.fullname;
+            var file = path.combine(folder, "lab10test", "blue", "data.json");
 
-//            var json = JsonSerializer.Deserialize<JsonElement>(File.ReadAllText(file));
+            var json = jsonserializer.deserialize<jsonelement>(file.readalltext(file));
 
-//            _input = json.GetProperty("Task2").GetProperty("input").Deserialize<string[]>();
-//            _sequence = json.GetProperty("Task2").GetProperty("inputSequence").Deserialize<string[]>();
-//        }
+            _input = json.getproperty("task2").getproperty("input").deserialize<string[]>();
+            _sequence = json.getproperty("task2").getproperty("inputsequence").deserialize<string[]>();
+        }
 
-//        private void Init(int i)
-//        {
-//            _tasks = new Lab9.Blue.Blue[]
-//            {
-//                 new Lab9.Blue.Task1(_input[i]),
-//                 new Lab9.Blue.Task2(_input[i], _sequence[i]),
-//                 new Lab9.Blue.Task3(_input[i]),
-//                 new Lab9.Blue.Task4(_input[i])
-//            };
+        private void init(int i)
+        {
+            _tasks = new lab9.blue.blue[]
+            {
+                 new lab9.blue.task1(_input[i]),
+                 new lab9.blue.task2(_input[i], _sequence[i]),
+                 new lab9.blue.task3(_input[i]),
+                 new lab9.blue.task4(_input[i])
+            };
 
-//            foreach (var t in _tasks)
-//                t.Review();
-//        }
+            foreach (var t in _tasks)
+                t.review();
+        }
 
-//        [TestMethod]
-//        public void Test_00_OOP()
-//        {
-//            var type = typeof(Lab10.Blue.Blue<Lab9.Blue.Blue>);
+        [testmethod]
+        public void test_00_oop()
+        {
+            var type = typeof(lab10.blue.blue<lab9.blue.blue>);
 
-//            Assert.IsTrue(type.IsClass, "Blue<T> must be class");
+            assert.istrue(type.isclass, "blue<t> must be class");
 
-//            Assert.IsNotNull(type.GetProperty("Manager"));
-//            Assert.IsNotNull(type.GetProperty("Tasks"));
+            assert.isnotnull(type.getproperty("manager"));
+            assert.isnotnull(type.getproperty("tasks"));
 
-//            Assert.IsNotNull(type.GetMethod("Add", new[] { typeof(Lab9.Blue.Blue) }));
-//            Assert.IsNotNull(type.GetMethod("Add", new[] { typeof(Lab9.Blue.Blue[]) }));
-//            Assert.IsNotNull(type.GetMethod("Remove", new[] { typeof(Lab9.Blue.Blue) }));
-//            Assert.IsNotNull(type.GetMethod("Clear"));
-//            Assert.IsNotNull(type.GetMethod("SaveTasks"));
-//            Assert.IsNotNull(type.GetMethod("LoadTasks"));
-//            Assert.IsNotNull(type.GetMethod("ChangeManager"));
-//        }
+            assert.isnotnull(type.getmethod("add", new[] { typeof(lab9.blue.blue) }));
+            assert.isnotnull(type.getmethod("add", new[] { typeof(lab9.blue.blue[]) }));
+            assert.isnotnull(type.getmethod("remove", new[] { typeof(lab9.blue.blue) }));
+            assert.isnotnull(type.getmethod("clear"));
+            assert.isnotnull(type.getmethod("savetasks"));
+            assert.isnotnull(type.getmethod("loadtasks"));
+            assert.isnotnull(type.getmethod("changemanager"));
+        }
 
-//        [TestMethod]
-//        public void Test_01_Add_Remove_AllTasks()
-//        {
-//            for (int i = 0; i < _input.Length; i++)
-//            {
-//                Init(i);
+        [testmethod]
+        public void test_01_add_remove_alltasks()
+        {
+            for (int i = 0; i < _input.length; i++)
+            {
+                init(i);
 
-//                var w = new Lab10.Blue.Blue<Lab9.Blue.Blue>();
+                var w = new lab10.blue.blue<lab9.blue.blue>();
 
-//                w.Add(_tasks);
-//                Assert.AreEqual(_tasks.Length, w.Tasks.Length, $"Add failed test {i}");
+                w.add(_tasks);
+                assert.areequal(_tasks.length, w.tasks.length, $"add failed test {i}");
 
-//                w.Remove(_tasks[0]);
-//                Assert.IsFalse(w.Tasks.Contains(_tasks[0]), $"Remove failed test {i}");
-//            }
-//        }
+                w.remove(_tasks[0]);
+                assert.isfalse(w.tasks.contains(_tasks[0]), $"remove failed test {i}");
+            }
+        }
 
-//        [TestMethod]
-//        public void Test_02_Save_Load_Txt()
-//        {
-//            for (int i = 0; i < _input.Length; i++)
-//            {
-//                Init(i);
+        [testmethod]
+        public void test_02_save_load_txt()
+        {
+            for (int i = 0; i < _input.length; i++)
+            {
+                init(i);
 
-//                var manager = new BlueTxtFileManager<Lab9.Blue.Blue>("txt");
-//                var folder = Path.Combine(Path.GetTempPath(), $"BlueTxt_{i}");
-//                Directory.CreateDirectory(folder);
+                var manager = new bluetxtfilemanager<lab9.blue.blue>("txt");
+                var folder = path.combine(path.gettemppath(), $"bluetxt_{i}");
+                directory.createdirectory(folder);
 
-//                manager.SelectFolder(folder);
+                manager.selectfolder(folder);
 
-//                var w = new Lab10.Blue.Blue<Lab9.Blue.Blue>(manager, _tasks);
+                var w = new lab10.blue.blue<lab9.blue.blue>(manager, _tasks);
 
-//                w.SaveTasks();
-//                w.LoadTasks();
+                w.savetasks();
+                w.loadtasks();
 
-//                for (int j = 0; j < _tasks.Length; j++)
-//                {
-//                    Assert.AreEqual(_tasks[j].Input, w.Tasks[j].Input,
-//                        $"TXT load mismatch test {i} task {j}");
-//                }
+                for (int j = 0; j < _tasks.length; j++)
+                {
+                    assert.areequal(_tasks[j].input, w.tasks[j].input,
+                        $"txt load mismatch test {i} task {j}");
+                }
 
-//                Directory.Delete(folder, true);
-//            }
-//        }
+                directory.delete(folder, true);
+            }
+        }
 
-//        [TestMethod]
-//        public void Test_03_Save_Load_Json()
-//        {
-//            for (int i = 0; i < _input.Length; i++)
-//            {
-//                Init(i);
+        [testmethod]
+        public void test_03_save_load_json()
+        {
+            for (int i = 0; i < _input.length; i++)
+            {
+                init(i);
 
-//                var manager = new BlueJsonFileManager<Lab9.Blue.Blue>("json");
-//                var folder = Path.Combine(Path.GetTempPath(), $"BlueJson_{i}");
-//                Directory.CreateDirectory(folder);
+                var manager = new bluejsonfilemanager<lab9.blue.blue>("json");
+                var folder = path.combine(path.gettemppath(), $"bluejson_{i}");
+                directory.createdirectory(folder);
 
-//                manager.SelectFolder(folder);
+                manager.selectfolder(folder);
 
-//                var w = new Lab10.Blue.Blue<Lab9.Blue.Blue>(manager, _tasks);
+                var w = new lab10.blue.blue<lab9.blue.blue>(manager, _tasks);
 
-//                w.SaveTasks();
-//                w.LoadTasks();
+                w.savetasks();
+                w.loadtasks();
 
-//                for (int j = 0; j < _tasks.Length; j++)
-//                {
-//                    Assert.AreEqual(_tasks[j].Input, w.Tasks[j].Input,
-//                        $"JSON load mismatch test {i} task {j}");
-//                }
+                for (int j = 0; j < _tasks.length; j++)
+                {
+                    assert.areequal(_tasks[j].input, w.tasks[j].input,
+                        $"json load mismatch test {i} task {j}");
+                }
 
-//                Directory.Delete(folder, true);
-//            }
-//        }
+                directory.delete(folder, true);
+            }
+        }
 
-//        [TestMethod]
-//        public void Test_04_ChangeManager_And_Format()
-//        {
-//            for (int i = 0; i < _input.Length; i++)
-//            {
-//                Init(i);
+        [testmethod]
+        public void test_04_changemanager_and_format()
+        {
+            for (int i = 0; i < _input.length; i++)
+            {
+                init(i);
 
-//                var txtManager = new BlueTxtFileManager<Lab9.Blue.Blue>("txt");
-//                var jsonManager = new BlueJsonFileManager<Lab9.Blue.Blue>("json");
+                var txtmanager = new bluetxtfilemanager<lab9.blue.blue>("txt");
+                var jsonmanager = new bluejsonfilemanager<lab9.blue.blue>("json");
 
-//                var folder = Path.Combine(Path.GetTempPath(), $"BlueMix_{i}");
-//                Directory.CreateDirectory(folder);
+                var folder = path.combine(path.gettemppath(), $"bluemix_{i}");
+                directory.createdirectory(folder);
 
-//                txtManager.SelectFolder(folder);
+                txtmanager.selectfolder(folder);
 
-//                var w = new Lab10.Blue.Blue<Lab9.Blue.Blue>(txtManager, _tasks);
+                var w = new lab10.blue.blue<lab9.blue.blue>(txtmanager, _tasks);
 
-//                w.SaveTasks();
+                w.savetasks();
 
-//                w.ChangeManager(jsonManager);
-//                w.LoadTasks();
+                w.changemanager(jsonmanager);
+                w.loadtasks();
 
-//                bool allNull = true;
-//                bool allSame = true;
-//                for (int j = 0; j < w.Tasks.Length; j++)
-//                {
-//                    if (w.Tasks[j] != null)
-//                    {
-//                        allNull = false;
-//                        if (w.Tasks[j].Input == _tasks[j].Input)
-//                            allSame = false;
-//                    }
-//                }
-//                Assert.IsTrue(allNull, "Change manager and format crash deserialization");
-//                if (!allNull)
-//                    Assert.IsFalse(allSame, "ChangeManager should affect deserialization due to format difference");
+                bool allnull = true;
+                bool allsame = true;
+                for (int j = 0; j < w.tasks.length; j++)
+                {
+                    if (w.tasks[j] != null)
+                    {
+                        allnull = false;
+                        if (w.tasks[j].input == _tasks[j].input)
+                            allsame = false;
+                    }
+                }
+                assert.istrue(allnull, "change manager and format crash deserialization");
+                if (!allnull)
+                    assert.isfalse(allsame, "changemanager should affect deserialization due to format difference");
 
-//                Directory.Delete(folder, true);
-//            }
-//        }
+                directory.delete(folder, true);
+            }
+        }
 
-//        [TestMethod]
-//        public void Test_05_Clear_All()
-//        {
-//            for (int i = 0; i < _input.Length; i++)
-//            {
-//                Init(i);
+        [testmethod]
+        public void test_05_clear_all()
+        {
+            for (int i = 0; i < _input.length; i++)
+            {
+                init(i);
 
-//                var manager = new BlueTxtFileManager<Lab9.Blue.Blue>("clear");
-//                var folder = Path.Combine(Path.GetTempPath(), $"BlueClear_{i}");
-//                Directory.CreateDirectory(folder);
+                var manager = new bluetxtfilemanager<lab9.blue.blue>("clear");
+                var folder = path.combine(path.gettemppath(), $"blueclear_{i}");
+                directory.createdirectory(folder);
 
-//                manager.SelectFolder(folder);
+                manager.selectfolder(folder);
 
-//                var w = new Lab10.Blue.Blue<Lab9.Blue.Blue>(manager, _tasks);
+                var w = new lab10.blue.blue<lab9.blue.blue>(manager, _tasks);
 
-//                w.Clear();
+                w.clear();
 
-//                Assert.AreEqual(0, w.Tasks.Length, $"Clear failed test {i}");
-//                Assert.IsFalse(Directory.Exists(folder), $"Folder not deleted test {i}");
-//            }
-//        }
-//    }
-//}
+                assert.areequal(0, w.tasks.length, $"clear failed test {i}");
+                assert.isfalse(directory.exists(folder), $"folder not deleted test {i}");
+            }
+        }
+    }
+}
