@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Lab10\Lab10.csproj" />
+    <ProjectReference Include="..\..\BIVT-25-Lab-9\Lab9\Lab9.csproj" />
   </ItemGroup>
 
   <ItemGroup>
