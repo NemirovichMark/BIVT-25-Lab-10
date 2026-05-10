@@ -5,14 +5,12 @@ namespace Lab10.Purple;
 
 public class Purple<T> where T : Lab9.Purple.Purple
 {
-    // Инициализируем массив сразу, чтобы он не был null
     private T[] _tasks = Array.Empty<T>();
     private PurpleFileManager<T> _manager;
 
     public T[] Tasks => _tasks;
     public PurpleFileManager<T> Manager => _manager;
     
-    // Конструктор по умолчанию
     public Purple() 
     {
         _tasks = Array.Empty<T>();
@@ -39,7 +37,6 @@ public class Purple<T> where T : Lab9.Purple.Purple
     {
         if (obj == null) return;
         
-        // Теперь _tasks гарантированно не null, и Resize сработает
         Array.Resize(ref _tasks, _tasks.Length + 1);
         _tasks[_tasks.Length - 1] = obj;
     }
@@ -63,7 +60,6 @@ public class Purple<T> where T : Lab9.Purple.Purple
         for (int i = 0, j = 0; i < _tasks.Length; i++)
         {
             if (i == index) continue;
-            // Проверка на случай, если мы вышли за границы нового массива
             if (j < newTasks.Length) newTasks[j++] = _tasks[i];
         }
 
