@@ -1,0 +1,15 @@
+/Users/vinograd/RiderProjects/BIVT-25-Lab-9/Lab9/bin/Debug/net8.0/Lab9
+/Users/vinograd/RiderProjects/BIVT-25-Lab-9/Lab9/bin/Debug/net8.0/Lab9.deps.json
+/Users/vinograd/RiderProjects/BIVT-25-Lab-9/Lab9/bin/Debug/net8.0/Lab9.runtimeconfig.json
+/Users/vinograd/RiderProjects/BIVT-25-Lab-9/Lab9/bin/Debug/net8.0/Lab9.dll
+/Users/vinograd/RiderProjects/BIVT-25-Lab-9/Lab9/bin/Debug/net8.0/Lab9.pdb
+/Users/vinograd/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/Lab9.GeneratedMSBuildEditorConfig.editorconfig
+/Users/vinograd/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/Lab9.AssemblyInfoInputs.cache
+/Users/vinograd/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/Lab9.AssemblyInfo.cs
+/Users/vinograd/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/Lab9.csproj.CoreCompileInputs.cache
+/Users/vinograd/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/Lab9.sourcelink.json
+/Users/vinograd/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/Lab9.dll
+/Users/vinograd/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/refint/Lab9.dll
+/Users/vinograd/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/Lab9.pdb
+/Users/vinograd/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/Lab9.genruntimeconfig.cache
+/Users/vinograd/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/ref/Lab9.dll
