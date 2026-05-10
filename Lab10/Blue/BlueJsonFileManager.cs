@@ -11,13 +11,14 @@ namespace Lab10.Blue
         public override void Serialize(T obj)
         {
             if (obj == null) return;
-            File.WriteAllText(FullPath, JsonSerializer.Serialize(obj, obj.GetType()));
+            string json = JsonSerializer.Serialize(obj, obj.GetType());
+            File.WriteAllText(FullPath, json);
         }
 
         public override T Deserialize()
         {
             if (!File.Exists(FullPath)) return null;
-            var json = File.ReadAllText(FullPath);
+            string json = File.ReadAllText(FullPath);
             return (T)JsonSerializer.Deserialize(json, typeof(T));
         }
     }
