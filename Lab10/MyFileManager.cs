@@ -35,9 +35,7 @@ namespace Lab10
         {
             get
             {
-                return Path.Combine(
-                    _folderPath,
-                    _fileName + "." + _fileExtension);
+                return Path.Combine(_folderPath, _fileName + "." + _fileExtension);
             }
         }
 
