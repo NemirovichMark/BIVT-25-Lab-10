@@ -1,0 +1,15 @@
+C:\Users\timap\source\repos\BIVT-25-Lab-10\Lab9\bin\Debug\net8.0\Lab9.exe
+C:\Users\timap\source\repos\BIVT-25-Lab-10\Lab9\bin\Debug\net8.0\Lab9.deps.json
+C:\Users\timap\source\repos\BIVT-25-Lab-10\Lab9\bin\Debug\net8.0\Lab9.runtimeconfig.json
+C:\Users\timap\source\repos\BIVT-25-Lab-10\Lab9\bin\Debug\net8.0\Lab9.dll
+C:\Users\timap\source\repos\BIVT-25-Lab-10\Lab9\bin\Debug\net8.0\Lab9.pdb
+C:\Users\timap\source\repos\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\Lab9.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\timap\source\repos\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\Lab9.AssemblyInfoInputs.cache
+C:\Users\timap\source\repos\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\Lab9.AssemblyInfo.cs
+C:\Users\timap\source\repos\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\Lab9.csproj.CoreCompileInputs.cache
+C:\Users\timap\source\repos\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\Lab9.sourcelink.json
+C:\Users\timap\source\repos\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\Lab9.dll
+C:\Users\timap\source\repos\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\refint\Lab9.dll
+C:\Users\timap\source\repos\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\Lab9.pdb
+C:\Users\timap\source\repos\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\Lab9.genruntimeconfig.cache
+C:\Users\timap\source\repos\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\ref\Lab9.dll
