@@ -3151,13 +3151,13 @@
     },
     "Lab9/1.0.0": {
       "type": "project",
-      "path": "../../BIVT-25-Lab-9/Lab9/Lab9.csproj",
-      "msbuildProject": "../../BIVT-25-Lab-9/Lab9/Lab9.csproj"
+      "path": "../Lab9/Lab9.csproj",
+      "msbuildProject": "../Lab9/Lab9.csproj"
     },
     "Lab9Test/1.0.0": {
       "type": "project",
-      "path": "../../BIVT-25-Lab-9/Lab9Test/Lab9Test.csproj",
-      "msbuildProject": "../../BIVT-25-Lab-9/Lab9Test/Lab9Test.csproj"
+      "path": "../Lab9Test/Lab9Test.csproj",
+      "msbuildProject": "../Lab9Test/Lab9Test.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3206,6 +3206,12 @@
           "projectReferences": {
             "C:\\Users\\Роман\\source\\repos\\BIVT-25-Lab-10\\Lab10\\Lab10.csproj": {
               "projectPath": "C:\\Users\\Роман\\source\\repos\\BIVT-25-Lab-10\\Lab10\\Lab10.csproj"
+            },
+            "C:\\Users\\Роман\\source\\repos\\BIVT-25-Lab-10\\Lab9Test\\Lab9Test.csproj": {
+              "projectPath": "C:\\Users\\Роман\\source\\repos\\BIVT-25-Lab-10\\Lab9Test\\Lab9Test.csproj"
+            },
+            "C:\\Users\\Роман\\source\\repos\\BIVT-25-Lab-10\\Lab9\\Lab9.csproj": {
+              "projectPath": "C:\\Users\\Роман\\source\\repos\\BIVT-25-Lab-10\\Lab9\\Lab9.csproj"
             },
             "C:\\Users\\Роман\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Lab9Test.csproj": {
               "projectPath": "C:\\Users\\Роман\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Lab9Test.csproj"

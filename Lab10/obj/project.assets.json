@@ -3129,13 +3129,13 @@
     },
     "Lab9/1.0.0": {
       "type": "project",
-      "path": "../../BIVT-25-Lab-9/Lab9/Lab9.csproj",
-      "msbuildProject": "../../BIVT-25-Lab-9/Lab9/Lab9.csproj"
+      "path": "../Lab9/Lab9.csproj",
+      "msbuildProject": "../Lab9/Lab9.csproj"
     },
     "Lab9Test/1.0.0": {
       "type": "project",
-      "path": "../../BIVT-25-Lab-9/Lab9Test/Lab9Test.csproj",
-      "msbuildProject": "../../BIVT-25-Lab-9/Lab9Test/Lab9Test.csproj"
+      "path": "../Lab9Test/Lab9Test.csproj",
+      "msbuildProject": "../Lab9Test/Lab9Test.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3155,7 +3155,7 @@
       "projectName": "Lab10",
       "projectPath": "C:\\Users\\Роман\\source\\repos\\BIVT-25-Lab-10\\Lab10\\Lab10.csproj",
       "packagesPath": "C:\\Users\\Роман\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Роман\\Source\\Repos\\BIVT-25-Lab-10\\Lab10\\obj\\",
+      "outputPath": "C:\\Users\\Роман\\source\\repos\\BIVT-25-Lab-10\\Lab10\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3176,6 +3176,12 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+            "C:\\Users\\Роман\\source\\repos\\BIVT-25-Lab-10\\Lab9Test\\Lab9Test.csproj": {
+              "projectPath": "C:\\Users\\Роман\\source\\repos\\BIVT-25-Lab-10\\Lab9Test\\Lab9Test.csproj"
+            },
+            "C:\\Users\\Роман\\source\\repos\\BIVT-25-Lab-10\\Lab9\\Lab9.csproj": {
+              "projectPath": "C:\\Users\\Роман\\source\\repos\\BIVT-25-Lab-10\\Lab9\\Lab9.csproj"
+            },
             "C:\\Users\\Роман\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Lab9Test.csproj": {
               "projectPath": "C:\\Users\\Роман\\source\\repos\\BIVT-25-Lab-9\\Lab9Test\\Lab9Test.csproj"
             },
