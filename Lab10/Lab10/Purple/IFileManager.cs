@@ -1,12 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Lab10.Purple
 {
-    internal interface IFileManager
+    public interface IFileManager
     {
         string FolderPath { get; } string FileName { get; }
         string FileExtension { get; } string FullPath { get; }
@@ -14,7 +15,7 @@ namespace Lab10.Purple
         void ChangeFileFormat(string a);
 
     }
-    internal interface IFileLifeController
+    public interface IFileLifeController
     {
         void CreateFile(); void DeleteFile();
         void EditFile(string a); void ChangeFileExtension(string a);
