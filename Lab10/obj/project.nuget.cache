@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "xhzJzmHmdsE=",
+  "success": true,
+  "projectFilePath": "/Users/georgy/RiderProjects/BIVT-25-Lab-10/Lab10/Lab10.csproj",
+  "expectedPackageFiles": [
+    "/Users/georgy/.nuget/packages/newtonsoft.json/13.0.5-beta1/newtonsoft.json.13.0.5-beta1.nupkg.sha512"
+  ],
+  "logs": []
+}
