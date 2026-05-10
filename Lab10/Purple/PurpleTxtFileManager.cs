@@ -1,9 +1,10 @@
 using System.Reflection;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Lab10.Purple
 {
-    public class PurpleTxtFileManager<T> : PurpleFileManager<T> where T : global::Lab9.Purple.Purple
+    public class PurpleTxtFileManager<T> : PurpleFileManager<T> where T : Lab9.Purple.Purple
     {
         public PurpleTxtFileManager(string name) : base(name) { }
 
@@ -13,8 +14,7 @@ namespace Lab10.Purple
         public override void EditFile(string text)
         {
             T obj = this.Deserialize();
-            if (obj == null)
-                return;
+            if (obj == null) return;
             obj.ChangeText(text);
             this.Serialize(obj);
         }
@@ -26,18 +26,25 @@ namespace Lab10.Purple
 
         public override void Serialize(T obj)
         {
-            if (obj == null || string.IsNullOrEmpty(this.FullPath))
-                return;
+            if (obj == null || string.IsNullOrEmpty(this.FullPath)) return;
 
             if (!string.IsNullOrEmpty(this.FolderPath))
                 Directory.CreateDirectory(this.FolderPath);
 
-            string output = Convert.ToBase64String(Encoding.UTF8.GetBytes(obj.ToString()));
+            string output_base64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(obj.ToString() ?? ""));
+
+            string codes_json = "";
+            if (obj is Lab9.Purple.Task4 task4)
+            {
+                var codes_list = task4.Codes.Select(pair_code => new { pair = pair_code.Item1, code = pair_code.Item2.ToString() }).ToList();
+                codes_json = JsonConvert.SerializeObject(codes_list);
+            }
 
             File.WriteAllText(this.FullPath,
                 $"Type: {obj.GetType().AssemblyQualifiedName}\n" +
-                $"Input: {obj.Input}\n" +
-                $"Output: {output}");
+                $"Input: {obj.Input ?? ""}\n" +
+                $"Output: {output_base64}\n" +
+                $"Codes: {codes_json}");
         }
 
         public override T Deserialize()
@@ -47,7 +54,11 @@ namespace Lab10.Purple
 
             string[] lines = File.ReadAllLines(this.FullPath);
 
-            string type_name = "", input = "", output_code = "";
+            string type_name = "";
+            string input = "";
+            string output_code = "";
+            string codes_json = "";
+
             foreach (string line in lines)
             {
                 if (line.StartsWith("Type: "))
@@ -56,6 +67,8 @@ namespace Lab10.Purple
                     input = line.Substring("Input: ".Length);
                 else if (line.StartsWith("Output: "))
                     output_code = line.Substring("Output: ".Length);
+                else if (line.StartsWith("Codes: "))
+                    codes_json = line.Substring("Codes: ".Length);
             }
 
             if (string.IsNullOrEmpty(type_name))
@@ -65,27 +78,36 @@ namespace Lab10.Purple
             if (type == null || !typeof(T).IsAssignableFrom(type))
                 return null!;
 
-            object? obj;
-            if (type == typeof(global::Lab9.Purple.Task4))
-                obj = Activator.CreateInstance(type, input, null);
+            object? obj = null;
+
+            if (type == typeof(Lab9.Purple.Task4))
+            {
+                List<(string, char)> codes_list = new List<(string, char)>();
+                if (!string.IsNullOrEmpty(codes_json))
+                {
+                    var deserialized = JsonConvert.DeserializeObject<List<dynamic>>(codes_json);
+                    if (deserialized != null)
+                    {
+                        foreach (var item in deserialized)
+                        {
+                            string pair = item.pair;
+                            string code_str = item.code;
+                            char code = code_str.Length > 0 ? code_str[0] : '\0';
+                            codes_list.Add((pair, code));
+                        }
+                    }
+                }
+                obj = Activator.CreateInstance(type, input, codes_list.ToArray());
+            }
             else
+            {
                 obj = Activator.CreateInstance(type, input);
+            }
 
             if (obj == null)
                 return null!;
 
-            if (!string.IsNullOrEmpty(output_code))
-            {
-                string output = Encoding.UTF8.GetString(Convert.FromBase64String(output_code));
-                FieldInfo? field = type.GetField("_output", BindingFlags.NonPublic | BindingFlags.Instance);
-                if (field != null)
-                {
-                    if (field.FieldType == typeof(string))
-                        field.SetValue(obj, output);
-                    else if (field.FieldType == typeof(string[]))
-                        field.SetValue(obj, output.Split('\n'));
-                }
-            }
+            ((Lab9.Purple.Purple)obj).Review();
 
             return (T)obj;
         }

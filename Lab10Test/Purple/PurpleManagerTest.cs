@@ -192,7 +192,6 @@ namespace Lab10Test.Purple
 
                w.SaveTasks();
 
-               // Меняем с TXT на JSON
                w.ChangeManager(jsonManager);
                w.LoadTasks();
 
@@ -200,7 +199,6 @@ namespace Lab10Test.Purple
                Assert.IsTrue(loadedCount < _tasks.Length,
                    $"ChangeManager from TXT to JSON should break loading in test {i}");
 
-               // Меняем с JSON на XML
                w.ChangeManager(xmlManager);
                w.LoadTasks();
 
