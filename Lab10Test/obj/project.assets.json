@@ -3183,7 +3183,7 @@
       "projectName": "Lab10Test",
       "projectPath": "C:\\Users\\Роман\\source\\repos\\BIVT-25-Lab-10\\Lab10Test\\Lab10Test.csproj",
       "packagesPath": "C:\\Users\\Роман\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Роман\\Source\\Repos\\BIVT-25-Lab-10\\Lab10Test\\obj\\",
+      "outputPath": "C:\\Users\\Роман\\source\\repos\\BIVT-25-Lab-10\\Lab10Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
