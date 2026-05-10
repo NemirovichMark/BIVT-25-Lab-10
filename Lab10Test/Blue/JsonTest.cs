@@ -6,7 +6,7 @@ using System.Text.Json;
 namespace Lab10Test.Blue
 {
     [TestClass]
-    public sealed class TxtTest
+    public sealed class JsonTest
     {
         private Lab9.Blue.Blue[] _tasks;
         private string[] _input;
@@ -25,12 +25,12 @@ namespace Lab10Test.Blue
         }
 
         [TestMethod]
-        public void Test_00_OOP_TxtManager()
+        public void Test_00_OOP_JsonManager()
         {
-            var type = typeof(BlueTxtFileManager<Lab9.Blue.Blue>);
+            var type = typeof(BlueJsonFileManager<Lab9.Blue.Blue>);
 
-            Assert.IsTrue(type.IsClass, "BlueTxtFileManager<T> must be class");
-            Assert.IsFalse(type.IsAbstract, "BlueTxtFileManager<T> must NOT be abstract");
+            Assert.IsTrue(type.IsClass, "BlueJsonFileManager<T> must be class");
+            Assert.IsFalse(type.IsAbstract, "BlueJsonFileManager<T> must NOT be abstract");
 
             Assert.IsTrue(typeof(BlueFileManager<Lab9.Blue.Blue>).IsAssignableFrom(type),
                 "Must inherit from BlueFileManager<T>");
@@ -51,12 +51,12 @@ namespace Lab10Test.Blue
         }
 
         [TestMethod]
-        public void Test_01_Serialize_Txt()
+        public void Test_01_Serialize_JSON()
         {
-            ISerializer<Lab9.Blue.Blue> manager = new BlueTxtFileManager<Lab9.Blue.Blue>("test");
+            ISerializer<Lab9.Blue.Blue> manager = new BlueJsonFileManager<Lab9.Blue.Blue>("test");
             var fileManager = (IFileManager)manager;
 
-            var folder = Path.Combine(Directory.GetCurrentDirectory(), "TxtTest1");
+            var folder = Path.Combine(Directory.GetCurrentDirectory(), "JsonTest1");
             Directory.CreateDirectory(folder);
 
             fileManager.SelectFolder(folder);
@@ -68,30 +68,27 @@ namespace Lab10Test.Blue
                 fileManager.ChangeFileName($"task{i}");
                 manager.Serialize(_tasks[i]);
 
-                Assert.IsTrue(File.Exists(fileManager.FullPath),
-                    $"File not created for task {i}");
+                Assert.IsTrue(File.Exists(fileManager.FullPath), $"File not created for task {i}");
 
                 var content = File.ReadAllText(fileManager.FullPath);
-                Assert.IsFalse(string.IsNullOrWhiteSpace(content),
-                    $"Empty file for task {i}");
+                Assert.IsTrue(!string.IsNullOrEmpty(content), $"Empty file for task {i}");
 
-                Assert.IsTrue(content.Contains(_input[i]),
-                    $"Input text not found in TXT file for task {i}");
+                var json = JObject.Parse(content);
+                var input = json["Input"]?.ToString();
 
-                Assert.IsTrue(content.Contains("Type:"),
-                    $"Type field not found in TXT for task {i}");
+                Assert.AreEqual(_input[i], input, $"Input mismatch for task {i}");
             }
 
             Directory.Delete(folder, true);
         }
 
         [TestMethod]
-        public void Test_02_Deserialize_Txt()
+        public void Test_02_Deserialize_JSON()
         {
-            ISerializer<Lab9.Blue.Blue> manager = new BlueTxtFileManager<Lab9.Blue.Blue>("test");
+            ISerializer<Lab9.Blue.Blue> manager = new BlueJsonFileManager<Lab9.Blue.Blue>("test");
             var fileManager = (IFileManager)manager;
 
-            var folder = Path.Combine(Directory.GetCurrentDirectory(), "TxtTest2");
+            var folder = Path.Combine(Directory.GetCurrentDirectory(), "JsonTest2");
             Directory.CreateDirectory(folder);
 
             fileManager.SelectFolder(folder);
