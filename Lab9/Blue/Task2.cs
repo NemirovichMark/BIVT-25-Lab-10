@@ -6,6 +6,7 @@ public class Task2 : Blue
   private string _substr;
 
   public string Output => _output;
+  public string Substr => _substr;
 
   public Task2(string input, string substr) : base(input)
   {
@@ -15,6 +16,7 @@ public class Task2 : Blue
 
   public override void Review()
   {
+    if (_substr == null) return;
     string[] words = Input.Split(' ');
     words = words.Where(x => !string.IsNullOrEmpty(x)).ToArray();
 

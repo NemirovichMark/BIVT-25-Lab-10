@@ -1,60 +1,53 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Lab10.Blue;
 
-public class BlueJsonFileManager<T> : BlueFileManager<T> where T:Lab9.Blue.Blue
+public class BlueJsonFileManager<T> : BlueFileManager<T> where T: Lab9.Blue.Blue
 {
   public BlueJsonFileManager(string name) : base(name){}
   public BlueJsonFileManager(string name, string folderpath, string filename, string ext = "") : base(name, folderpath, filename, ext){}
 
-  public override void EditFile(string data)
+  public override void EditFile(string newContent)
   {
-    if (data == null) return;
-    T obj = Deserialize();
-    obj.ChangeText(data);
+    var obj = Deserialize();
+    if (obj == null) return;
+    obj.ChangeText(newContent);
     Serialize(obj);
   }
-
-  public override void ChangeFileExtension(string extension = "json")
+  public override void ChangeFileExtension(string newExtention)
   {
-    base.ChangeFileExtension("json"); // MyFileManager.ChangeFileExtension already uses ChangeFileFormat;
+    ChangeFileFormat("json");
   }
-
   public override void Serialize(T obj)
   {
     if (obj == null) return;
 
-    string json;
-    using (var stringWriter = new StringWriter())
-    {
-      using (var jsonWriter = new JsonTextWriter(stringWriter))
-      {
-	JsonSerializer serializer = new JsonSerializer();
-	serializer.Formatting = Formatting.Indented; //for readable form
-	serializer.TypeNameHandling = TypeNameHandling.All; //for type field
-	serializer.Serialize(jsonWriter, obj);
-	json = stringWriter.ToString();
-      }
-    }
-
-    EditFile(json);
+    JObject jobj = JObject.FromObject(obj);
+    jobj["Type"] = obj.GetType().AssemblyQualifiedName;
+    Directory.CreateDirectory(FolderPath);
+    File.WriteAllText(FullPath, jobj.ToString());
   }
 
   public override T Deserialize()
   {
     if (!File.Exists(FullPath)) return null;
 
-    string jsonContent = File.ReadAllText(FullPath);
+    string json = File.ReadAllText(FullPath);
+    JObject jobj = JObject.Parse(json);
 
-    if (String.IsNullOrEmpty(jsonContent)) return null;
+    string type = jobj["Type"].ToString();
+    if (string.IsNullOrWhiteSpace(type)) return null;
 
-    var settings = new JsonSerializerSettings
-    {
-      TypeNameHandling = TypeNameHandling.All //now deserealizer will look onto the type field before deserealization
-    };
+    Type t = Type.GetType(type);
+    if (t == null || !typeof(T).IsAssignableFrom(t)) return null; 
 
-    T result = JsonConvert.DeserializeObject<T>(jsonContent, settings);
+    jobj.Remove("Type");
+    var obj = jobj.ToObject(t);
 
-    return result;}
+    if (obj is Lab9.Blue.Blue blue)
+      blue.Review();
 
+    return obj as T;
+  }
 }

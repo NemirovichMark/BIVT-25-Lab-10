@@ -2,13 +2,12 @@
 
 public class Task1 : Blue
 {
-  private string[] _output;
+  private string[] _output = Array.Empty<string>();
 
   public string[] Output => _output.ToArray();
 
   public Task1(string input) : base(input)
   {
-    _output = new string[0];
   }
 
   public override void Review()

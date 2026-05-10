@@ -2,7 +2,7 @@
 {
   public abstract class Blue
   {
-    private string _input;
+    protected string _input;
 
     public char[] _specialChars = {'.', '!', '?', ',', ':', '"', ';', '–', '(', ')', '[', ']', '{', '}', '/'};
 
