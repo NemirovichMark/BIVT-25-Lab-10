@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-
 namespace Lab10.Blue
 {
     public class BlueTxtFileManager<T> : BlueFileManager<T> where T : Blue
