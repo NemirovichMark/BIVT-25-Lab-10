@@ -1,12 +1,10 @@
 using System.IO;
 namespace Lab10.Blue
 {
-    public abstract class BlueFileManager<T> : MyFileManager, Lab10.ISerializer<T>
-        where T : Blue
+    public abstract class BlueFileManager<T> : MyFileManager, ISerializer<T> where T : Blue
     {
         protected BlueFileManager(string name) : base(name) { }
-
-        protected BlueFileManager(string name, string folder, string file, string ext = "txt")
+        protected BlueFileManager(string name, string folder, string file, string ext = "txt") 
             : base(name, folder, file, ext) { }
 
         public override void EditFile(string content)
