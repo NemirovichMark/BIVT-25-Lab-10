@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lab10Test.Green
+namespace Lab10
 {
-    internal interface IFileManager
+    public interface IFileManager
     {
-        string FolderPath { get; set; }
-        string FileName { get; set; }
-        string FileExtension { get; set; }
-        string FullPath { get; set; }
+        public string FolderPath { get; }
+        public string FileName { get; }
+        public string FileExtension { get; }
+        public string FullPath { get; }
 
-        public void SelectFolder(string path);
-        public void ChangeFileName(string name);
-
-        public void ChangeFileFormat(string format);
-
+        public void SelectFolder(string folderPath);
+        public void SelectFile(string fileName);
+        public void ChangeFileName(string fileName);
+        public void ChangeFormat(string fileExtension);
+        public void ChangeFileFormat(string fileExtension);
     }
 }
