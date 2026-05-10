@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 namespace Lab10
 {
@@ -17,170 +18,94 @@ namespace Lab10
         {
             get
             {
-                if (_folderPath == null ||
-                    _fileName == null ||
-                    _fileExtension == null)
-                {
+                if (_folderPath == null || _fileName == null || _fileExtension == null)
                     return string.Empty;
-                }
-
-                return Path.Combine(
-                    _folderPath,
-                    _fileName + "." + _fileExtension);
+                return Path.Combine(_folderPath, _fileName + "." + _fileExtension);
             }
         }
 
         public MyFileManager(string name)
         {
-            _name = name;
+            _name = name ?? string.Empty;
             _folderPath = string.Empty;
-            _fileName = name;
+            _fileName = name ?? string.Empty;
             _fileExtension = "txt";
         }
 
-        public MyFileManager(
-            string name,
-            string folderPath,
-            string fileName,
-            string fileExtension = "txt")
+        public MyFileManager(string name, string folderPath, string fileName, string fileExtension = "txt")
         {
-            _name = name;
-            _folderPath = folderPath;
-            _fileName = fileName;
-            _fileExtension = fileExtension;
+            _name = name ?? string.Empty;
+            _folderPath = folderPath ?? string.Empty;
+            _fileName = fileName ?? string.Empty;
+            _fileExtension = fileExtension ?? "txt";
         }
 
         public void SelectFolder(string folderPath)
         {
-            _folderPath = folderPath;
+            _folderPath = folderPath ?? string.Empty;
         }
 
         public void ChangeFileName(string fileName)
         {
-            _fileName = fileName;
+            _fileName = fileName ?? string.Empty;
         }
 
         public void ChangeFileFormat(string fileExtension)
         {
-            if (fileExtension == null)
-            {
-                return;
-            }
+            _fileExtension = fileExtension?.TrimStart('.') ?? "txt";
 
-            if (fileExtension.StartsWith("."))
-            {
-                _fileExtension = fileExtension.Substring(1);
-            }
-            else
-            {
-                _fileExtension = fileExtension;
-            }
-
-            if (_folderPath != null &&
-                _folderPath != string.Empty &&
-                !Directory.Exists(_folderPath))
-            {
+            if (!string.IsNullOrEmpty(_folderPath) && !Directory.Exists(_folderPath))
                 Directory.CreateDirectory(_folderPath);
-            }
 
-            if (FullPath != null &&
-                FullPath != string.Empty &&
-                !File.Exists(FullPath))
-            {
-                using (FileStream stream = File.Create(FullPath))
-                {
-                }
-            }
+            if (!string.IsNullOrEmpty(FullPath) && !File.Exists(FullPath))
+                using (File.Create(FullPath)) { }
         }
 
         public virtual void CreateFile()
         {
-            if (FullPath == null ||
-                FullPath == string.Empty)
-            {
-                return;
-            }
+            if (string.IsNullOrEmpty(FullPath)) return;
 
-            if (_folderPath != null &&
-                _folderPath != string.Empty &&
-                !Directory.Exists(_folderPath))
-            {
+            if (!string.IsNullOrEmpty(_folderPath) && !Directory.Exists(_folderPath))
                 Directory.CreateDirectory(_folderPath);
-            }
 
             if (!File.Exists(FullPath))
-            {
-                using (FileStream stream = File.Create(FullPath))
-                {
-                }
-            }
+                using (File.Create(FullPath)) { }
         }
 
         public virtual void DeleteFile()
         {
-            if (FullPath == null ||
-                FullPath == string.Empty)
-            {
-                return;
-            }
+            if (string.IsNullOrEmpty(FullPath)) return;
 
             if (File.Exists(FullPath))
-            {
                 File.Delete(FullPath);
-            }
         }
 
         public virtual void EditFile(string text)
         {
-            if (FullPath == null ||
-                FullPath == string.Empty)
-            {
-                return;
-            }
+            if (string.IsNullOrEmpty(FullPath)) return;
 
-            if (_folderPath != null &&
-                _folderPath != string.Empty &&
-                !Directory.Exists(_folderPath))
-            {
+            if (!string.IsNullOrEmpty(_folderPath) && !Directory.Exists(_folderPath))
                 Directory.CreateDirectory(_folderPath);
-            }
 
-            File.WriteAllText(FullPath, text);
+            File.WriteAllText(FullPath, text ?? string.Empty);
         }
 
         public virtual void ChangeFileExtension(string fileExtension)
         {
-            if (FullPath == null ||
-                FullPath == string.Empty)
-            {
-                return;
-            }
+            if (string.IsNullOrEmpty(FullPath)) return;
 
             string oldPath = FullPath;
-
-            string content = string.Empty;
-
-            if (File.Exists(oldPath))
-            {
-                content = File.ReadAllText(oldPath);
-            }
+            string content = File.Exists(oldPath) ? File.ReadAllText(oldPath) : string.Empty;
 
             ChangeFileFormat(fileExtension);
 
-            if (_folderPath != null &&
-                _folderPath != string.Empty &&
-                !Directory.Exists(_folderPath))
-            {
+            if (!string.IsNullOrEmpty(_folderPath) && !Directory.Exists(_folderPath))
                 Directory.CreateDirectory(_folderPath);
-            }
 
             File.WriteAllText(FullPath, content);
 
-            if (File.Exists(oldPath) &&
-                oldPath != FullPath)
-            {
+            if (File.Exists(oldPath) && oldPath != FullPath)
                 File.Delete(oldPath);
-            }
         }
     }
 }
