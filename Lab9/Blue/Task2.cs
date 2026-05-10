@@ -5,6 +5,7 @@ namespace Lab9.Blue
     public class Task2 : Blue
     {
         private string _ord;
+        public string Ord => _ord;
         private string _output = "";
         public string Output => _output;
 
