@@ -1,42 +1,46 @@
 using System.IO;
+using System.Linq;
 
 namespace Lab10.Purple;
 
 public class Purple<T> where T : Lab9.Purple.Purple
 {
-    private T[] _tasks;
+    // Инициализируем массив сразу, чтобы он не был null
+    private T[] _tasks = Array.Empty<T>();
     private PurpleFileManager<T> _manager;
 
-    public T[] Tasks => _tasks.ToArray();
+    public T[] Tasks => _tasks;
     public PurpleFileManager<T> Manager => _manager;
     
+    // Конструктор по умолчанию
+    public Purple() 
+    {
+        _tasks = Array.Empty<T>();
+    }
+
     public Purple(T[] tasks)
     {
-        _tasks = (tasks != null) ? (T[])tasks.Clone() : new T[0];
+        _tasks = tasks ?? Array.Empty<T>();
     }
 
     public Purple(PurpleFileManager<T> manager, T[] tasks = null)
     {
         _manager = manager;
-        _tasks = (tasks != null) ? (T[])tasks.Clone() : new T[0];
+        _tasks = tasks ?? Array.Empty<T>();
     }
     
     public Purple(T[] tasks, PurpleFileManager<T> manager)
     {
         _manager = manager;
-        _tasks = (tasks != null) ? (T[])tasks.Clone() : new T[0];
-    }
-
-    public Purple() : base()
-    {
-        
+        _tasks = tasks ?? Array.Empty<T>();
     }
 
     public void Add(T obj)
     {
         if (obj == null) return;
         
-        Array.Resize(ref _tasks, _tasks.Length+1);
+        // Теперь _tasks гарантированно не null, и Resize сработает
+        Array.Resize(ref _tasks, _tasks.Length + 1);
         _tasks[_tasks.Length - 1] = obj;
     }
 
@@ -50,15 +54,17 @@ public class Purple<T> where T : Lab9.Purple.Purple
 
     public void Remove(T obj)
     {
-        if (obj == null) return;
+        if (obj == null || _tasks == null || _tasks.Length == 0) return;
+        
         int index = Array.IndexOf(_tasks, obj);
         if (index == -1) return;
 
         T[] newTasks = new T[_tasks.Length - 1];
-        int j = 0;
-        for (int i = 0; i < newTasks.Length; i++)
+        for (int i = 0, j = 0; i < _tasks.Length; i++)
         {
-            if (i != index) newTasks[j++] = _tasks[i];
+            if (i == index) continue;
+            // Проверка на случай, если мы вышли за границы нового массива
+            if (j < newTasks.Length) newTasks[j++] = _tasks[i];
         }
 
         _tasks = newTasks;
@@ -66,8 +72,8 @@ public class Purple<T> where T : Lab9.Purple.Purple
 
     public void Clear()
     {
-        _tasks = new T[0];
-        if (_manager != null && Directory.Exists(_manager.FolderPath))
+        _tasks = Array.Empty<T>();
+        if (_manager != null && !string.IsNullOrEmpty(_manager.FolderPath) && Directory.Exists(_manager.FolderPath))
         {
             Directory.Delete(_manager.FolderPath, true);
         }
@@ -75,7 +81,7 @@ public class Purple<T> where T : Lab9.Purple.Purple
 
     public void SaveTasks()
     {
-        if (_manager == null) return;
+        if (_manager == null || _tasks == null) return;
         for (int i = 0; i < _tasks.Length; i++)
         {
             _manager.ChangeFileName($"task_{i+1}");
@@ -85,7 +91,7 @@ public class Purple<T> where T : Lab9.Purple.Purple
 
     public void LoadTasks()
     {
-        if (_manager == null) return;
+        if (_manager == null || _tasks == null) return;
         for (int i = 0; i < _tasks.Length; i++)
         {
             _manager.ChangeFileName($"task_{i+1}");
