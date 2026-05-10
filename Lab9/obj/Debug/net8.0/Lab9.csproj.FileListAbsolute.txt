@@ -1,0 +1,15 @@
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-9\Lab9\obj\Debug\net8.0\Lab9.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-9\Lab9\obj\Debug\net8.0\Lab9.AssemblyInfoInputs.cache
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-9\Lab9\obj\Debug\net8.0\Lab9.AssemblyInfo.cs
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-9\Lab9\obj\Debug\net8.0\Lab9.csproj.CoreCompileInputs.cache
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-9\Lab9\obj\Debug\net8.0\Lab9.sourcelink.json
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-9\Lab9\bin\Debug\net8.0\Lab9.exe
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-9\Lab9\bin\Debug\net8.0\Lab9.deps.json
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-9\Lab9\bin\Debug\net8.0\Lab9.runtimeconfig.json
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-9\Lab9\bin\Debug\net8.0\Lab9.dll
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-9\Lab9\bin\Debug\net8.0\Lab9.pdb
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-9\Lab9\obj\Debug\net8.0\Lab9.dll
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-9\Lab9\obj\Debug\net8.0\refint\Lab9.dll
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-9\Lab9\obj\Debug\net8.0\Lab9.pdb
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-9\Lab9\obj\Debug\net8.0\Lab9.genruntimeconfig.cache
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-9\Lab9\obj\Debug\net8.0\ref\Lab9.dll
