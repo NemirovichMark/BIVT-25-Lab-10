@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 
-namespace Lab10Test.Green
+namespace Lab10
 {
-    internal interface IFileLifeController
+    public interface IFileLifeController
     {
         public void CreateFile();
         public void DeleteFile();
 
-        public void EditFile(string text);
-        public void ChangeFileExtension(string extension);
+        public void EditFile(string newText);
+        public void ChangeFileExtension(string newExtension);
 
     }
 }
