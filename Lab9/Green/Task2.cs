@@ -1,67 +1,50 @@
-namespace Lab9.Green;
-
-public class Task2 : Green
+namespace Lab9.Green
 {
-    private char[] _output;
-    private (char Letter, double Count)[] _counter;
-    public char[] Output => _output.ToArray();
-
-    public Task2(string input) : base(input)
+    public class Task2 : Green
     {
-        _output = new char[60];
-        _counter = new (char Letter, double Count)[60];
-    }
-    public override void Review()
-    {
-        string ABC = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяabcdefghijklmnopqrstuvwxyz";
+        private char[] _output;
 
-        for (int i = 0; i < ABC.Length; i++)
+        public char[] Output => _output;
+
+        public Task2(string text) : base(text)
         {
-            _counter[i].Letter = ABC[i];
+            _output = new char[0];
+            Review();
         }
 
-        for (int i = 0; i < Input.Length; i++)
+        public override void Review()
         {
-            if (char.IsLetter(Input[i]))
+            if (Input == null)
             {
-                if (i == 0)
-                {
-                    int index = Array.FindIndex(_counter, item => item.Letter == char.ToLower(Input[i]));
-                    _counter[index].Count++;
-                }
-
-                else
-                {
-                    if (char.IsLetter(Input[i - 1]) == false)
-                    {
-                        if (Input[i - 1] != '-' && Input[i - 1] != '\'' && Input[i - 1] != '`' && char.IsNumber(Input[i - 1]) == false)
-                        {
-                            int index = Array.FindIndex(_counter, item => item.Letter == char.ToLower(Input[i]));
-                            _counter[index].Count += 1;
-                        }
-                    }
-                }
+                _output = new char[0];
+                return;
             }
+
+            var tokens = Input.Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (tokens.Length == 0)
+            {
+                _output = new char[0];
+                return;
+            }
+
+            var firstLetters = tokens
+                .Where(t => (t.Length > 0 && char.IsLetter(t[0])) || t.Count(char.IsLetter) >= 2)
+                .Select(t => char.ToLower(t.First(char.IsLetter)))
+                .ToArray();
+
+            _output = firstLetters
+                .GroupBy(c => c)
+                .OrderByDescending(g => g.Count())
+                .ThenBy(g => g.Key)
+                .Select(g => g.Key)
+                .ToArray();
         }
 
-        _output = _counter
-            .Where(item => item.Count > 0)
-            .OrderByDescending(item => item.Count)
-            .ThenBy(item => item.Letter)
-            .Select(item => item.Letter)
-            .ToArray();
-
-    }
-
-    public override string ToString()
-    {
-        string res = "";
-        for (int i = 0; i < _output.Length; i++)
+        public override string ToString()
         {
-            res += _output[i] + ", ";
-
+            if (_output == null) return string.Empty;
+            return string.Join(", ", _output);
         }
-
-        return res.TrimEnd()[..^1];
     }
 }
