@@ -1,0 +1,6 @@
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-10\Lab10\obj\Debug\net8.0\Lab10.csproj.AssemblyReference.cache
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-10\Lab10\obj\Debug\net8.0\Lab10.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-10\Lab10\obj\Debug\net8.0\Lab10.AssemblyInfoInputs.cache
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-10\Lab10\obj\Debug\net8.0\Lab10.AssemblyInfo.cs
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-10\Lab10\obj\Debug\net8.0\Lab10.csproj.CoreCompileInputs.cache
+C:\Users\nvolo\Source\Repos\BIVT-25-Lab-10\Lab10\obj\Debug\net8.0\Lab10.sourcelink.json
