@@ -1,3 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace Lab10
 {
     public abstract class MyFileManager : IFileManager, IFileLifeController
@@ -11,97 +17,95 @@ namespace Lab10
         public string FolderPath => _folderPath;
         public string FileName => _fileName;
         public string FileExtension => _fileExtension;
-        public string FullPath
-        {
-            get
-            {
-                string fullName = $"{FileName}.{FileExtension}";
-                return Path.Combine(FolderPath, fullName);
-            }
-        }
+        public string FullPath => string.IsNullOrEmpty(_folderPath) || string.IsNullOrEmpty(_fileName)
+            ? ""
+            : Path.Combine(_folderPath, _fileName) + "." + _fileExtension;
 
         public MyFileManager(string name)
         {
-            _name = name;
-            _folderPath = null;
-            _fileName = _name;
-            _fileExtension = "txt";
+            _name = name ?? "";
+            _folderPath = "";
+            _fileName = "";
+            _fileExtension = "";
         }
 
-        public MyFileManager(string name, string folderPath, string fileName, string fileExtension = "txt")
+        public MyFileManager(string name, string folderpath, string filename, string fileextension = "txt")
         {
-            _name = name;
-            _folderPath = folderPath;
-            _fileName = fileName;
-            _fileExtension = fileExtension;
+            _name = name ?? "";
+            _folderPath = folderpath ?? "";
+            _fileName = filename ?? "";
+            _fileExtension = fileextension ?? "txt";
         }
 
-        public void SelectFolder(string folderPath)
+        public void SelectFolder(string folder)
         {
-            _folderPath = folderPath;
-        }
-
-        public void ChangeFileName(string fileName)
-        {
-            _fileName = fileName;
-        }
-
-        public void ChangeFileFormat(string fileExtension)
-        {
-            string oldPath = FullPath;
-            string content = File.Exists(oldPath) ? File.ReadAllText(oldPath) : string.Empty;
-
-            _fileExtension = fileExtension;
-
-            EnsureFolderExists();
-            File.WriteAllText(FullPath, content);
-
-            if (!string.Equals(oldPath, FullPath, StringComparison.Ordinal) && File.Exists(oldPath))
-                File.Delete(oldPath);
-        }
-
-        public virtual void CreateFile()
-        {
-            EnsureFolderExists();
-
-            if (File.Exists(FullPath))
+            if (string.IsNullOrEmpty(folder) || string.IsNullOrWhiteSpace(folder))
                 return;
-
-            File.Create(FullPath).Close();
+            if (!Directory.Exists(folder))
+                return;
+            _folderPath = folder;
         }
 
-        public virtual void DeleteFile()
+        public void ChangeFileName(string name)
         {
-            string path = FullPath;
+            if (string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name))
+                return;
+            _fileName = name;
+        }
 
-            if (File.Exists(path))
-                File.Delete(path);
+        public void ChangeFileFormat(string format)
+        {
+            if (string.IsNullOrEmpty(format) || string.IsNullOrWhiteSpace(format))
+                return;
+            _fileExtension = format;
+            if (!File.Exists(FullPath))
+            {
+                CreateFile();
+            }
+        }
+
+        public void CreateFile()
+        {
+            if (!Directory.Exists(_folderPath))
+            {
+                Directory.CreateDirectory(_folderPath);
+            }
+
+            if (!File.Exists(FullPath))
+            {
+                File.Create(FullPath).Close();
+            }
+        }
+
+        public void DeleteFile()
+        {
+            if (File.Exists(FullPath))
+            {
+                File.Delete(FullPath);
+            }
         }
 
         public virtual void EditFile(string text)
         {
-            EnsureFolderExists();
+            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+                return;
+            if (!File.Exists(FullPath))
+                return;
             File.WriteAllText(FullPath, text);
         }
 
-        public virtual void ChangeFileExtension(string fileExtension)
+        public virtual void ChangeFileExtension(string extension)
         {
-            string oldPath = FullPath;
-            string content = File.Exists(oldPath) ? File.ReadAllText(oldPath) : string.Empty;
-
-            _fileExtension = fileExtension;
-
-            EnsureFolderExists();
-            File.WriteAllText(FullPath, content);
-
-            if (!string.Equals(oldPath, FullPath, StringComparison.Ordinal) && File.Exists(oldPath))
-                File.Delete(oldPath);
-        }
-
-        private void EnsureFolderExists()
-        {
-            if (!string.IsNullOrEmpty(FolderPath) && !Directory.Exists(FolderPath))
-                Directory.CreateDirectory(FolderPath);
+            if (string.IsNullOrEmpty(extension) || string.IsNullOrWhiteSpace(extension))
+                return;
+            if (!(extension == "txt" || extension == "json" || extension == "xml"))
+                return;
+            if (!File.Exists(FullPath))
+                return;
+            string content = File.ReadAllText(FullPath);
+            DeleteFile();
+            ChangeFileFormat(extension);
+            EditFile(content);
         }
     }
 }
