@@ -1,9 +1,14 @@
-﻿using System;
+using Lab9.Purple;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.IO;
+using Lab10.Purple;
 
 namespace Lab10.Purple
 {
@@ -22,27 +27,33 @@ namespace Lab10.Purple
             ChangeFileExtension("json");
         }
         public override void Serialize(T obj)
-        { 
+        {
             if (obj == null) return;
-            var d = new
-            {
-                input = obj.Input,
-                type = obj.GetType().FullName, // полное имя 
-            };
-            string json=JsonSerializer.Serialize(d); // dto => json 
-            File.WriteAllText(FullPath, json);
+            JObject jobj = JObject.FromObject(obj);
+
+            jobj.Add("Type", obj.GetType().Name);
+            File.WriteAllText(FullPath, jobj.ToString());
         }
         public override T Deserialize()
         {
-            if (!File.Exists(FullPath)) return null;
-            string json =File.ReadAllText(FullPath);  // Чтение содержимого файла
-            if (json==null) return null;
-            JObject jObj = JObject.Parse(json); // Парсинг JSON в JObject
-            string tjObj = jObj["Type"].ToString(); // Получение имени типа из поля "Type"
-            Type typeObject = Type.GetType($"Lab9.Purple.{tjObj}, Lab9"); // Получение Type объекта по имени
-            jObj.Remove("Type");  // Удаление поля "Type" из JSON
-            var obj = jObj.ToObject(tjObj); // Преобразование JSON в объект
-            return (T)obj;
+            if (FullPath == null || !File.Exists(FullPath)) return null;
+            string a = File.ReadAllText(FullPath);
+            var json = JObject.Parse(a);
+            string typeName = json["Type"].ToString();
+
+            string input = json["Input"].ToString();
+            if (typeName is null || input is null) return null;
+
+            T obj = typeName switch
+            {
+                "Task1" => (T)(object)new Task1(input),
+                "Task2" => (T)(object)new Task2(input),
+                "Task3" => (T)(object)new Task3(input),
+                "Task4" => (T)(object)new Task4(input,
+                    json["Codes"]?.ToObject<(string, char)[]>() ?? Array.Empty<(string, char)>())
+            };
+            obj.Review();
+            return obj;
         }
     }
 }
