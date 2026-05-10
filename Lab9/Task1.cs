@@ -1,16 +1,16 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace Lab9.White
 {
     public class Task1 : White
     {
-        private readonly char[] _punc =
+        private readonly char[] _punctuationMarks =
         {
             '.', '!', '?', ',', ':', '"', ';', '–', '\'', '(', ')', '[', ']', '{', '}', '/'
         };
 
-        private readonly char[] _enders = { '.', '!', '?' };
+        private readonly char[] _sentenceEnders = { '.', '!', '?' };
 
         public double Output
         {
@@ -19,7 +19,7 @@ namespace Lab9.White
                 if (string.IsNullOrEmpty(Input))
                     return 0;
 
-                return Average();
+                return CalculateAverageComplexity();
             }
         }
 
@@ -27,15 +27,15 @@ namespace Lab9.White
         {
         }
 
-        private double Average()
+        private double CalculateAverageComplexity()
         {
-            string[] sentences = SplitByEnders(Input);
+            string[] sentences = SplitBySentenceEnders(Input);
 
             if (sentences.Length == 0)
                 return 0;
 
-            double total = 0;
-            int real = 0;
+            double totalComplexity = 0;
+            int realSentenceCount = 0;
 
             foreach (var sentence in sentences)
             {
@@ -44,16 +44,16 @@ namespace Lab9.White
                     continue;
 
                 int wordCount = CountWords(trimmed);
-                int puncCount = CountPunctuation(trimmed);
+                int punctuationCount = CountPunctuation(trimmed);
 
-                total += wordCount + puncCount;
-                real++;
+                totalComplexity += wordCount + punctuationCount;
+                realSentenceCount++;
             }
 
-            return real == 0 ? 0 : total / real;
+            return realSentenceCount == 0 ? 0 : totalComplexity / realSentenceCount;
         }
 
-        private string[] SplitByEnders(string text)
+        private string[] SplitBySentenceEnders(string text)
         {
             int count = 0;
             var current = new StringBuilder();
@@ -61,7 +61,7 @@ namespace Lab9.White
             for (int i = 0; i < text.Length; i++)
             {
                 current.Append(text[i]);
-                if (Array.IndexOf(_enders, text[i]) >= 0)
+                if (Array.IndexOf(_sentenceEnders, text[i]) >= 0)
                 {
                     bool isLast = i == text.Length - 1;
                     bool nextIsSpace = !isLast && char.IsWhiteSpace(text[i + 1]);
@@ -82,7 +82,7 @@ namespace Lab9.White
             for (int i = 0; i < text.Length; i++)
             {
                 current.Append(text[i]);
-                if (Array.IndexOf(_enders, text[i]) >= 0)
+                if (Array.IndexOf(_sentenceEnders, text[i]) >= 0)
                 {
                     bool isLast = i == text.Length - 1;
                     bool nextIsSpace = !isLast && char.IsWhiteSpace(text[i + 1]);
@@ -105,7 +105,7 @@ namespace Lab9.White
 
             foreach (var ch in text)
             {
-                if (Array.IndexOf(_punc, ch) < 0)
+                if (Array.IndexOf(_punctuationMarks, ch) < 0)
                     cleaned.Append(ch);
             }
 
@@ -123,7 +123,7 @@ namespace Lab9.White
 
             foreach (var ch in text)
             {
-                if (Array.IndexOf(_punc, ch) >= 0)
+                if (Array.IndexOf(_punctuationMarks, ch) >= 0)
                     count++;
             }
 
