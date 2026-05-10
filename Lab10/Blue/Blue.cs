@@ -1,10 +1,10 @@
 using System.IO;
-
 namespace Lab10.Blue
 {
     public class Blue<T> where T : Lab9.Blue.Blue
     {
         private BlueFileManager<T> _manager;
+
         private T[] _tasks;
 
         public BlueFileManager<T> Manager => _manager;
@@ -22,13 +22,21 @@ namespace Lab10.Blue
             }
         }
 
+        public Blue()
+        {
+            _manager = new BlueTxtFileManager<T>("Blue");
+            _tasks = new T[0];
+        }
+
         public Blue(T[] tasks)
         {
             _manager = new BlueTxtFileManager<T>("Blue");
             _tasks = CopyTasks(tasks);
         }
 
-        public Blue(BlueFileManager<T> manager, T[] tasks = null)
+        public Blue(
+            BlueFileManager<T> manager,
+            T[] tasks = null)
         {
             if (manager == null)
             {
@@ -42,7 +50,9 @@ namespace Lab10.Blue
             _tasks = CopyTasks(tasks);
         }
 
-        public Blue(T[] tasks, BlueFileManager<T> manager)
+        public Blue(
+            T[] tasks,
+            BlueFileManager<T> manager)
         {
             if (manager == null)
             {
@@ -81,6 +91,7 @@ namespace Lab10.Blue
             }
 
             newTasks[newTasks.Length - 1] = task;
+
             _tasks = newTasks;
         }
 
@@ -99,7 +110,8 @@ namespace Lab10.Blue
 
         public void Remove(T task)
         {
-            if (task == null || _tasks == null)
+            if (task == null ||
+                _tasks == null)
             {
                 return;
             }
@@ -121,6 +133,7 @@ namespace Lab10.Blue
             }
 
             T[] newTasks = new T[_tasks.Length - 1];
+
             int newIndex = 0;
 
             for (int i = 0; i < _tasks.Length; i++)
@@ -139,7 +152,8 @@ namespace Lab10.Blue
         {
             _tasks = new T[0];
 
-            if (_manager == null || _manager.FolderPath == null)
+            if (_manager == null ||
+                _manager.FolderPath == null)
             {
                 return;
             }
@@ -152,7 +166,8 @@ namespace Lab10.Blue
 
         public void SaveTasks()
         {
-            if (_manager == null || _tasks == null)
+            if (_manager == null ||
+                _tasks == null)
             {
                 return;
             }
@@ -160,13 +175,15 @@ namespace Lab10.Blue
             for (int i = 0; i < _tasks.Length; i++)
             {
                 _manager.ChangeFileName("task" + (i + 1));
+
                 _manager.Serialize(_tasks[i]);
             }
         }
 
         public void LoadTasks()
         {
-            if (_manager == null || _tasks == null)
+            if (_manager == null ||
+                _tasks == null)
             {
                 return;
             }
@@ -182,7 +199,8 @@ namespace Lab10.Blue
             }
         }
 
-        public void ChangeManager(BlueFileManager<T> manager)
+        public void ChangeManager(
+            BlueFileManager<T> manager)
         {
             if (manager == null)
             {
@@ -190,16 +208,6 @@ namespace Lab10.Blue
             }
 
             _manager = manager;
-
-            if (_manager.Name != null && _manager.Name != string.Empty)
-            {
-                if (!Directory.Exists(_manager.Name))
-                {
-                    Directory.CreateDirectory(_manager.Name);
-                }
-
-                _manager.SelectFolder(_manager.Name);
-            }
         }
     }
 }
