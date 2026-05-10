@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace Lab9.White
@@ -25,10 +25,10 @@ namespace Lab9.White
 
         public override void Review()
         {
-            _output = ReplaceWords(Input);
+            _output = ReplaceWordsWithCodes(Input);
         }
 
-        private string ReplaceWords(string text)
+        private string ReplaceWordsWithCodes(string text)
         {
             var result = new StringBuilder();
             var currentWord = new StringBuilder();
@@ -45,7 +45,7 @@ namespace Lab9.White
                 {
                     if (currentWord.Length > 0)
                     {
-                        string word = currentWord.ToString();
+                    string word = currentWord.ToString();
                         string code = FindCode(word);
                         result.Append(code);
                         currentWord.Clear();
