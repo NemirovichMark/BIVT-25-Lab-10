@@ -1,9 +1,12 @@
-﻿using System;
+using Lab9.Purple;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.IO;
+using Lab10.Purple;
 
 namespace Lab10.Purple
 {
@@ -26,55 +29,43 @@ namespace Lab10.Purple
             string txt = $"Input:{obj.Input}\nType:{obj.GetType().FullName}";
             File.WriteAllText(FullPath, txt);
         }
-            public override T Deserialize()
+        public override T Deserialize()
         {
-            if (!File.Exists(FullPath)) return null;
-            string[] l = File.ReadAllLines(FullPath); //Читает файл => массив строк
-            if (l.Length == 0) return null;
-            var dict = new Dictionary<string, string>();
-            foreach (var line in l)
+            if (string.IsNullOrEmpty(FullPath) || !File.Exists(FullPath)) return null;
+
+            var pairs = new Dictionary<string, string>();
+            using (StreamReader reader = new StreamReader(FullPath))
             {
-                int c = line.IndexOf(':'); // ищет :
-                if (c > 0)
+                string l;
+                while ((l = reader.ReadLine()) != null)
                 {
-                    string key = line.Substring(0, c).Trim(); // Берёт часть строки - пробелы в начале и конце
-                    string value = line.Substring(c + 1).Trim(); 
-                    dict[key] = value; //Сохр. пару ключ-значение в dict
+                    int ind = l.IndexOf(':');
+                    if (ind >= 0)
+                        pairs[l.Substring(0, ind)] = l.Substring(ind + 1);
                 }
             }
-            if (!dict.TryGetValue("Type", out string type)) return null; // если ключей нет
-            if (!dict.TryGetValue("Input", out string input)) return null;
-            switch (type)
+            if (!pairs.ContainsKey("Type") || !pairs.ContainsKey("Input")) return null;
+            string typeName = pairs["Type"];
+            string input = pairs["Input"];
+            (string, char)[] codes = null;
+            if (pairs.ContainsKey("Count"))
             {
-                case "Task1":
-                    return (T)(object)new Lab9.Purple.Task1(input);
-
-                case "Task2":
-                    return (T)(object)new Lab9.Purple.Task2(input);
-
-                case "Task3":
-                    return (T)(object)new Lab9.Purple.Task3(input);
-
-                case "Task4":
-                    string codes = dict.GetValueOrDefault("Codes", "");
-                    var array = PC(codes);
-                    return (T)(object)new Lab9.Purple.Task4(input, array);
-
-                default:
-                    return null;
+                int count = int.Parse(pairs["Count"]);
+                codes = new (string, char)[count];
+                for (int i = 0; i < count; i++)
+                {
+                    string value = pairs[$"Code{i}"];
+                    codes[i] = (value.Split("|")[0], value[value.Length - 1]);
+                }
             }
-        }
-            private int[] PC(string a)
-        {
-            if (a==null) return new int[0];
-            string[] p = a.Split(',');
-            int[] result = new int[p.Length];
-            for (int i = 0; i < p.Length; i++)
-            {
-                if (int.TryParse(p[i].Trim(), out int value))
-                    result[i] = value;
-            }
-            return result;
+            Lab9.Purple.Purple obj;
+            if (typeName == "Task1") obj = new Task1(input);
+            else if (typeName == "Task2") obj = new Task2(input);
+            else if (typeName == "Task3") obj = new Task3(input);
+            else if (typeName == "Task4") obj = new Task4(input, codes);
+            else return null;
+            obj.Review();
+            return (T)obj;
         }
     }
 }
