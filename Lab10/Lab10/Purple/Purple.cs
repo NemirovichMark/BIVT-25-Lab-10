@@ -1,8 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lab10.Purple;
+using System.IO;
 
 namespace Lab10.Purple
 {
@@ -11,23 +13,19 @@ namespace Lab10.Purple
         private PurpleFileManager<T> _manager; private T[] _tasks;
         public PurpleFileManager<T> Manager => _manager;
         public T[] Tasks => (T[])_tasks.Clone();
-        public Purple()
+        public Purple(T[] tasks=null)
         {
-            _tasks = new T[0];
-        }
-        public Purple(T[] array)
-        {
-            _tasks = array==null ? new T[0] : (T[])array.Clone();
+            _tasks = tasks == null ? new T[0] : (T[])tasks.Clone();
             _manager = null;
         }
         public Purple(PurpleFileManager<T> manager, T[] tasks=null)
         {
-            _manager = manager == null ? new T[0] : (T[])manager.Clone();
+            _manager = manager;
             _tasks = tasks == null ? new T[0] : (T[])tasks.Clone();
         }
         public Purple(T[] tasks, PurpleFileManager<T> manager)
         {
-            _manager = manager == null ? new T[0] : (T[])manager.Clone();
+            _manager = manager;
             _tasks = tasks == null ? new T[0] : (T[])tasks.Clone();
         }
         public void Add(T task)
