@@ -1,4 +1,4 @@
-using Lab9.Blue;
+﻿using Lab9.Blue;
 
 namespace Lab9
 {
