@@ -17,12 +17,16 @@ namespace Lab10
         {
             get
             {
-                if (_folderPath == null || _fileName == null || _fileExtension == null)
+                if (_folderPath == null ||
+                    _fileName == null ||
+                    _fileExtension == null)
                 {
                     return string.Empty;
                 }
 
-                return Path.Combine(_folderPath, _fileName + "." + _fileExtension);
+                return Path.Combine(
+                    _folderPath,
+                    _fileName + "." + _fileExtension);
             }
         }
 
@@ -34,7 +38,11 @@ namespace Lab10
             _fileExtension = "txt";
         }
 
-        public MyFileManager(string name, string folderPath, string fileName, string fileExtension = "txt")
+        public MyFileManager(
+            string name,
+            string folderPath,
+            string fileName,
+            string fileExtension = "txt")
         {
             _name = name;
             _folderPath = folderPath;
@@ -67,28 +75,51 @@ namespace Lab10
             {
                 _fileExtension = fileExtension;
             }
-        }
 
-        public virtual void CreateFile()
-        {
-            if (FullPath == null || FullPath == string.Empty)
-            {
-                return;
-            }
-
-            if (_folderPath != null && _folderPath != string.Empty && !Directory.Exists(_folderPath))
+            if (_folderPath != null &&
+                _folderPath != string.Empty &&
+                !Directory.Exists(_folderPath))
             {
                 Directory.CreateDirectory(_folderPath);
             }
 
-            using (FileStream stream = File.Create(FullPath))
+            if (FullPath != null &&
+                FullPath != string.Empty &&
+                !File.Exists(FullPath))
             {
+                using (FileStream stream = File.Create(FullPath))
+                {
+                }
+            }
+        }
+
+        public virtual void CreateFile()
+        {
+            if (FullPath == null ||
+                FullPath == string.Empty)
+            {
+                return;
+            }
+
+            if (_folderPath != null &&
+                _folderPath != string.Empty &&
+                !Directory.Exists(_folderPath))
+            {
+                Directory.CreateDirectory(_folderPath);
+            }
+
+            if (!File.Exists(FullPath))
+            {
+                using (FileStream stream = File.Create(FullPath))
+                {
+                }
             }
         }
 
         public virtual void DeleteFile()
         {
-            if (FullPath == null || FullPath == string.Empty)
+            if (FullPath == null ||
+                FullPath == string.Empty)
             {
                 return;
             }
@@ -101,12 +132,15 @@ namespace Lab10
 
         public virtual void EditFile(string text)
         {
-            if (FullPath == null || FullPath == string.Empty)
+            if (FullPath == null ||
+                FullPath == string.Empty)
             {
                 return;
             }
 
-            if (_folderPath != null && _folderPath != string.Empty && !Directory.Exists(_folderPath))
+            if (_folderPath != null &&
+                _folderPath != string.Empty &&
+                !Directory.Exists(_folderPath))
             {
                 Directory.CreateDirectory(_folderPath);
             }
@@ -116,12 +150,14 @@ namespace Lab10
 
         public virtual void ChangeFileExtension(string fileExtension)
         {
-            if (FullPath == null || FullPath == string.Empty)
+            if (FullPath == null ||
+                FullPath == string.Empty)
             {
                 return;
             }
 
             string oldPath = FullPath;
+
             string content = string.Empty;
 
             if (File.Exists(oldPath))
@@ -131,14 +167,17 @@ namespace Lab10
 
             ChangeFileFormat(fileExtension);
 
-            if (_folderPath != null && _folderPath != string.Empty && !Directory.Exists(_folderPath))
+            if (_folderPath != null &&
+                _folderPath != string.Empty &&
+                !Directory.Exists(_folderPath))
             {
                 Directory.CreateDirectory(_folderPath);
             }
 
             File.WriteAllText(FullPath, content);
 
-            if (File.Exists(oldPath) && oldPath != FullPath)
+            if (File.Exists(oldPath) &&
+                oldPath != FullPath)
             {
                 File.Delete(oldPath);
             }
