@@ -11,4 +11,6 @@ public interface IFileManager
     void SelectFolder(string args);
     void ChangeFileName(string args);
     void ChangeFileFormat(string args);
+    void ChangeFormat(string format);
+    void SelectFile(string fileName);
 }
