@@ -1,9 +1,0 @@
-﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=aa132258_002D3f25_002D4bd9_002D95c9_002D0f705faa2096/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Task1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;MSTest::B2E3F85B-E0BB-5DAC-B080-DF387544CAE1::net9.0::Lab9Test.White.Task1&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;MSTest::B2E3F85B-E0BB-5DAC-B080-DF387544CAE1::net9.0::Lab9Test.White.Task2&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;MSTest::B2E3F85B-E0BB-5DAC-B080-DF387544CAE1::net9.0::Lab9Test.White.Task3&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;MSTest::B2E3F85B-E0BB-5DAC-B080-DF387544CAE1::net9.0::Lab9Test.White.Task4&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
