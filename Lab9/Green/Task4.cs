@@ -1,79 +1,50 @@
-using System;
-
 namespace Lab9.Green
 {
     public class Task4 : Green
     {
-        private string[] _output = new string[100];
+        private string[] _output;
+
         public string[] Output => _output;
 
         public Task4(string text) : base(text)
         {
-
+            _output = new string[0];
+            Review();
         }
 
         public override void Review()
         {
-            char[] delimiters = new char[]
+            if (Input == null)
             {
-                ' ', '.', ',', '!', '?', ';', ':', '\n', '\r', '\t',
-                '-', '—', '(', ')', '[', ']', '{', '}', '"', '\''
-            };
+                _output = new string[0];
+                return;
+            }
 
-            string[] words = Input.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+            var names = Input.Split(',')
+                .Select(s => s.Trim())
+                .Where(s => s.Length > 0)
+                .ToArray();
 
-            for (int i = 0; i < words.Length; i++)
+            for (int i = 0; i < names.Length - 1; i++)
             {
-                for (int j = 0; j < words.Length - i - 1; j++)
+                for (int j = 0; j < names.Length - 1 - i; j++)
                 {
-                    string current = words[j];
-                    string next = words[j + 1];
-
-                    bool needSwap = false;
-
-                    int minLength = Math.Min(current.Length, next.Length);
-
-                    for (int k = 0; k < minLength; k++)
+                    if (string.Compare(names[j], names[j + 1], StringComparison.CurrentCulture) > 0)
                     {
-                        char currentLower = char.ToLower(current[k]);
-                        char nextLower = char.ToLower(next[k]);
-
-                        if (currentLower > nextLower)
-                        {
-                            needSwap = true;
-                            break;
-                        }
-                        else if (currentLower < nextLower)
-                        {
-                            break;
-                        }
-                    }
-
-                    if (needSwap)
-                    {
-                        string temp = words[j];
-                        words[j] = words[j + 1];
-                        words[j + 1] = temp;
+                        string tmp = names[j];
+                        names[j] = names[j + 1];
+                        names[j + 1] = tmp;
                     }
                 }
             }
 
-            _output = words;
+            _output = names;
         }
 
         public override string ToString()
         {
-            if (_output == null || _output.Length == 0)
-                return "";
-
-            string result = _output[0];
-
-            for (int i = 1; i < _output.Length; i++)
-            {
-                result += "\r\n" + _output[i];
-            }
-
-            return result;
+            if (_output == null) return string.Empty;
+            return string.Join(Environment.NewLine, _output);
         }
     }
 }
