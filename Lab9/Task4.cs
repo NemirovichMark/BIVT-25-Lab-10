@@ -1,4 +1,4 @@
-﻿namespace Lab9.White
+namespace Lab9.White
 {
     public class Task4 : White
     {
@@ -18,10 +18,10 @@
 
         public override void Review()
         {
-            _output = Sum(Input);
+            _output = CalculateSumOfDigits(Input);
         }
 
-        private int Sum(string text)
+        private int CalculateSumOfDigits(string text)
         {
             int sum = 0;
 
