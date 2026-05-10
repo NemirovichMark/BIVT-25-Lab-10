@@ -1,55 +1,31 @@
-using Lab10;
-
+using System.IO;
 namespace Lab10.Blue
 {
-    public abstract class BlueFileManager<T> :
-        MyFileManager,
-        ISerializer<T>
-        where T : Lab9.Blue.Blue
+    public abstract class BlueFileManager<T> : MyFileManager, Lab10.ISerializer<T>
+        where T : Blue
     {
-        public BlueFileManager(string name)
-            : base(name)
-        {
-        }
+        protected BlueFileManager(string name) : base(name) { }
 
-        public BlueFileManager(
-            string name,
-            string folderPath,
-            string fileName,
-            string fileExtension = "txt")
-            : base(
-                name,
-                folderPath,
-                fileName,
-                fileExtension)
-        {
-        }
+        protected BlueFileManager(string name, string folder, string file, string ext = "txt")
+            : base(name, folder, file, ext) { }
 
-        public override void EditFile(string text)
+        public override void EditFile(string content)
         {
-            if (FullPath == null ||
-                FullPath == string.Empty)
+            if (File.Exists(FullPath))
             {
-                return;
+                var obj = Deserialize();
+                obj?.ChangeText(content);
+                Serialize(obj);
             }
-
-            base.EditFile(text);
         }
 
-        public override void ChangeFileExtension(
-            string fileExtension)
+        public override void ChangeFileExtension(string extension)
         {
-            if (FullPath == null ||
-                FullPath == string.Empty)
-            {
-                return;
-            }
-
-            base.ChangeFileExtension(fileExtension);
+            if (!string.IsNullOrEmpty(extension))
+                ChangeFileFormat(extension);
         }
 
         public abstract void Serialize(T obj);
-
         public abstract T Deserialize();
     }
 }
