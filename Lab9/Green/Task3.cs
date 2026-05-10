@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
 namespace Lab9.Green
 {
     public class Task3 : Green
@@ -13,77 +6,48 @@ namespace Lab9.Green
         private string[] _output;
 
         public string[] Output => _output;
+        public string Sequence => _sequence;
 
-        public Task3(string input, string sequence) : base(input)
+        public Task3(string text, string sequence) : base(text)
         {
             _sequence = sequence;
             _output = new string[0];
-
-
+            Review();
         }
-
-        private string[] Split()
-        {
-            char[] symbols = new char[]
-            {
-                ' ', '.', ',', '!', '?', ';', ':', '\n', '\r', '\t',
-                '-', '—', '(', ')', '[', ']', '{', '}', '"', '\'', ' '
-             };
-
-            var words = Input.Split(symbols).Where(w => w.Length > 0).ToArray();
-            return words;
-        }
-
-
 
         public override void Review()
         {
-            string[] comparison_w = new string[1000];
-            int k = 0;
-
-            string[] words = Split();
-            string lowerSequence = _sequence.ToLower();
-
-            for (int i = 0; i < words.Length; i++)
+            if (Input == null || _sequence == null)
             {
-                string word = words[i];       
-                string lowerWord = word.ToLower();   
+                _output = new string[0];
+                return;
+            }
 
-                if (lowerWord.Contains(lowerSequence))
+            var words = Input.Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(w => new string(w.Where(c => char.IsLetter(c) || c == '-' || c == '\'' || c == '`').ToArray()))
+                .Where(w => w.Length > 0)
+                .ToArray();
+
+            string seq = _sequence.ToLower();
+
+            var seen = new List<string>();
+            foreach (var word in words)
+            {
+                if (word.ToLower().Contains(seq))
                 {
-                    bool fl = false;
-
-                    for (int m = 0; m < k; m++)
-                    {
-                        if (string.Equals(comparison_w[m], word, StringComparison.OrdinalIgnoreCase))
-                        {
-                            fl = true;
-                            break;
-                        }
-                    }
-
-                    if (fl == false)
-                    {
-                        comparison_w[k++] = word;
-                    }
+                    string lower = word.ToLower();
+                    if (!seen.Any(s => s.ToLower() == lower))
+                        seen.Add(word);
                 }
             }
 
-            string[] result = new string[k];
-            for (int i = 0; i < k; i++)
-            {
-                result[i] = comparison_w[i];
-            }
-            _output = result;
-
+            _output = seen.ToArray();
         }
 
         public override string ToString()
         {
-            return _output == null || _output.Length == 0
-                ? ""
-                : string.Join("\r\n", _output);
+            if (_output == null) return string.Empty;
+            return string.Join(Environment.NewLine, _output);
         }
     }
-
 }
