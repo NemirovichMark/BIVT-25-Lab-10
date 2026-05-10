@@ -1,9 +1,10 @@
 using System.Reflection;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace Lab10.Purple
 {
-    public class PurpleJsonFileManager<T> : PurpleFileManager<T> where T : global::Lab9.Purple.Purple
+    public class PurpleJsonFileManager<T> : PurpleFileManager<T> where T : Lab9.Purple.Purple
     {
         public PurpleJsonFileManager(string name) : base(name) { }
 
@@ -13,8 +14,7 @@ namespace Lab10.Purple
         public override void EditFile(string text)
         {
             T obj = this.Deserialize();
-            if (obj == null)
-                return;
+            if (obj == null) return;
             obj.ChangeText(text);
             this.Serialize(obj);
         }
@@ -26,11 +26,24 @@ namespace Lab10.Purple
 
         public override void Serialize(T obj)
         {
-            if (obj == null || string.IsNullOrEmpty(this.FullPath))
-                return;
+            if (obj == null || string.IsNullOrEmpty(this.FullPath)) return;
 
             JObject json = JObject.FromObject(obj);
             json["Type"] = obj.GetType().AssemblyQualifiedName;
+
+            if (obj is Lab9.Purple.Task4 task4)
+            {
+                JArray codes_array = new JArray();
+                foreach ((string pair, char code) in task4.Codes)
+                {
+                    codes_array.Add(new JObject
+                    {
+                        ["pair"] = pair,
+                        ["code"] = code.ToString()
+                    });
+                }
+                json["Codes"] = codes_array;
+            }
 
             if (!string.IsNullOrEmpty(this.FolderPath))
                 Directory.CreateDirectory(this.FolderPath);
@@ -58,27 +71,33 @@ namespace Lab10.Purple
 
                 string input = json["Input"]?.ToString() ?? string.Empty;
 
-                object? obj;
-                if (type == typeof(global::Lab9.Purple.Task4))
-                    obj = Activator.CreateInstance(type, input, null);
+                object? obj = null;
+
+                if (type == typeof(Lab9.Purple.Task4))
+                {
+                    List<(string, char)> codes_list = new List<(string, char)>();
+                    JArray? codes_array = json["Codes"] as JArray;
+                    if (codes_array != null)
+                    {
+                        foreach (JObject item in codes_array)
+                        {
+                            string pair = item["pair"]?.ToString() ?? "";
+                            string code_str = item["code"]?.ToString() ?? "";
+                            char code = code_str.Length > 0 ? code_str[0] : '\0';
+                            codes_list.Add((pair, code));
+                        }
+                    }
+                    obj = Activator.CreateInstance(type, input, codes_list.ToArray());
+                }
                 else
+                {
                     obj = Activator.CreateInstance(type, input);
+                }
 
                 if (obj == null)
                     return null!;
 
-                JToken? output_token = json["Output"];
-                if (output_token != null)
-                {
-                    FieldInfo? output_field = type.GetField("_output", BindingFlags.NonPublic | BindingFlags.Instance);
-                    if (output_field != null)
-                    {
-                        if (output_field.FieldType == typeof(string))
-                            output_field.SetValue(obj, output_token.ToObject<string>());
-                        else if (output_field.FieldType == typeof(string[]))
-                            output_field.SetValue(obj, output_token.ToObject<string[]>());
-                    }
-                }
+                ((Lab9.Purple.Purple)obj).Review();
 
                 return (T)obj;
             }

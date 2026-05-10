@@ -1,8 +1,6 @@
-using System;
-
 namespace Lab10.Purple
 {
-    public class Purple<T> where T : global::Lab9.Purple.Purple
+    public class Purple<T> where T : Lab9.Purple.Purple
     {
         private T[] tasks;
         private PurpleFileManager<T>? manager;
@@ -18,7 +16,7 @@ namespace Lab10.Purple
 
         public Purple(T[] tasks)
         {
-            this.tasks = tasks == null ? Array.Empty<T>() : (T[])tasks.Clone();
+            this.tasks = tasks == null ? [] : (T[])tasks.Clone();
             this.manager = null;
         }
 
@@ -37,7 +35,9 @@ namespace Lab10.Purple
         public void Add(T task)
         {
             if (task == null)
+            {
                 return;
+            }
             Array.Resize(ref this.tasks, this.tasks.Length + 1);
             this.tasks[this.tasks.Length - 1] = task;
         }
@@ -45,19 +45,26 @@ namespace Lab10.Purple
         public void Add(T[] tasks)
         {
             if (tasks == null)
+            {
                 return;
+            }
             foreach (T task in tasks)
+            {
                 this.Add(task);
+            }
         }
 
         public void Remove(T task)
         {
             if (task == null || this.tasks.Length == 0)
+            {
                 return;
+            }
             int index = Array.IndexOf(this.tasks, task);
             if (index == -1)
+            {
                 return;
-
+            }
             T[] new_tasks = new T[this.tasks.Length - 1];
             Array.Copy(this.tasks, 0, new_tasks, 0, index);
             Array.Copy(this.tasks, index + 1, new_tasks, index, this.tasks.Length - index - 1);
@@ -68,13 +75,17 @@ namespace Lab10.Purple
         {
             this.tasks = Array.Empty<T>();
             if (this.manager != null && !string.IsNullOrEmpty(this.manager.FolderPath) && Directory.Exists(this.manager.FolderPath))
+            {
                 Directory.Delete(this.manager.FolderPath, true);
+            }
         }
 
         public void SaveTasks()
         {
             if (this.manager == null)
+            {
                 return;
+            }
             for (int i = 0; i < this.tasks.Length; i++)
             {
                 this.manager.ChangeFileName($"task{i}");
@@ -85,7 +96,9 @@ namespace Lab10.Purple
         public void LoadTasks()
         {
             if (this.manager == null)
+            {
                 return;
+            }
             for (int i = 0; i < this.tasks.Length; i++)
             {
                 this.manager.ChangeFileName($"task{i}");
@@ -96,7 +109,9 @@ namespace Lab10.Purple
         public void ChangeManager(PurpleFileManager<T> manager)
         {
             if (manager == null)
+            {
                 return;
+            }
             string folder_path = this.manager != null && !string.IsNullOrEmpty(this.manager.FolderPath)
                 ? this.manager.FolderPath
                 : Path.Combine(Directory.GetCurrentDirectory(), manager.Name);

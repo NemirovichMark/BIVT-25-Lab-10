@@ -5,5 +5,6 @@ namespace Lab10.Purple
         public string Type { get; set; } = "";
         public string Input { get; set; } = "";
         public string Output { get; set; } = "";
+        public string Codes { get; set; } = "";
     }
 }
