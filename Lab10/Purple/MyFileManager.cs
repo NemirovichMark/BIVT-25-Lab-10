@@ -42,9 +42,22 @@ public abstract class MyFileManager : IFileManager, IFileLifeController
 
     public void ChangeFileFormat(string extension)
     {
-        _extension = string.IsNullOrEmpty(extension) 
-            ? string.Empty 
-            : (extension.StartsWith(".") ? extension : "." + extension);
+        _extension = extension?.TrimStart('.') ?? string.Empty;
+
+        if (!string.IsNullOrEmpty(_nameFolder) && !string.IsNullOrEmpty(_nameFile))
+        {
+            CreateFile();
+        }
+    }
+
+    public void ChangeFormat(string format)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SelectFile(string fileName)
+    {
+        throw new NotImplementedException();
     }
 
     public void CreateFile()
@@ -68,13 +81,20 @@ public abstract class MyFileManager : IFileManager, IFileLifeController
             File.WriteAllText(FullPath, text);
     }
 
-    public virtual void ChangeFileExtension(string text)
+    public virtual void ChangeFileExtension(string newExtension)
     {
         string oldPath = FullPath;
-        ChangeFileFormat(text);
+    
+        _extension = newExtension?.TrimStart('.') ?? string.Empty;
         string newPath = FullPath;
-        
-        if (Path.Exists(oldPath) && oldPath != newPath)
+
+        if (File.Exists(oldPath) && oldPath != newPath)
+        {
+            if (File.Exists(newPath))
+            {
+                File.Delete(newPath);
+            }
             File.Move(oldPath, newPath);
+        }
     }
 }
