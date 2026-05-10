@@ -73,7 +73,7 @@ jobs:
         env:
          CFG: ${{ matrix.configuration }}
         run: |
-          $proj = "Lab9test/Lab9test.csproj"
+          $proj = "Lab9Test/Lab9Test.csproj"
           Write-Host "Building test project..."
           dotnet build $proj -c $Env:CFG
  
