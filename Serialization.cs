@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Lab9
+namespace Lab10
 {
     internal class Serialization
     {
