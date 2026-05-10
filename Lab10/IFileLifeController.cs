@@ -1,3 +1,4 @@
+using System;
 namespace Lab10
 {
     public interface IFileLifeController
