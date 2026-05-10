@@ -1,1 +1,0 @@
-{"documents":{"/Users/kirillkadykov/RiderProjects/BIVT-25-Lab-9/*":"https://raw.githubusercontent.com/KADYK007/BIVT-25-Lab-9/f41d3ed93fe54107fcf86dd515d0f15a0f46e485/*"}}
