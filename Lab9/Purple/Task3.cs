@@ -1,5 +1,5 @@
 using System;
-
+namespace Lab9.Purple;
 public class Task3 : Purple
 {
     private string _output;

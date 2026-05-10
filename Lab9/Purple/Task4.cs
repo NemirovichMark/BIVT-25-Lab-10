@@ -1,11 +1,12 @@
 using System;
-
+namespace Lab9.Purple;
 public class Task4 : Purple
 {
     private string _output;
     public string Output => _output;
-
     private (string, char)[] _codes;
+    public (string, char)[] Codes => _codes;
+
 
     // конструктор теперь принимает два параметра
     public Task4(string text, (string, char)[] codes) : base(text)

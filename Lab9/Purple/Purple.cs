@@ -1,5 +1,5 @@
 using System;
-
+namespace Lab9.Purple;
 public abstract class Purple
 {
     private string _input;
