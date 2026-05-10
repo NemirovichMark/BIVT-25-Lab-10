@@ -8,41 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Lab9\.vs\Lab9\v18\DocumentLayout.backup.json" />
-    <Content Include="Lab9\.vs\Lab9\v18\DocumentLayout.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Lab9\.vs\Lab9\DesignTimeBuild\.dtbcache.v2" />
-    <None Include="Lab9\.vs\Lab9\FileContentIndex\2dfef90c-ccd3-4a26-8b8d-df63444e988e.vsidx" />
-    <None Include="Lab9\.vs\Lab9\FileContentIndex\359230a5-cb81-48bd-8f07-e7ded2bc3eb7.vsidx" />
-    <None Include="Lab9\.vs\Lab9\v18\.futdcache.v2" />
-    <None Include="Lab9\.vs\Lab9\v18\TestStore\0\007.testlog" />
-    <None Include="Lab9\.vs\Lab9\v18\TestStore\0\testlog.manifest" />
-    <None Include="Lab9\.vs\ProjectEvaluation\lab9.metadata.v10.bin" />
-    <None Include="Lab9\.vs\ProjectEvaluation\lab9.projects.v10.bin" />
-    <None Include="Lab9\.vs\ProjectEvaluation\lab9.strings.v10.bin" />
-    <None Include="Lab9\Lab9.csproj" />
-    <None Include="Lab9\Lab9.sln" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Lab9\TestResults\Deploy_trefa 20260419T104111_3788\In\TREFAS-NOTE\" />
-    <Folder Include="Lab9\TestResults\Deploy_trefa 20260419T104111_3788\Out\" />
-    <Folder Include="Lab9\TestResults\Deploy_trefa 20260419T105244_2464\In\TREFAS-NOTE\" />
-    <Folder Include="Lab9\TestResults\Deploy_trefa 20260419T105244_2464\Out\" />
-    <Folder Include="Lab9\TestResults\Deploy_trefa 20260419T105707_4620\In\TREFAS-NOTE\" />
-    <Folder Include="Lab9\TestResults\Deploy_trefa 20260419T105707_4620\Out\" />
-    <Folder Include="Lab9\TestResults\Deploy_trefa 20260419T105810_10200\In\TREFAS-NOTE\" />
-    <Folder Include="Lab9\TestResults\Deploy_trefa 20260419T105810_10200\Out\" />
-    <Folder Include="Lab9\TestResults\Deploy_trefa 20260419T105830_9360\In\TREFAS-NOTE\" />
-    <Folder Include="Lab9\TestResults\Deploy_trefa 20260419T105830_9360\Out\" />
-    <Folder Include="Lab9\TestResults\Deploy_trefa 20260419T105931_9188\In\TREFAS-NOTE\" />
-    <Folder Include="Lab9\TestResults\Deploy_trefa 20260419T105931_9188\Out\" />
-    <Folder Include="Lab9\TestResults\Deploy_trefa 20260419T110037_19996\In\TREFAS-NOTE\" />
-    <Folder Include="Lab9\TestResults\Deploy_trefa 20260419T110037_19996\Out\" />
-    <Folder Include="Lab9\TestResults\Deploy_trefa 20260419T113800_18416\In\TREFAS-NOTE\" />
-    <Folder Include="Lab9\TestResults\Deploy_trefa 20260419T113800_18416\Out\" />
+    <ProjectReference Include="..\Lab9\Lab9.csproj" />
   </ItemGroup>
 
 </Project>
