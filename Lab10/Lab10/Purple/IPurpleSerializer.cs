@@ -1,12 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lab10.Purple;
 
 namespace Lab10.Purple
 {
-    public interface IPurpleSerializer<T> where T : Lab9.Purple.Purple
+    public interface ISerializer<T> where T : Lab9.Purple.Purple
     {
         T Deserialize();
         void Serialize(T obj);
