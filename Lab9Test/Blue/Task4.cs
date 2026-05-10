@@ -1,14 +1,19 @@
-﻿using System.Text.Json;
+﻿
+using System;
+using System.IO;
+using System.Text.Json;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace Lab9Test.Blue
 {
     [TestClass]
-    public sealed class Task1
+    public sealed class Task4
     {
-        private Lab9.Blue.Task1 _student;
+        private Lab9.Blue.Task4 _student;
 
         private string[] _input;
-        private string[][] _output;
+        private int[] _output;
 
         [TestInitialize]
         public void LoadData()
@@ -19,27 +24,27 @@ namespace Lab9Test.Blue
             var json = JsonSerializer.Deserialize<JsonElement>(
                 File.ReadAllText(file));
 
-            _input = json.GetProperty("Blue1")
+            _input = json.GetProperty("Blue4")
                          .GetProperty("input")
                          .Deserialize<string[]>();
 
-            _output = json.GetProperty("Blue1")
+            _output = json.GetProperty("Blue4")
                           .GetProperty("output")
-                          .Deserialize<string[][]>();
+                          .Deserialize<int[]>();
         }
 
         [TestMethod]
         public void Test_00_OOP()
         {
-            var type = typeof(Lab9.Blue.Task1);
+            var type = typeof(Lab9.Blue.Task4);
 
-            Assert.IsTrue(type.IsClass, "Task1 must be a class");
+            Assert.IsTrue(type.IsClass, "Task4 must be a class");
             Assert.IsTrue(type.IsSubclassOf(typeof(Lab9.Blue.Blue)),
-                "Task1 must inherit from Blue");
+                "Task4 must inherit from Blue");
 
             Assert.IsNotNull(
                 type.GetConstructor(new[] { typeof(string) }),
-                "Task1 must have constructor Task1(string input)"
+                "Task4 must have constructor Task4(string input)"
             );
 
             Assert.IsNotNull(type.GetMethod("Review"),
@@ -55,6 +60,7 @@ namespace Lab9Test.Blue
             for (int i = 0; i < _input.Length; i++)
             {
                 Init(i);
+
                 Assert.AreEqual(_input[i], _student.Input,
                     $"Input stored incorrectly\nTest: {i}");
             }
@@ -68,17 +74,8 @@ namespace Lab9Test.Blue
                 Init(i);
                 _student.Review();
 
-                var expected = _output[i];
-                var actual = _student.Output;
-
-                Assert.AreEqual(expected.Length, actual.Length,
-                    $"Length mismatch\nTest: {i}:\n{string.Join(Environment.NewLine, actual)}");
-
-                for (int j = 0; j < expected.Length; j++)
-                {
-                    Assert.AreEqual(expected[j], actual[j],
-                        $"Line mismatch\nTest: {i}, Index: {j}\nExpected: {expected[j]}\nActual: {actual[j]}");
-                }
+                Assert.AreEqual(_output[i], _student.Output,
+                    $"Output mismatch\nTest: {i}");
             }
         }
 
@@ -90,8 +87,8 @@ namespace Lab9Test.Blue
                 Init(i);
                 _student.Review();
 
-                var expected = string.Join(Environment.NewLine, _output[i]);
-                var actual = _student.ToString();
+                string expected = _output[i].ToString();
+                string actual = _student.ToString();
 
                 Assert.AreEqual(expected, actual,
                     $"ToString output mismatch\nTest: {i}");
@@ -106,16 +103,16 @@ namespace Lab9Test.Blue
                 Init(i);
                 _student.Review();
 
-                var originalOutput = _student.Output;
+                var originalOutput = 666;
 
-                var newText = _input[(i + 1) % _input.Length];
+                var newText = "Проверим 600 + 60 + 6";
                 _student.ChangeText(newText);
 
                 Assert.AreEqual(newText, _student.Input,
                     $"ChangeText failed\nTest: {i}");
 
-                Assert.IsFalse(originalOutput.SequenceEqual(_student.Output),
-                    $"Output not updated\nTest: {i}");
+                Assert.AreEqual(originalOutput, _student.Output,
+                    $"Output not updated after ChangeText\nTest: {i}");
             }
         }
 
@@ -125,33 +122,19 @@ namespace Lab9Test.Blue
             Init(0);
             _student.Review();
 
-            Assert.IsInstanceOfType(_student.Output, typeof(string[]),
-                $"Output must be string[]\nActual: {_student.Output.GetType()}");
+            Assert.IsInstanceOfType(_student.Output, typeof(int),
+                $"Output must be int\nActual: {_student.Output.GetType()}");
         }
-        [TestMethod]
-        public void Test_06_ToStringLength()
-        {
-            for (int i = 0; i < _input.Length; i++)
-            {
-                Init(i);
-                _student.Review();
 
-                var expectedLength = string.Join(Environment.NewLine, _output[i]).Length;
-                var actualLength = _student.ToString().Length;
-
-                Assert.AreEqual(expectedLength, actualLength,
-                    $"Wrong ToString length\nTest: {i}");
-            }
-        }
         [TestMethod]
-        public void Test_07_Inheritance()
+        public void Test_06_Inheritance()
         {
             for (int i = 0; i < _input.Length; i++)
             {
                 Init(i);
 
                 Assert.IsTrue(_student is Lab9.Blue.Blue,
-                    $"Task1 must inherit from Blue\nTest: {i}");
+                    $"Task4 must inherit from Blue\nTest: {i}");
 
                 Assert.AreEqual(_input[i], _student.Input,
                     $"Input mismatch\nTest: {i}");
@@ -160,7 +143,7 @@ namespace Lab9Test.Blue
 
         private void Init(int i)
         {
-            _student = new Lab9.Blue.Task1(_input[i]);
+            _student = new Lab9.Blue.Task4(_input[i]);
         }
     }
 }
