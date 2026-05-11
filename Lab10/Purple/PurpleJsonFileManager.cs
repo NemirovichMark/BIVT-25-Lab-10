@@ -1,101 +1,59 @@
-using Lab9.Purple;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Lab10.Purple;
-
-public class PurpleJsonFileManager<T> : PurpleFileManager<T> where T : Lab9.Purple.Purple
+namespace Lab10.Purple
 {
-    public PurpleJsonFileManager(string name) : base(name) { }
-
-    public PurpleJsonFileManager(string name, string folderpath, string filename, string fileextension = "txt")
-        : base(name, folderpath, filename, fileextension) { }
-
-    public override void EditFile(string text)
+    public class PurpleJsonFileManager<T> : PurpleFileManager<T> where T : Lab9.Purple.Purple
     {
-        if (string.IsNullOrWhiteSpace(text) || !File.Exists(FullPath))
-            return;
-
-        T obj = Deserialize();
-        if (obj == null)
-            return;
-
-        obj.ChangeText(text);
-        Serialize(obj);
-    }
-
-    public override void ChangeFileExtension(string extension)
-    {
-        if (string.IsNullOrWhiteSpace(extension) || extension != "json")
-            return;
-
-        ChangeFileFormat("json");
-    }
-
-    public override void Serialize(T obj)
-    {
-        if (obj == null)
-            return;
-
-        var dto = new Dictionary<string, object>
+        public PurpleJsonFileManager(string name) : base(name)
         {
-            ["Type"] = obj.GetType().Name,
-            ["Input"] = obj.Input
-        };
-
-        var table = GetTask4Table(obj);
-        if (table.Length > 0)
-        {
-            dto["Items"] = table
-                .Select(item => new Dictionary<string, object>
-                {
-                    ["Item1"] = item.Item1,
-                    ["Item2"] = item.Item2.ToString()
-                })
-                .ToArray();
         }
 
-        string convert = JsonConvert.SerializeObject(dto, Formatting.Indented);
-
-        ChangeFileFormat("json");
-        if (!File.Exists(FullPath))
+        public PurpleJsonFileManager(string name, string folderName, string fileName, string fileExtension = "") : base(name, folderName, fileName, fileExtension)
         {
-            CreateFile();
         }
-        base.EditFile(convert);
-    }
 
-    public override T Deserialize()
-    {
-        if (!File.Exists(FullPath) || FileExtension != "json")
-            return null;
-
-        try
+        public override T Deserialize()
         {
-            var json = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(FullPath));
-            if (json == null)
-                return null;
+            string content = File.ReadAllText(FullPath);
 
-            string typeName = json["Type"]?.ToString() ?? nameof(Task1);
-            string input = json["Input"]?.ToString() ?? "";
+            JObject json = JObject.Parse(content);
 
-            (string, char)[] table = Array.Empty<(string, char)>();
-            if (json["Items"] is JArray items && items.Count > 0)
-            {
-                table = items
-                    .Select(item => (
-                        item["Item1"]?.ToString() ?? "",
-                        string.IsNullOrEmpty(item["Item2"]?.ToString()) ? '\0' : item["Item2"]!.ToString()[0]))
-                    .ToArray();
-            }
+            string typeName = (string)json["Type"];
 
-            T obj = CreateTask(typeName, input, table);
-            obj?.Review();
-            return obj;
+            Type type = Type.GetType(typeName + ", Lab9");
+            json.Remove("Type");
+
+            var result = (T)json.ToObject(type);
+            result.Review();
+
+            return result;
         }
-        catch
+
+        public override void Serialize(T obj)
         {
-            return null;
+            JObject jobj = JObject.FromObject(obj);
+            
+            jobj["Type"] = obj.GetType().FullName;
+
+            File.WriteAllText(FullPath, jobj.ToString());
+        }
+
+        public override void EditFile(string input)
+        {
+            T content = Deserialize();
+            content.ChangeText(input);
+            Serialize(content);
+        }
+
+        public override void ChangeFileExtension(string extension)
+        {
+            if (extension == "json") ChangeFileFormat("json");
         }
     }
 }
