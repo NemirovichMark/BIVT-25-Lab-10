@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Lab10.Purple;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Lab10.Purple
 {
@@ -13,16 +13,20 @@ namespace Lab10.Purple
         public PurpleFileManager(string name, string folderPath, string filename, string fileExtension = "") : base(name, folderPath, filename, fileExtension) { }
         public override void EditFile(string a)
         {
-            if (!File.Exists(FullPath)) return;
+            if (!File.Exists(FullPath) || string.IsNullOrEmpty(FullPath)) return;
             File.WriteAllText(FullPath, a);
         }
         public override void ChangeFileExtension(string e)
         {
-            if (!File.Exists(FullPath)) return;
-            string Path1=FullPath; // где файл лежал ДО изменения расширения
-            base.ChangeFileFormat(e); // Меняем расширение в памяти
-            string Path2=FullPath; // ПОСЛЕ изменения
-            File.Move(Path1, Path2); //Перемещает/переименовывает файл на диске (физ)
+             if (!File.Exists(FullPath)) return;
+            string Path1 = FullPath; 
+            string b = File.ReadAllText(Path1); // Запоминаем  содержимое файла 
+            string ext = e;
+            base.ChangeFileFormat(ext); // меняет расширение в памяти
+            string Path2 = FullPath; 
+            if (File.Exists(Path2))  File.Delete(Path2);
+            File.WriteAllText(Path2, b);
+            if (File.Exists(Path1) && Path1 != Path2) File.Delete(Path1);
         }
         public abstract T Deserialize();
         public abstract void Serialize(T obj);
