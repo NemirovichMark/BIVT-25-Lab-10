@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab10.Purple
+namespace Lab10
 {
     public abstract class MyFileManager : IFileManager, IFileLifeController
     {
@@ -23,22 +23,24 @@ namespace Lab10.Purple
         public string FileName => _filename;    // название файла 
         public string FileExtension => _fileExtension;  // параметр для расширения файла
         public string FullPath => Path.Combine(_folderPath, _filename + _fileExtension);
-        public void ChangeFileFormat(string a)
+        public virtual void ChangeFileFormat(string a)
         {
-            if (a == null) return;
+            if (string.IsNullOrEmpty(a)) return;
             _fileExtension = a;
+            if (!File.Exists(FullPath)) CreateFile(); // наличие на новом пути
+
         }
-        public void ChangeFileName(string a)
+        public virtual void ChangeFileName(string a)
         {
-            if (a == null) return;
+            if (string.IsNullOrEmpty(a)) return;
             _filename = a;
         }
-        public void SelectFolder(string a)
+        public virtual void SelectFolder(string a)
         {
-            if (a == null) return;
+            if (string.IsNullOrEmpty(a)) return;
             _folderPath = a;
         }
-        public void CreateFile()
+        public virtual void CreateFile()
         {
             string d = Path.GetDirectoryName(FullPath);
             if (!string.IsNullOrEmpty(FullPath) && ! Directory.Exists(FullPath))
@@ -46,7 +48,7 @@ namespace Lab10.Purple
             if (!File.Exists(FullPath))
                 File.Create(FullPath).Close();
         }
-        public void DeleteFile()
+        public virtual void DeleteFile()
         {
             if (File.Exists(FullPath))
                 File.Delete(FullPath);
@@ -58,10 +60,12 @@ namespace Lab10.Purple
         }
         public virtual void ChangeFileExtension(string a)
         {
-            string lPath = FullPath;
-            ChangeFileExtension(a);
-            string nPath=FullPath;
-            if (File.Exists(lPath)) File.Move(lPath, nPath);            
+            if (File.Exists(FullPath))
+            {
+                string b = Path.Combine(FolderPath, $"{FileName}.{a}");
+                File.Move(FullPath, a);
+            }
+            _fileExtension = a;
         }
     }
 }
