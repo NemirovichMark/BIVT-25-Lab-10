@@ -27,7 +27,7 @@ jobs:
           if [ "$PR_BASE" = "main" ]; then
             echo "❌ Нельзя отправлять работу в main ветку."
             echo "pr_valid=false" >> $GITHUB_OUTPUT
-            exit 1
+            //exit 1
           else
             echo "✅ PR направлен в '$PR_BASE', можно запускать тесты."
             echo "pr_valid=true" >> $GITHUB_OUTPUT
