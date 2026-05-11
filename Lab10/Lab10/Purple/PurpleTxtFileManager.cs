@@ -22,35 +22,54 @@ namespace Lab10.Purple
         }
         public override void ChangeFileExtension(string e)
         {
-            ChangeFileExtension("txt");
+            base.ChangeFileExtension("txt");
         }
         public override void Serialize(T obj)
         {
-            string txt = $"Input:{obj.Input}\nType:{obj.GetType().FullName}";
-            File.WriteAllText(FullPath, txt);
+            if (obj == null || FullPath == null) return;
+            var p = new Dictionary<string, string>();
+            p["Type"] = obj.GetType().Name;
+            p["Input"] = obj.Input;
+            if (obj is Task3 task3)
+            {
+                p["Count"] = task3.Codes.Length.ToString();
+                for (int i = 0; i < task3.Codes.Length; i++)
+                     p[$"Code{i}"] = task3.Codes[i].Item1 + "|" + task3.Codes[i].Item2;
+            }             // Символ | разделяет строку и символ
+            else if (obj is Task4 task4)
+            {
+                p["Count"] = task4.Codes.Length.ToString();
+                for (int i = 0; i < task4.Codes.Length; i++)
+                    p[$"Code{i}"] = task4.Codes[i].Item1 + "|" + task4.Codes[i].Item2;
+            }
+            string[] l = new string[p.Count];
+            int ind = 0;
+            foreach (var i in p)
+                l[ind++] = i.Key + ":" + i.Value; // словарь => массив строк вида "Type:Task1"
+            File.WriteAllLines(FullPath, l);
         }
         public override T Deserialize()
         {
             if (string.IsNullOrEmpty(FullPath) || !File.Exists(FullPath)) return null;
-
             var pairs = new Dictionary<string, string>();
             using (StreamReader reader = new StreamReader(FullPath))
+            // Открываем файл для чтения (using => файл закроется автоматически).
             {
                 string l;
                 while ((l = reader.ReadLine()) != null)
                 {
                     int ind = l.IndexOf(':');
                     if (ind >= 0)
-                        pairs[l.Substring(0, ind)] = l.Substring(ind + 1);
+                        pairs[l.Substring(0, ind)] = l.Substring(ind + 1); // разбиваем строку на ключ : значение
                 }
             }
             if (!pairs.ContainsKey("Type") || !pairs.ContainsKey("Input")) return null;
-            string typeName = pairs["Type"];
+            string tName = pairs["Type"];
             string input = pairs["Input"];
             (string, char)[] codes = null;
-            if (pairs.ContainsKey("Count"))
+            if (pairs.ContainsKey("Count")) //  Task3, Task4
             {
-                int count = int.Parse(pairs["Count"]);
+                int count = int.Parse(pairs["Count"]); // Читаем количество кодов
                 codes = new (string, char)[count];
                 for (int i = 0; i < count; i++)
                 {
@@ -59,10 +78,10 @@ namespace Lab10.Purple
                 }
             }
             Lab9.Purple.Purple obj;
-            if (typeName == "Task1") obj = new Task1(input);
-            else if (typeName == "Task2") obj = new Task2(input);
-            else if (typeName == "Task3") obj = new Task3(input);
-            else if (typeName == "Task4") obj = new Task4(input, codes);
+            if (tName == "Task1") obj = new Task1(input);
+            else if (tName == "Task2") obj = new Task2(input);
+            else if (tName == "Task3") obj = new Task3(input);
+            else if (tName == "Task4") obj = new Task4(input, codes);
             else return null;
             obj.Review();
             return (T)obj;
