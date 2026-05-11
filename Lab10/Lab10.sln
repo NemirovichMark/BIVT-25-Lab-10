@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab10Test", "..\Lab10Test\L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab9", "..\Lab9\Lab9.csproj", "{9F870A28-6F8D-444C-B74B-5EA5F73AC6AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab9Test", "..\Lab9Test\Lab9Test.csproj", "{C2E8BB9F-5D1C-460A-99C9-69E95A9819FD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
