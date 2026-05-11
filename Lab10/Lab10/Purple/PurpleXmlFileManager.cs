@@ -3,69 +3,75 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using System.IO;
 using Lab10.Purple;
 
 namespace Lab10.Purple
 {
-    public class PurpleTxtFileManager<T> : PurpleFileManager<T> where T : Lab9.Purple.Purple
+    public class PurpleXmlFileManager<T> : PurpleFileManager<T> where T : Lab9.Purple.Purple
     {
-        public PurpleTxtFileManager(string name) : base(name) { }
-        public PurpleTxtFileManager(string name, string folderPath, string filename, string fileExtension = "") : base(name, folderPath, filename, fileExtension) { }
+        public PurpleXmlFileManager(string name) : base(name) { }
+        public PurpleXmlFileManager(string name, string folderPath, string filename, string fileExtension = "") : base(name, folderPath, filename, fileExtension) { }
         public override void EditFile(string a)
         {
+            if (string.IsNullOrEmpty(FullPath) || !File.Exists(FullPath)) return;
             T obj = Deserialize();
             if (obj != null)
-            { obj.ChangeText(a); Serialize(obj); }
+            {
+                obj.ChangeText(a);
+                Serialize(obj);
+            }
         }
         public override void ChangeFileExtension(string e)
         {
-            ChangeFileExtension("txt");
+            base.ChangeFileExtension("xml");
         }
         public override void Serialize(T obj)
         {
-            string txt = $"Input:{obj.Input}\nType:{obj.GetType().FullName}";
-            File.WriteAllText(FullPath, txt);
+            var DTObj = new DTOPurple(obj);
+            var ser = new XmlSerializer(typeof(DTOPurple));
+            using (var fs = new StreamWriter(FullPath))
+            {
+                ser.Serialize(fs, DTObj);
+            }
         }
         public override T Deserialize()
         {
+            var ser = new XmlSerializer(typeof(DTOPurple));
             if (string.IsNullOrEmpty(FullPath) || !File.Exists(FullPath)) return null;
-
-            var pairs = new Dictionary<string, string>();
-            using (StreamReader reader = new StreamReader(FullPath))
+            using (var sr = new StreamReader(FullPath))
             {
-                string l;
-                while ((l = reader.ReadLine()) != null)
+                var dto = (DTOPurple)ser.Deserialize(sr);
+                Lab9.Purple.Purple result;
+                if (dto.TypeName == "Task1") result = new Task1(dto.Input);
+                else if (dto.TypeName == "Task2") result = new Task2(dto.Input);
+                else if (dto.TypeName == "Task3") result = new Task3(dto.Input);
+                else if (dto.TypeName == "Task4")
+                    result = new Task4(dto.Input, dto.Codes ?? Array.Empty<(string, char)>());
+                else return null;
+                result.Review();
+                return (T)result;
+            }
+        }
+        public class DTOPurple
+        {
+            public string TypeName { get; set; }
+            public string Input { get; set; }
+            public (string, char)[] Codes { get; set; }
+            public DTOPurple() { }
+            public DTOPurple(Lab9.Purple.Purple obj)
+            {
+                TypeName = obj.GetType().Name;
+                Input = obj.Input;
+                if (obj is Lab9.Purple.Task4 task4 && task4.Codes != null)
                 {
-                    int ind = l.IndexOf(':');
-                    if (ind >= 0)
-                        pairs[l.Substring(0, ind)] = l.Substring(ind + 1);
+                    Codes = new (string, char)[task4.Codes.Length];
+                    for (int i = 0; i < Codes.Length; i++)
+                        Codes[i] = (task4.Codes[i].Item1, task4.Codes[i].Item2);
                 }
             }
-            if (!pairs.ContainsKey("Type") || !pairs.ContainsKey("Input")) return null;
-            string typeName = pairs["Type"];
-            string input = pairs["Input"];
-            (string, char)[] codes = null;
-            if (pairs.ContainsKey("Count"))
-            {
-                int count = int.Parse(pairs["Count"]);
-                codes = new (string, char)[count];
-                for (int i = 0; i < count; i++)
-                {
-                    string value = pairs[$"Code{i}"];
-                    codes[i] = (value.Split("|")[0], value[value.Length - 1]);
-                }
-            }
-            Lab9.Purple.Purple obj;
-            if (typeName == "Task1") obj = new Task1(input);
-            else if (typeName == "Task2") obj = new Task2(input);
-            else if (typeName == "Task3") obj = new Task3(input);
-            else if (typeName == "Task4") obj = new Task4(input, codes);
-            else return null;
-            obj.Review();
-            return (T)obj;
         }
     }
 }
