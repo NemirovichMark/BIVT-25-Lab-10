@@ -35,51 +35,51 @@ namespace Lab10.Purple
         }
         public void Add(T[] task)
         {
-            if (task == null) return;
-            Array.Resize(ref _tasks, _tasks.Length + task.Length);
+            if (task == null || task.Length == 0) return;
             foreach (var i in task)
                 Add(i);
         }
+
         public void Remove(T task)
         {
             if (task == null) return;
-            List<T> list = _tasks.ToList();
+            List<T> list = _tasks.ToList(); // массив задач _tasks => список List
             list.Remove(task);
             _tasks = list.ToArray();
         }
         public void Clear()
         {
-            _tasks = Array.Empty<T>(); // => пустой массив
-            if (_manager==null) return;
+            _tasks = new T[0]; 
+            if (_manager== null || string.IsNullOrEmpty(_manager.FolderPath) || !Directory.Exists(_manager.FolderPath)) return;
             Directory.Delete(_manager.FolderPath, true );
-            // => удаляем папку и всё внутри; _manager.FolderPath —  путь к папке на диске,
+            // => удаляем папку и всё внутри (true); _manager.FolderPath —  путь к папке на диске,
         }
         public void SaveTasks()
         { 
-            if (_manager==null) return;
+            if (_manager==null || _tasks == null || _tasks.Length == 0) return;
             for (int i=0; i< _tasks.Length;i++)
             {
-                _manager.ChangeFileName($"task_{i}"); // имя файла для задачи
+                _manager.ChangeFileName($"task{i}"); // имя файла для задачи
                 _manager.Serialize(_tasks[i]);  // сериализует задачу в файл
             }
         }
         public void LoadTasks()
-        { 
-            if (_manager==null) return;
-            List<T> l = new List<T>();
-            while (true)
+        {
+            for (int i = 0; i < _tasks.Length; i++)
             {
-                T task=_manager.Deserialize();  // Загружаем задачу из файла
-                l.Add(task);         // Добавляем в список
+                 _manager.ChangeFileName($"task{i}");
+                _tasks[i] = _manager.Deserialize();
             }
-            _tasks = l.ToArray();  // список в массив, сохраняем
         }
         public void ChangeManager(PurpleFileManager<T> m)
         {
             if (m == null) return;
             _manager = m;
             string folderPath = Path.Combine(Directory.GetCurrentDirectory(), _manager.FolderPath ?? _manager.Name);
-            _manager.SelectFolder(folderPath);
+            //  текущая директория программы + FolderPath ( если нет, то Name)
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
+            _manager.SelectFolder(folderPath); //Устанавливаем эту папку как рабочую для нового менеджера
         }
     }
 }
