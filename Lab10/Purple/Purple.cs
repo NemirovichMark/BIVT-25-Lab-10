@@ -11,6 +11,8 @@ namespace Lab10.Purple
         public PurpleFileManager<T> Manager { get; private set; }
         public T[] Tasks { get; private set; }
 
+        public Purple() { }
+        
         public Purple(T[] tasks)
         {
             if (tasks == null)
