@@ -1,31 +1,53 @@
-namespace Lab9.Purple;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class Task4 : Purple
+namespace Lab9.Purple
 {
-    private string _output;
-    private (string, char)[] _table;
-
-    public string Output => _output;
-    public Task4(string input, (string, char)[] table) : base(input)
+    public class Task4 : Purple
     {
-        _output = default;
-        _table = table;
-    }
-
-
-    public override string ToString()
-    {
-        return _output;
-    }
-
-    public override void Review()
-    {
-        if (_table == null || _table.Length == 0)
+        private string _output;
+        private (string, char)[] _codes;
+        public string Output => _output;
+        public (string, char)[] Codes => _codes;
+        public Task4(string input, (string, char)[] codes) : base(input)
         {
-            return;
+            _output = "";
+            _codes = codes;
         }
 
-        var codes = _table.ToDictionary(item => item.Item2, item => item.Item1);
-        _output = string.Concat(_input.Select(ch => codes.TryGetValue(ch, out var pair) ? pair : ch.ToString()));
+        public override void Review()
+        {
+            _output = Input;
+
+            for (int i = 0; i < Codes.Length; i++)
+            {
+                int j = 0;
+
+                while (j < _output.Length)
+                {
+                    if (_output[j] == Codes[i].Item2)
+                    {
+                        string replacement = Codes[i].Item1;
+
+                        _output = _output.Remove(j, 1);
+                        _output = _output.Insert(j, replacement);
+
+                        j += replacement.Length;
+                    }
+                    else
+                    {
+                        j++;
+                    }
+                }
+            }
+        }
+
+        public override string ToString()
+        {
+            return _output;
+        }
     }
 }
