@@ -608,3 +608,5 @@ C:\Users\retin\OneDrive\Рабочий стол\Progects\labs\BIVT-25-Lab-10\Lab
 C:\Users\retin\OneDrive\Рабочий стол\Progects\labs\BIVT-25-Lab-10\Lab10Test\obj\Debug\net9.0\Lab10Test.pdb
 C:\Users\retin\OneDrive\Рабочий стол\Progects\labs\BIVT-25-Lab-10\Lab10Test\obj\Debug\net9.0\Lab10Test.genruntimeconfig.cache
 C:\Users\retin\OneDrive\Рабочий стол\Progects\labs\BIVT-25-Lab-10\Lab10Test\obj\Debug\net9.0\ref\Lab10Test.dll
+C:\Users\retin\OneDrive\Рабочий стол\Progects\labs\BIVT-25-Lab-10\Lab10Test\bin\Debug\net9.0\ru\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
+C:\Users\retin\OneDrive\Рабочий стол\Progects\labs\BIVT-25-Lab-10\Lab10Test\bin\Debug\net9.0\ru\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
