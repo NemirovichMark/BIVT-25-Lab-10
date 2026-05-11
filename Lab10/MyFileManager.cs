@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-
+using Lab9;
 namespace Lab10
 {
     public abstract class MyFileManager : IFileManager, IFileLifeController

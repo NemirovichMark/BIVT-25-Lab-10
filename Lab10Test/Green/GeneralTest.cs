@@ -1,7 +1,8 @@
 ﻿using Lab10;
 using System.Text.Json;
 using System.IO;
-
+using Lab9;
+using Lab9.Green;
 namespace Lab10Test.Green
 {
 	[TestClass]

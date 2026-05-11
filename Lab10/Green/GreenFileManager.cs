@@ -1,5 +1,5 @@
 using Lab9.Green;
-
+using Lab9;
 namespace Lab10.Green
 {
     public abstract class GreenFileManager : MyFileManager, ISerializer

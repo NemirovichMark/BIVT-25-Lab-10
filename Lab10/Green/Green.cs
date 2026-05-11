@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-
+using Lab9;
+using Lab9.Green;
 namespace Lab10.Green
 {
     public class Green
