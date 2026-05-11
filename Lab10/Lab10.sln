@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab10", "Lab10.csproj", "{A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab10Test", "..\Lab10Test\Lab10Test.csproj", "{85550AA9-DA5E-BD60-410D-03AD4FCFF877}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab9", "..\..\BIVT-25-Lab-9\Lab9\Lab9.csproj", "{9F870A28-6F8D-444C-B74B-5EA5F73AC6AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab9", "..\..\..\Lab9\Lab9.csproj", "{9F870A28-6F8D-444C-B74B-5EA5F73AC6AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab9Test", "..\..\BIVT-25-Lab-9\Lab9Test\Lab9Test.csproj", "{C2E8BB9F-5D1C-460A-99C9-69E95A9819FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab9Test", "..\..\..\Lab9Test\Lab9Test.csproj", "{C2E8BB9F-5D1C-460A-99C9-69E95A9819FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
