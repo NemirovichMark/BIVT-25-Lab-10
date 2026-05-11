@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace Lab10.Purple
+namespace Lab10
 {
     public interface IFileManager
     {
