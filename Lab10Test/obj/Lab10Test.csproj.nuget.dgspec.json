@@ -111,8 +111,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\retin\\OneDrive\\Рабочий стол\\Progects\\labs\\BIVT-25-Lab-9\\Lab9\\Lab9.csproj": {
-                "projectPath": "C:\\Users\\retin\\OneDrive\\Рабочий стол\\Progects\\labs\\BIVT-25-Lab-9\\Lab9\\Lab9.csproj"
+              "C:\\Users\\retin\\OneDrive\\Рабочий стол\\Progects\\labs\\BIVT-25-Lab-10\\Lab9\\Lab9.csproj": {
+                "projectPath": "C:\\Users\\retin\\OneDrive\\Рабочий стол\\Progects\\labs\\BIVT-25-Lab-10\\Lab9\\Lab9.csproj"
               }
             }
           }
@@ -152,14 +152,14 @@
         }
       }
     },
-    "C:\\Users\\retin\\OneDrive\\Рабочий стол\\Progects\\labs\\BIVT-25-Lab-9\\Lab9\\Lab9.csproj": {
+    "C:\\Users\\retin\\OneDrive\\Рабочий стол\\Progects\\labs\\BIVT-25-Lab-10\\Lab9\\Lab9.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\retin\\OneDrive\\Рабочий стол\\Progects\\labs\\BIVT-25-Lab-9\\Lab9\\Lab9.csproj",
+        "projectUniqueName": "C:\\Users\\retin\\OneDrive\\Рабочий стол\\Progects\\labs\\BIVT-25-Lab-10\\Lab9\\Lab9.csproj",
         "projectName": "Lab9",
-        "projectPath": "C:\\Users\\retin\\OneDrive\\Рабочий стол\\Progects\\labs\\BIVT-25-Lab-9\\Lab9\\Lab9.csproj",
+        "projectPath": "C:\\Users\\retin\\OneDrive\\Рабочий стол\\Progects\\labs\\BIVT-25-Lab-10\\Lab9\\Lab9.csproj",
         "packagesPath": "C:\\Users\\retin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\retin\\OneDrive\\Рабочий стол\\Progects\\labs\\BIVT-25-Lab-9\\Lab9\\obj\\",
+        "outputPath": "C:\\Users\\retin\\OneDrive\\Рабочий стол\\Progects\\labs\\BIVT-25-Lab-10\\Lab9\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\retin\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -3132,8 +3132,8 @@
     },
     "Lab9/1.0.0": {
       "type": "project",
-      "path": "../../BIVT-25-Lab-9/Lab9/Lab9.csproj",
-      "msbuildProject": "../../BIVT-25-Lab-9/Lab9/Lab9.csproj"
+      "path": "../Lab9/Lab9.csproj",
+      "msbuildProject": "../Lab9/Lab9.csproj"
     }
   },
   "projectFileDependencyGroups": {
