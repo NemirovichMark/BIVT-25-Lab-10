@@ -1,101 +1,65 @@
+﻿using Lab10.Purple;
 using Lab9.Purple;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection.Emit;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
-namespace Lab10.Purple;
-
-public class PurpleJsonFileManager<T> : PurpleFileManager<T> where T : Lab9.Purple.Purple
+namespace Lab10.Purple
 {
-    public PurpleJsonFileManager(string name) : base(name) { }
-
-    public PurpleJsonFileManager(string name, string folderpath, string filename, string fileextension = "txt")
-        : base(name, folderpath, filename, fileextension) { }
-
-    public override void EditFile(string text)
+    public  class PurpleJsonFileManager<T> : PurpleFileManager<T> where T : Lab9.Purple.Purple
     {
-        if (string.IsNullOrWhiteSpace(text) || !File.Exists(FullPath))
-            return;
-
-        T obj = Deserialize();
-        if (obj == null)
-            return;
-
-        obj.ChangeText(text);
-        Serialize(obj);
-    }
-
-    public override void ChangeFileExtension(string extension)
-    {
-        if (string.IsNullOrWhiteSpace(extension) || extension != "json")
-            return;
-
-        ChangeFileFormat("json");
-    }
-
-    public override void Serialize(T obj)
-    {
-        if (obj == null)
-            return;
-
-        var dto = new Dictionary<string, object>
+        public PurpleJsonFileManager(string name) : base(name) { }
+        public PurpleJsonFileManager(string name, string folderPath, string filename, string fileExtension = ".json") : base(name, folderPath, filename, fileExtension) { }
+        public override void EditFile(string a)
         {
-            ["Type"] = obj.GetType().Name,
-            ["Input"] = obj.Input
-        };
-
-        var table = GetTask4Table(obj);
-        if (table.Length > 0)
-        {
-            dto["Items"] = table
-                .Select(item => new Dictionary<string, object>
-                {
-                    ["Item1"] = item.Item1,
-                    ["Item2"] = item.Item2.ToString()
-                })
-                .ToArray();
+            T obj=Deserialize(); // Загружаем объект из файла
+            if (obj != null)
+            { obj.ChangeText(a); Serialize(obj); } // Меняем текст у объекта,
+                                                   // Сохраняем объект обратно в файл
         }
-
-        string convert = JsonConvert.SerializeObject(dto, Formatting.Indented);
-
-        ChangeFileFormat("json");
-        if (!File.Exists(FullPath))
+        public override void ChangeFileExtension(string e)
         {
-            CreateFile();
+            base.ChangeFileExtension("json");
         }
-        base.EditFile(convert);
-    }
-
-    public override T Deserialize()
-    {
-        if (!File.Exists(FullPath) || FileExtension != "json")
-            return null;
-
-        try
+        public override void Serialize(T obj)
         {
-            var json = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(FullPath));
-            if (json == null)
-                return null;
-
-            string typeName = json["Type"]?.ToString() ?? nameof(Task1);
-            string input = json["Input"]?.ToString() ?? "";
-
-            (string, char)[] table = Array.Empty<(string, char)>();
-            if (json["Items"] is JArray items && items.Count > 0)
+            if (obj == null) return;
+            JObject jobj = JObject.FromObject(obj); // obj => JObject 
+            jobj.Add("Type", obj.GetType().Name); // + поле "Type" с именем класса
+            File.WriteAllText(FullPath, jobj.ToString());
+        }
+        public override T Deserialize()
+        {
+            if (FullPath == null || !File.Exists(FullPath)) return null;
+            string a = File.ReadAllText(FullPath);
+            var json = JObject.Parse(a); // строка JSON => объект JObject (парсинг JSON)
+            string tName = json["Type"].ToString(); // Достаёт значение поля "Type"
+            string input = json["Input"].ToString(); // Достаёт значение поля "Input" (входные данные)
+            if (tName is null || input is null) return null;
+            T obj = tName switch
             {
-                table = items
-                    .Select(item => (
-                        item["Item1"]?.ToString() ?? "",
-                        string.IsNullOrEmpty(item["Item2"]?.ToString()) ? '\0' : item["Item2"]!.ToString()[0]))
-                    .ToArray();
-            }
-
-            T obj = CreateTask(typeName, input, table);
-            obj?.Review();
+                "Task1" => (T)(object)new Task1(input),
+                "Task2" => (T)(object)new Task2(input),
+                "Task3" => (T)(object)new Task3(input),
+                "Task4" => (T)(object)new Task4(input,
+                    json["Codes"] ?.ToObject<(string, char)[]>() ?? Array.Empty<(string, char)>())
+                // Берём поле "Codes", превращаем JSON-массив в C#-массив пар (строка, символ),
+                // 
+                //(string, char)[] codes;
+                //if (json["Codes"] == null)
+                //      codes = new (string, char)[0];
+                //else   codes = json["Codes"].ToObject<(string, char)[]>();
+                //new Task4(input, codes);
+                };
+            obj.Review(); // формирует output
             return obj;
-        }
-        catch
-        {
-            return null;
         }
     }
 }

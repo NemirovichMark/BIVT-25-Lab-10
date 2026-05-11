@@ -1,122 +1,85 @@
-namespace Lab9.Purple;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class Task3 : Purple
+namespace Lab9.Purple
+{
+    public class Task3 : Purple
     {
-        private string _output;
-        private (string, char)[] _codes;
-
-        public string Output => _output;
-        public (string, char)[] Codes => _codes;
-
-        public Task3(string text) : base(text)
+        private string _output; protected (string, char)[] _codes; 
+        public string Output => _output; public (string, char)[] Codes => _codes;
+        public Task3(string text) : base(text ?? string.Empty)
         {
-            _output = default;
-            _codes = default;
+            _output = string.Empty;
+            _codes = Array.Empty<(string, char)>();
         }
-
-        private string[] SplitText()
-        {
-            return _input.Split(' ', '.', '!', '?', ',', ':', '\"', ';', '–', '(', ')', '[', ']', '{', '}', '/', '1', '2', '3', '4', '5', '6', '7', '8', '9');
-        }
-
-        private (string, char)[] CreatePairStringChar(string[] bestStrings, int actualCount)
-        {
-            (string, char)[] bestPairs = new (string, char)[actualCount];
-            
-            bool[] usedChars = new bool[127];
-            for (int i = 0; i < _input.Length; i++)
-            {
-                int code = (int)_input[i];
-                if (code >= 32 && code <= 126)
-                    usedChars[code] = true;
-            }
-            
-            int codeIndex = 32;
-            for (int i = 0; i < actualCount; i++)
-            {
-                while (codeIndex < 127 && usedChars[codeIndex])
-                    codeIndex++;
-                
-                if (codeIndex < 127)
-                {
-                    bestPairs[i] = (bestStrings[i], (char)codeIndex);
-                    usedChars[codeIndex] = true;
-                    codeIndex++;
-                }
-            }
-            
-            return bestPairs;
-        }
-
-        private string[] FindTheBestPairs()
-        {
-            Dictionary<string, int> dict = new Dictionary<string, int>();
-            Dictionary<string, int> firstOccurrence = new Dictionary<string, int>();
-            string[] words = SplitText();
-            
-            for (int i = 0; i < words.Length; i++)
-            {
-                string word = words[i];
-                if (word.Length < 2) continue;
-                
-                for (int j = 1; j < word.Length; j++)
-                {
-                    string pair = word[j - 1].ToString() + word[j].ToString();
-                    
-                    if (dict.ContainsKey(pair))
-                    {
-                        dict[pair]++;
-                    }
-                    else
-                    {
-                        dict.Add(pair, 1);
-                        firstOccurrence.Add(pair, GetFirstOccurrence(pair));
-                    }
-                }
-            }
-
-            return dict
-                .Select(kvp => (Pair: kvp.Key, Count: kvp.Value, FirstIndex: firstOccurrence[kvp.Key]))
-                .OrderByDescending(entry => entry.Count)
-                .ThenBy(entry => entry.FirstIndex)
-                .Take(5)
-                .Select(entry => entry.Pair)
-                .ToArray();
-        }
-        
-        private int GetFirstOccurrence(string pair)
-        {
-            for (int i = 0; i < _input.Length - 1; i++)
-            {
-                if (_input[i].ToString() + _input[i + 1].ToString() == pair)
-                    return i;
-            }
-            return int.MaxValue;
-        }
-
         public override void Review()
         {
-            string[] bestStrings = FindTheBestPairs();
-
-            if (bestStrings.Length == 0)
+            if (string.IsNullOrEmpty(Input)) { _output = string.Empty; _codes = Array.Empty<(string, char)>(); return; }
+            string[] str = new string[Input.Length];
+            int[] bgn = new int[Input.Length];
+            int[] ints = new int[Input.Length];
+            int c = 0;
+            for (int i = 0; i < str.Length - 1; i++)
+                if (char.IsLetter(Input[i]) && char.IsLetter(Input[i + 1]))
+                { 
+                    string pair = "" + Input[i] + Input[i+1];
+                    int ind = -1;
+                    for (int j = 0; j < c; j++)
+                        if (str[j] == pair)
+                        { ind = j; break; }
+                    if (ind == -1)
+                    {
+                        str[c] = pair; bgn[c] = i;
+                        ints[c++] = 1;
+                    }
+                    else ints[ind]++;
+                }
+            int n = c < 5 ? c : 5; bool[] used = new bool[c];
+            _codes= new (string, char)[n];
+            for (int i = 0; i < n; i++)
             {
-                _output = _input;
-                _codes = new (string, char)[0];
-                return;
+                int ind = -1;
+                for (int j = 0; j < c; j++)
+                {
+                    if (used[j]) continue;
+                    if (ind == -1 || ints[j] > ints[ind] ||
+                        (ints[j] == ints[ind] && bgn[j] < bgn[ind]))
+                        //если: пара встретилась впервые; встречается > раз, чем лидер;
+                        //..==., но встречается раньше лидера               
+                        ind = j;
+                }
+                _codes[i] = (str[ind], (char)0); used[ind]=true; // пара просмотрена
             }
-            
-            _codes = CreatePairStringChar(bestStrings, bestStrings.Length);
-            _output = _input;
-            
+            bool[] smbls = new bool[127];
+            for (int i=0;i<Input.Length;i++)
+                if (Input[i]>=32 && Input[i]<=126) smbls[Input[i]]= true;
+            int k = 0;
+            for (int i = 32; i < 127 && k < n; i++)
+                if (!smbls[i])
+                { _codes[k] = (_codes[k].Item1, (char)i); k++; }
+            string result = Input;
             for (int i = 0; i < _codes.Length; i++)
             {
-                var (pair, code) = _codes[i];
-                _output = _output.Replace(pair, code.ToString());
+                string pair = _codes[i].Item1; char smbl=_codes[i].Item2;
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                int q = 0;
+                while (q < result.Length)
+                {
+                    if (q < result.Length - 1 && result[q] == pair[0]
+                        && result[q + 1] == pair[1])
+                    { sb.Append(smbl); q += 2; }
+                    else { sb.Append(result[q]); q++; }
+                }
+                result = sb.ToString();
             }
+            _output = result;
         }
-
         public override string ToString()
         {
-            return _output ?? "";
+            return Output ?? "";
         }
     }
+}

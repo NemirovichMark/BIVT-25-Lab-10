@@ -1,6 +1,9 @@
-﻿namespace Lab10;
-public class Program
+﻿namespace Lab10
 {
-	public static void Main()
-        {}
+    public class Program
+    {
+        public static void Main()
+        {
+        }
+    }
 }

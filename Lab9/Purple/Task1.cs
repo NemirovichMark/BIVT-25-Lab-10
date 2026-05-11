@@ -1,71 +1,61 @@
-namespace Lab9.Purple;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class Task1 : Purple
+namespace Lab9.Purple
 {
-    private string _output;
-    public string Output => _output;
-
-    public Task1(string text) : base(text)
-    { 
-        _output = "";
-        
-    }
-
-    public override void Review()
+    public class Task1 : Purple
     {
-        char[] chars = {'.', '!', '?', ',', ':', '\"', ';', '–', '(', ')', '[', ']', '{', '}', '/', ' '};
-        int n = _input.Length;
-        string word = "";
-        string revWord;
-        bool rev = true;
-
-
-        for (int i = 0; i < n; i++)
+        private string _output;
+        public string Output=>_output;
+        public Task1(string text) : base(text)
+        { 
+            _output = string.Empty;
+        }
+        public override void Review()
         {
-            if (chars.Contains(_input[i]))
+            if (_input == null)
+            { _output = null; return; }
+            StringBuilder s = new StringBuilder();
+            StringBuilder word = new StringBuilder();
+            for (int i = 0; i < Input.Length; i++)
             {
-                if (char.IsDigit(_input[i - 1]) && i + 1 < n && char.IsDigit(_input[i + 1]) && _input[i] == ',')
-                {
-                    word += _input[i];
-                }
+                char c = Input[i];
+                if (c == '-' || c == '\'' || char.IsLetterOrDigit(c))
+                    word.Append(c);
                 else
                 {
-                    if (rev == false)
+                    if (word.Length > 0)
                     {
-                        _output += word + _input[i];
-                        word = "";
-                        rev = true;
+                        bool digit = false;
+                        for (int j = 0; j < word.Length; j++)
+                            if (char.IsDigit(word[j])) { digit = true; break; }
+                        if (digit) s.Append(word);
+                        else
+                            for (int j = word.Length - 1; j >= 0; j--)
+                                s.Append(word[j]);
+                        word.Clear();
                     }
-                    else
-                    {
-                        revWord = new string(word.Reverse().ToArray());
-                        _output += revWord + _input[i];
-                        word = "";
-                    }
+                    s.Append(c);
                 }
-                continue;
-
-            } 
-
-            if (char.IsDigit(_input[i]))
-            {
-                rev = false;
-                word += _input[i];
-                continue;
             }
-            
-            word += _input[i];
-            
+                if (word.Length > 0)
+                {
+                    bool digit = false;
+                    for (int j = 0; j < word.Length; j++)
+                        if (char.IsDigit(word[j])) { digit = true; break; }
+                    if (digit) s.Append(word);
+                    else
+                        for (int j = word.Length - 1; j >= 0; j--)
+                            s.Append(word[j]);
+                }
+                _output = s.ToString();
         }
-    }
-
-
-
-   
-    
-    
-    public override string ToString()
-    {
-        return _output;
+        public override string ToString()
+        {
+            return Output ?? string.Empty; // если Output=null, вернем "".
+        }
     }
 }

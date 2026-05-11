@@ -1,134 +1,90 @@
-using Lab9.Purple;
+﻿using Lab9.Purple;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+using System.IO;
+using Lab10.Purple;
 
-namespace Lab10.Purple;
-
-public class PurpleTxtFileManager<T> : PurpleFileManager<T>
-    where T : Lab9.Purple.Purple
+namespace Lab10.Purple
 {
-    public PurpleTxtFileManager(string name) : base(name) { }
-
-    public PurpleTxtFileManager(string name, string folderPath, string fileName, string fileExtension = "txt")
-        : base(name, folderPath, fileName, fileExtension) { }
-
-    public override void EditFile(string text)
+    public class PurpleTxtFileManager<T> : PurpleFileManager<T> where T : Lab9.Purple.Purple
     {
-        if (string.IsNullOrWhiteSpace(text) || !File.Exists(FullPath))
-            return;
-
-        T obj = Deserialize();
-        if (obj == null)
-            return;
-
-        obj.ChangeText(text);
-        Serialize(obj);
-    }
-
-    public override void ChangeFileExtension(string extension)
-    {
-        if (string.IsNullOrWhiteSpace(extension) || extension != "txt")
-            return;
-
-        ChangeFileFormat("txt");
-    }
-
-    public override void Serialize(T obj)
-    {
-        if (obj == null)
-            return;
-
-        if (!Directory.Exists(FolderPath))
-            Directory.CreateDirectory(FolderPath);
-
-        try
+        public PurpleTxtFileManager(string name) : base(name) { }
+        public PurpleTxtFileManager(string name, string folderPath, string filename, string fileExtension = "") : base(name, folderPath, filename, fileExtension) { }
+        public override void EditFile(string a)
         {
-            using (StreamWriter sw = new StreamWriter(FullPath))
-            {
-                sw.WriteLine($"Type:{obj.GetType().Name}");
-                sw.WriteLine($"Input:{obj.Input}");
-
-                var table = GetTask4Table(obj);
-                if (table.Length > 0)
-                {
-                    sw.WriteLine("Codes:");
-                    foreach (var code in table)
-                    {
-                        sw.WriteLine($"{code.Item1}|{code.Item2}");
-                    }
-                }
-            }
-        }
-        catch
-        {
-        }
-    }
-
-    public override T Deserialize()
-    {
-        if (!File.Exists(FullPath))
-            return null;
-
-        string txt_object_type = null;
-        string txt_object_input = null;
-        bool need_codes = false;
-        var codes = new List<(string, char)>();
-
-        try
-        {
-            using (var sr = new StreamReader(FullPath))
-            {
-                while (!sr.EndOfStream)
-                {
-                    string line = sr.ReadLine();
-                    if (string.IsNullOrEmpty(line))
-                        continue;
-
-                    if (line.StartsWith("Type:"))
-                    {
-                        txt_object_type = line.Substring("Type:".Length).Trim();
-                        need_codes = false;
-                    }
-                    else if (line.StartsWith("Input:"))
-                    {
-                        txt_object_input = line.Substring("Input:".Length).Trim();
-                        need_codes = false;
-                    }
-                    else if (line.StartsWith("Codes:"))
-                    {
-                        need_codes = true;
-                    }
-                    else if (need_codes && line.Contains("|"))
-                    {
-                        string[] pair = line.Split('|');
-                        if (pair.Length == 2 && pair[1].Length > 0)
-                        {
-                            codes.Add((pair[0], pair[1][0]));
-                        }
-                    }
-                }
-            }
-        }
-        catch
-        {
-            return null;
-        }
-
-        if (string.IsNullOrEmpty(txt_object_type) || string.IsNullOrEmpty(txt_object_input))
-            return null;
-
-        try
-        {
-            var obj = CreateTask(txt_object_type, txt_object_input, codes.ToArray());
+            T obj = Deserialize();
             if (obj != null)
-            {
-                obj.Review();
-                return (T)obj;
-            }
+            { obj.ChangeText(a); Serialize(obj); }
         }
-        catch
+        public override void ChangeFileExtension(string e)
         {
-            return null;
+            base.ChangeFileExtension("txt");
         }
-
-        return null;
+        public override void Serialize(T obj)
+        {
+            if (obj == null || FullPath == null) return;
+            var p = new Dictionary<string, string>();
+            p["Type"] = obj.GetType().Name;
+            p["Input"] = obj.Input;
+            if (obj is Task3 task3)
+            {
+                p["Count"] = task3.Codes.Length.ToString();
+                for (int i = 0; i < task3.Codes.Length; i++)
+                     p[$"Code{i}"] = task3.Codes[i].Item1 + "|" + task3.Codes[i].Item2;
+            }             // Символ | разделяет строку и символ
+            else if (obj is Task4 task4)
+            {
+                p["Count"] = task4.Codes.Length.ToString();
+                for (int i = 0; i < task4.Codes.Length; i++)
+                    p[$"Code{i}"] = task4.Codes[i].Item1 + "|" + task4.Codes[i].Item2;
+            }
+            string[] l = new string[p.Count];
+            int ind = 0;
+            foreach (var i in p)
+                l[ind++] = i.Key + ":" + i.Value; // словарь => массив строк вида "Type:Task1"
+            File.WriteAllLines(FullPath, l);
+        }
+        public override T Deserialize()
+        {
+            if (string.IsNullOrEmpty(FullPath) || !File.Exists(FullPath)) return null;
+            var pairs = new Dictionary<string, string>();
+            using (StreamReader reader = new StreamReader(FullPath))
+            // Открываем файл для чтения (using => файл закроется автоматически).
+            {
+                string l;
+                while ((l = reader.ReadLine()) != null)
+                {
+                    int ind = l.IndexOf(':');
+                    if (ind >= 0)
+                        pairs[l.Substring(0, ind)] = l.Substring(ind + 1); // разбиваем строку на ключ : значение
+                }
+            }
+            if (!pairs.ContainsKey("Type") || !pairs.ContainsKey("Input")) return null;
+            string tName = pairs["Type"];
+            string input = pairs["Input"];
+            (string, char)[] codes = null;
+            if (pairs.ContainsKey("Count")) //  Task3, Task4
+            {
+                int count = int.Parse(pairs["Count"]); // Читаем количество кодов
+                codes = new (string, char)[count];
+                for (int i = 0; i < count; i++)
+                {
+                    string value = pairs[$"Code{i}"];
+                    codes[i] = (value.Split("|")[0], value[value.Length - 1]);
+                }
+            }
+            Lab9.Purple.Purple obj;
+            if (tName == "Task1") obj = new Task1(input);
+            else if (tName == "Task2") obj = new Task2(input);
+            else if (tName == "Task3") obj = new Task3(input);
+            else if (tName == "Task4") obj = new Task4(input, codes);
+            else return null;
+            obj.Review();
+            return (T)obj;
+        }
     }
 }

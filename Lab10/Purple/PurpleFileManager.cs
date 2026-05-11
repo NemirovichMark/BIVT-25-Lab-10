@@ -1,61 +1,34 @@
-using System.Reflection;
-using Lab9.Purple;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
-namespace Lab10.Purple;
-
-public abstract class PurpleFileManager<T> : MyFileManager, ISerializer<T> where T : Lab9.Purple.Purple
+namespace Lab10.Purple
 {
-    public PurpleFileManager(string name) : base(name) { }
-
-    public PurpleFileManager(string name, string folderpath, string filename, string fileextension = "txt")
-        : base(name, folderpath, filename, fileextension) { }
-
-    protected static T CreateTask(string kind, string input, (string, char)[] codes = null)
+    public abstract class PurpleFileManager<T> : MyFileManager, ISerializer<T> where T : Lab9.Purple.Purple
     {
-        codes ??= Array.Empty<(string, char)>();
-
-        return kind switch
+        public PurpleFileManager(string name) : base(name) { }
+        public PurpleFileManager(string name, string folderPath, string filename, string fileExtension = "") : base(name, folderPath, filename, fileExtension) { }
+        public override void EditFile(string a)
         {
-            nameof(Task1) => new Task1(input) as T,
-            nameof(Task2) => new Task2(input) as T,
-            nameof(Task3) => new Task3(input) as T,
-            nameof(Task4) => new Task4(input, codes) as T,
-            _ => null
-        };
-    }
-
-    protected static (string, char)[] GetTask4Table(Lab9.Purple.Purple task)
-    {
-        if (task is not Task4 task4)
-        {
-            return Array.Empty<(string, char)>();
+            if (!File.Exists(FullPath) || string.IsNullOrEmpty(FullPath)) return;
+            File.WriteAllText(FullPath, a);
         }
-
-        var field = typeof(Task4).GetField("_table", BindingFlags.NonPublic | BindingFlags.Instance);
-        if (field?.GetValue(task4) is (string, char)[] table && table != null)
+        public override void ChangeFileExtension(string e)
         {
-            return table;
+             if (!File.Exists(FullPath)) return;
+            string Path1 = FullPath; // Запоминаем старый путь
+            string b = File.ReadAllText(Path1); // Запоминаем  содержимое файла 
+            string ext = e;
+            base.ChangeFileFormat(ext); // меняет расширение в памяти
+            string Path2 = FullPath; // Запоминаем новый полный путь
+            if (File.Exists(Path2))  File.Delete(Path2);
+            File.WriteAllText(Path2, b);
+            if (File.Exists(Path1) && Path1 != Path2) File.Delete(Path1);
         }
-
-        return Array.Empty<(string, char)>();
+        public abstract T Deserialize();
+        public abstract void Serialize(T obj);
     }
-
-    public override void EditFile(string text)
-    {
-        if (string.IsNullOrWhiteSpace(text) || !File.Exists(FullPath))
-            return;
-
-        base.EditFile(text);
-    }
-
-    public override void ChangeFileExtension(string extension)
-    {
-        if (string.IsNullOrWhiteSpace(extension) || !File.Exists(FullPath))
-            return;
-
-        base.ChangeFileExtension(extension);
-    }
-
-    public abstract void Serialize(T obj);
-    public abstract T Deserialize();
 }

@@ -1,140 +1,85 @@
-namespace Lab10.Purple;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Lab10.Purple;
+using System.IO;
 
-public class Purple<T> where T : Lab9.Purple.Purple
+namespace Lab10.Purple
 {
-    private T[] _tasks;
-    private PurpleFileManager<T> _manager;
-
-    public PurpleFileManager<T> Manager => _manager;
-    public T[] Tasks => _tasks;
-
-    private static T[] CopyTasks(T[] tasks)
+    public class Purple<T> where T : Lab9.Purple.Purple
     {
-        if (tasks == null || tasks.Length == 0)
-            return Array.Empty<T>();
-
-        T[] copy = new T[tasks.Length];
-        Array.Copy(tasks, copy, tasks.Length);
-        return copy;
-    }
-
-    public Purple()
-    {
-        _tasks = Array.Empty<T>();
-        _manager = null;
-    }
-
-    public Purple(T[] tasks)
-    {
-        _tasks = CopyTasks(tasks);
-        _manager = null;
-    }
-
-    public Purple(PurpleFileManager<T> manager, T[] tasks = null)
-    {
-        _manager = manager;
-        _tasks = CopyTasks(tasks);
-    }
-
-    public Purple(T[] tasks, PurpleFileManager<T> manager)
-    {
-        _manager = manager;
-        _tasks = CopyTasks(tasks);
-    }
-
-    public void Add(T task)
-    {
-        if (task == null) 
-            return;
-        Array.Resize(ref _tasks, _tasks.Length + 1);
-        _tasks[^1] = task;
-    }
-
-    public void Add(T[] tasks)
-    {
-        if (tasks == null) 
-            return;
-        foreach (var task in tasks)
+        private PurpleFileManager<T> _manager; private T[] _tasks;
+        public PurpleFileManager<T> Manager => _manager;
+        public T[] Tasks => (T[])_tasks.Clone();
+        public Purple(T[] tasks=null)
         {
-            Add(task);
+            _tasks = tasks == null ? new T[0] : (T[])tasks.Clone();
+            _manager = null;
         }
-    }
-
-    public void Remove(T task)
-    {
-        if (task == null) 
-            return;
-
-        int index = Array.FindIndex(_tasks, current => current != null && current.ToString() == task.ToString());
-        if (index < 0)
-            return;
-
-        T[] nextTasks = new T[_tasks.Length - 1];
-        if (index > 0)
-            Array.Copy(_tasks, 0, nextTasks, 0, index);
-        if (index < _tasks.Length - 1)
-            Array.Copy(_tasks, index + 1, nextTasks, index, _tasks.Length - index - 1);
-
-        _tasks = nextTasks;
-    }
-
-    public void Clear()
-    {
-        _tasks = Array.Empty<T>();
-        if (_manager != null && !string.IsNullOrEmpty(_manager.FolderPath) && Directory.Exists(_manager.FolderPath))
+        public Purple(PurpleFileManager<T> manager, T[] tasks=null)
         {
-            Directory.Delete(_manager.FolderPath, true);
+            _manager = manager;
+            _tasks = tasks == null ? new T[0] : (T[])tasks.Clone();
         }
-    }
-
-    public void SaveTasks()
-    {
-        if (_manager == null)
-            return;
-        for (int i = 0; i < _tasks.Length; i++)
+        public Purple(T[] tasks, PurpleFileManager<T> manager)
         {
-            if (_tasks[i] == null)
-                continue;
-            _manager.ChangeFileName($"task{i}");
-            _manager.Serialize(_tasks[i]);
+            _manager = manager;
+            _tasks = tasks == null ? new T[0] : (T[])tasks.Clone();
         }
-    }
-
-    public void LoadTasks()
-    {
-        if (_manager == null)
-            return;
-
-        T[] loadedTasks = new T[_tasks.Length];
-        for (int i = 0; i < loadedTasks.Length; i++)
+        public void Add(T task)
         {
-            _manager.ChangeFileName($"task{i}");
-            T loaded = _manager.Deserialize();
-            if (loaded != null)
+            Array.Resize(ref _tasks, _tasks.Length + 1);
+            _tasks[^1]=task;
+        }
+        public void Add(T[] task)
+        {
+            if (task == null || task.Length == 0) return;
+            foreach (var i in task)
+                Add(i);
+        }
+
+        public void Remove(T task)
+        {
+            if (task == null) return;
+            List<T> list = _tasks.ToList(); // массив задач _tasks => список List
+            list.Remove(task);
+            _tasks = list.ToArray();
+        }
+        public void Clear()
+        {
+            _tasks = new T[0]; 
+            if (_manager== null || string.IsNullOrEmpty(_manager.FolderPath) || !Directory.Exists(_manager.FolderPath)) return;
+            Directory.Delete(_manager.FolderPath, true );
+            // => удаляем папку и всё внутри (true); _manager.FolderPath —  путь к папке на диске,
+        }
+        public void SaveTasks()
+        { 
+            if (_manager==null || _tasks == null || _tasks.Length == 0) return;
+            for (int i=0; i< _tasks.Length;i++)
             {
-                loadedTasks[i] = loaded;
+                _manager.ChangeFileName($"task{i}"); // имя файла для задачи
+                _manager.Serialize(_tasks[i]);  // сериализует задачу в файл
             }
         }
-
-        _tasks = loadedTasks;
-    }
-
-    public void ChangeManager(PurpleFileManager<T> manager)
-    {
-        if (manager == null)
-            return;
-
-        string parentFolder = _manager != null && !string.IsNullOrEmpty(_manager.FolderPath)
-            ? _manager.FolderPath
-            : Directory.GetCurrentDirectory();
-        string folder = Path.Combine(parentFolder, manager.Name);
-
-        if (!Directory.Exists(folder))
+        public void LoadTasks()
         {
-            Directory.CreateDirectory(folder);
+            for (int i = 0; i < _tasks.Length; i++)
+            {
+                 _manager.ChangeFileName($"task{i}");
+                _tasks[i] = _manager.Deserialize();
+            }
         }
-
-        manager.SelectFolder(folder);
-        _manager = manager;
+        public void ChangeManager(PurpleFileManager<T> m)
+        {
+            if (m == null) return;
+            _manager = m;
+            string folderPath = Path.Combine(Directory.GetCurrentDirectory(), _manager.FolderPath ?? _manager.Name);
+            //  текущая директория программы + FolderPath ( если нет, то Name)
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
+            _manager.SelectFolder(folderPath); //Устанавливаем эту папку как рабочую для нового менеджера
+        }
     }
 }
