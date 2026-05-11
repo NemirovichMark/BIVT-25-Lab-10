@@ -1,38 +1,38 @@
-namespace Lab9.Purple;
+// namespace Lab9.Purple;
 
-public class Task2 : Purple
-{ 
-    private string[] _output;
+// public class Task2 : Purple
+// { 
+//     private string[] _output;
 
-        public string[] Output => _output;
-
-
-        public Task2(string text) : base(text)
-        {
-            _output = new string[0];
-        }
-
-        public override string ToString()
-        {
-            return string.Join(Environment.NewLine, _output);
-        }
-
-        private void Print(string[] arr)
-        {
-            for (int i = 0; i < arr.Length; i++)
-            {
-                Console.WriteLine(arr[i]);
-            }
-        }
+//         public string[] Output => _output;
 
 
-        private void DoWordsFromInput()
-        {
-            string[] words = _input.Split(' ');
+//         public Task2(string text) : base(text)
+//         {
+//             _output = new string[0];
+//         }
 
-            Array.Resize(ref _output, _output.Length + 1);
-            _output[^1] = words[0];
-            string substring = _output[^1];
+//         public override string ToString()
+//         {
+//             return string.Join(Environment.NewLine, _output);
+//         }
+
+//         private void Print(string[] arr)
+//         {
+//             for (int i = 0; i < arr.Length; i++)
+//             {
+//                 Console.WriteLine(arr[i]);
+//             }
+//         }
+
+
+//         private void DoWordsFromInput()
+//         {
+//             string[] words = _input.Split(' ');
+
+//             Array.Resize(ref _output, _output.Length + 1);
+//             _output[^1] = words[0];
+//             string substring = _output[^1];
 
             for (int i = 1; i < words.Length; i++)
             {
