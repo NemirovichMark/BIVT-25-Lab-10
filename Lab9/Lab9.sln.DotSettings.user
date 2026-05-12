@@ -1,0 +1,23 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1186e86a_002D8755_002D468c_002Dbb8f_002Da4017e4b5b8d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Task1 #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;MSTest::B2E3F85B-E0BB-5DAC-B080-DF387544CAE1::net9.0::Lab9Test.Green.Task1&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::B2E3F85B-E0BB-5DAC-B080-DF387544CAE1::net9.0::Lab9Test.Green.Task2&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::B2E3F85B-E0BB-5DAC-B080-DF387544CAE1::net9.0::Lab9Test.Green.Task3&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::B2E3F85B-E0BB-5DAC-B080-DF387544CAE1::net9.0::Lab9Test.Green.Task4.Test_02_Output&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::B2E3F85B-E0BB-5DAC-B080-DF387544CAE1::net9.0::Lab9Test.Green.Task4&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1b6a11e1_002De3c8_002D4d77_002Dbd04_002Df751cd18981b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Task1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;MSTest::B2E3F85B-E0BB-5DAC-B080-DF387544CAE1::net9.0::Lab9Test.Green.Task1&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=80ef69ef_002D2565_002D4409_002Da64a_002Dbac232f5cc76/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Task4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;MSTest::B2E3F85B-E0BB-5DAC-B080-DF387544CAE1::net9.0::Lab9Test.Green.Task4&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::B2E3F85B-E0BB-5DAC-B080-DF387544CAE1::net9.0::Lab9Test.Green.Task1&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::B2E3F85B-E0BB-5DAC-B080-DF387544CAE1::net9.0::Lab9Test.Green.Task2&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::B2E3F85B-E0BB-5DAC-B080-DF387544CAE1::net9.0::Lab9Test.Green.Task3&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
