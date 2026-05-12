@@ -1,4 +1,5 @@
 ﻿using Lab10;
+using Lab10.Purple;
 using System.IO;
 
 namespace Lab10Test.Purple
