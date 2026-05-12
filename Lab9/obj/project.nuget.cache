@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "N+cUOYl+vak=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\aknik\\source\\repos\\BIVT-25-Lab-10\\Lab9\\Lab9.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\aknik\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
