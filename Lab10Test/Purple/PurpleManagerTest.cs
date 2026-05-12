@@ -42,10 +42,10 @@
 //
 //             _tasks = new Lab9.Purple.Purple[]
 //             {
-//                 new Lab9.Purple.Task1(_input[i]),
-//                 new Lab9.Purple.Task2(_input[i]),
-//                 new Lab9.Purple.Task3(_input[i]),
-//                 new Lab9.Purple.Task4(_input[i], taskCodes)
+//                  new Lab9.Purple.Task1(_input[i]),
+//                  new Lab9.Purple.Task2(_input[i]),
+//                  new Lab9.Purple.Task3(_input[i]),
+//                  new Lab9.Purple.Task4(_input[i], taskCodes)
 //             };
 //
 //             foreach (var t in _tasks)
@@ -197,7 +197,7 @@
 //                 w.LoadTasks();
 //
 //                 int loadedCount = w.Tasks.Count(t => t != null);
-//                 Assert.IsTrue(loadedCount < _tasks.Length, 
+//                 Assert.IsTrue(loadedCount < _tasks.Length,
 //                     $"ChangeManager from TXT to JSON should break loading in test {i}");
 //
 //                 // Меняем с JSON на XML
@@ -205,7 +205,7 @@
 //                 w.LoadTasks();
 //
 //                 loadedCount = w.Tasks.Count(t => t != null);
-//                 Assert.IsTrue(loadedCount < _tasks.Length, 
+//                 Assert.IsTrue(loadedCount < _tasks.Length,
 //                     $"ChangeManager from JSON to XML should break loading in test {i}");
 //
 //                 Directory.Delete(folder, true);

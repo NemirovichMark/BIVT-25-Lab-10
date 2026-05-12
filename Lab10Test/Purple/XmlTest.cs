@@ -149,10 +149,10 @@
 //
 //             _tasks = new Lab9.Purple.Purple[]
 //             {
-//                 new Lab9.Purple.Task1(_input[i]),
-//                 new Lab9.Purple.Task2(_input[i]),
-//                 new Lab9.Purple.Task3(_input[i]),
-//                 new Lab9.Purple.Task4(_input[i], taskCodes)
+//                  new Lab9.Purple.Task1(_input[i]),
+//                  new Lab9.Purple.Task2(_input[i]),
+//                  new Lab9.Purple.Task3(_input[i]),
+//                  new Lab9.Purple.Task4(_input[i], taskCodes)
 //             };
 //
 //             if (review)
