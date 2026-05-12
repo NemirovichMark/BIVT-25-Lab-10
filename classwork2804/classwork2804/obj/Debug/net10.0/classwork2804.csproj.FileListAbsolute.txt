@@ -1,0 +1,14 @@
+/Users/christina/RiderProjects/classwork2804/classwork2804/bin/Debug/net10.0/classwork2804
+/Users/christina/RiderProjects/classwork2804/classwork2804/bin/Debug/net10.0/classwork2804.deps.json
+/Users/christina/RiderProjects/classwork2804/classwork2804/bin/Debug/net10.0/classwork2804.runtimeconfig.json
+/Users/christina/RiderProjects/classwork2804/classwork2804/bin/Debug/net10.0/classwork2804.dll
+/Users/christina/RiderProjects/classwork2804/classwork2804/bin/Debug/net10.0/classwork2804.pdb
+/Users/christina/RiderProjects/classwork2804/classwork2804/obj/Debug/net10.0/classwork2804.GeneratedMSBuildEditorConfig.editorconfig
+/Users/christina/RiderProjects/classwork2804/classwork2804/obj/Debug/net10.0/classwork2804.AssemblyInfoInputs.cache
+/Users/christina/RiderProjects/classwork2804/classwork2804/obj/Debug/net10.0/classwork2804.AssemblyInfo.cs
+/Users/christina/RiderProjects/classwork2804/classwork2804/obj/Debug/net10.0/classwork2804.csproj.CoreCompileInputs.cache
+/Users/christina/RiderProjects/classwork2804/classwork2804/obj/Debug/net10.0/classwork2804.dll
+/Users/christina/RiderProjects/classwork2804/classwork2804/obj/Debug/net10.0/refint/classwork2804.dll
+/Users/christina/RiderProjects/classwork2804/classwork2804/obj/Debug/net10.0/classwork2804.pdb
+/Users/christina/RiderProjects/classwork2804/classwork2804/obj/Debug/net10.0/classwork2804.genruntimeconfig.cache
+/Users/christina/RiderProjects/classwork2804/classwork2804/obj/Debug/net10.0/ref/classwork2804.dll

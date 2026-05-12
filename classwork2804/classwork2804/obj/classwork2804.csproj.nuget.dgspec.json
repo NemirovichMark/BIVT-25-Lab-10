@@ -1,0 +1,67 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/christina/RiderProjects/classwork2804/classwork2804/classwork2804.csproj": {}
+  },
+  "projects": {
+    "/Users/christina/RiderProjects/classwork2804/classwork2804/classwork2804.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/christina/RiderProjects/classwork2804/classwork2804/classwork2804.csproj",
+        "projectName": "classwork2804",
+        "projectPath": "/Users/christina/RiderProjects/classwork2804/classwork2804/classwork2804.csproj",
+        "packagesPath": "/Users/christina/.nuget/packages/",
+        "outputPath": "/Users/christina/RiderProjects/classwork2804/classwork2804/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/christina/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net10.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net10.0": {
+            "targetAlias": "net10.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net10.0": {
+          "targetAlias": "net10.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
