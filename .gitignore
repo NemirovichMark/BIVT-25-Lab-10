@@ -1,0 +1,4 @@
+bin/
+obj/
+.playwright/
+*.DS_Store

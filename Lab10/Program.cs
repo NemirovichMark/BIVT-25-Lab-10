@@ -1,4 +1,6 @@
-﻿namespace Lab10
+﻿using Lab9.Purple;
+
+namespace Lab10
 {
     public class Program
     {
