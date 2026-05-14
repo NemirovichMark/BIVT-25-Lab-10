@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "dWnfdDFVM/Q=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ПК\\Source\\Repos\\BIVT-25-Lab-10\\Lab9\\Lab9.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ПК\\.nuget\\packages\\newtonsoft.json\\13.0.4\\newtonsoft.json.13.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}
