@@ -22,7 +22,7 @@ namespace Lab10.White
             if (!File.Exists(FullPath)) return null;
             string json = File.ReadAllText(FullPath);
             // return JsonSerializer.Deserialize<Lab9.White.White>(json);
-            return System.Text.Json.JsonSerializer.Deserialize<Lab9.White.Task1>(json);
+            return System.Text.Json.JsonSerializer.Deserialize<Lab10.White.Task1>(json);
         }
     }
 }
