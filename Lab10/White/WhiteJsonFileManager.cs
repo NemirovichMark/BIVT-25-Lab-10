@@ -5,24 +5,24 @@ using Lab10.White;
 
 namespace Lab10.White 
 {
-    public class WhiteJsonFileManager : WhiteFileManager 
+    public class WhiteJsonFileManager : WhiteFileManager
     {
-        public WhiteJsonFileManager(string name) : base(name) {}
-        public WhiteJsonFileManager(string name, string folder, string file) : base(name, folder, file, ".json") { }
+        public WhiteJsonFileManager(string name) : base(name) { }
 
-        public override void Serialize(Lab10.White.White obj) 
+        public WhiteJsonFileManager(string name, string folder, string fileName, string ext = "json")
+            : base(name, folder, fileName, ext) { }
+
+        public override void Serialize(Lab9.White.White obj)
         {
-            if (obj == null || string.IsNullOrEmpty(FullPath)) return;
             string json = JsonSerializer.Serialize(obj);
             File.WriteAllText(FullPath, json);
         }
 
-        public override Lab10.White.White Deserialize() 
+        public override Lab9.White.White Deserialize()
         {
             if (!File.Exists(FullPath)) return null;
             string json = File.ReadAllText(FullPath);
-            // return JsonSerializer.Deserialize<Lab9.White.White>(json);
-            return System.Text.Json.JsonSerializer.Deserialize<Lab10.White.White>(json);
+            return JsonSerializer.Deserialize<Lab10.White.White>(json);
         }
     }
 }
