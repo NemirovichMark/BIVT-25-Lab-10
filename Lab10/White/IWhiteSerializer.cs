@@ -5,7 +5,7 @@ namespace Lab10.White
 {
     public interface IWhiteSerializer 
     {
-        Lab9.White.White Deserialize();
-        void Serialize(Lab9.White.White obj);
+        Lab10.White.White Deserialize();
+        void Serialize(Lab10.White.White obj);
     }
 }
