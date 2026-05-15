@@ -4,22 +4,22 @@ using Lab10.White;
 
 namespace Lab10.White 
 {
-    public class WhiteTxtFileManager : WhiteFileManager 
+    public class WhiteTxtFileManager : WhiteFileManager
     {
-        public WhiteTxtFileManager(string name) : base(name) {}
+        public WhiteTxtFileManager(string name) : base(name) { }
 
-        public WhiteTxtFileManager(string name, string folder, string file) : base(name, folder, file, ".txt") { }
+        public WhiteTxtFileManager(string name, string folder, string fileName, string ext = "txt")
+            : base(name, folder, fileName, ext) { }
 
-        public override void Serialize(Lab10.White.White obj) {
-            if (obj == null || string.IsNullOrEmpty(FullPath)) return;
-            File.WriteAllText(FullPath, obj.ToString()); 
+        public override void Serialize(Lab9.White.White obj)
+        {
+            File.WriteAllText(FullPath, obj?.ToString());
         }
 
-        public override Lab10.White.White Deserialize() 
+        public override Lab9.White.White Deserialize()
         {
-            string path = Path.Combine(_folderPath, _fileName + ".txt");
-            if (!File.Exists(path)) return null;
-            string content = File.ReadAllText(path);
+            if (!File.Exists(FullPath)) return null;
+            string content = File.ReadAllText(FullPath);
             return new Lab10.White.White(content);
         }
     }
