@@ -1,16 +1,15 @@
 using System;
 using System.IO;
-using Lab9.White;
 
 namespace Lab10.White
 {
     public class White : Lab9.White.White
     {
-        private WhiteFileManager _manager;
+        private Lab10.White.WhiteFileManager _manager;
         private Lab10.White.White[] _tasks;
         private string _text;
 
-        public WhiteFileManager Manager => _manager;
+        public Lab10.White.WhiteFileManager Manager => _manager;
         public Lab10.White.White[] Tasks => _tasks;
         
         public new string Text
@@ -37,14 +36,14 @@ namespace Lab10.White
             _text = "";
         }
 
-        public White(WhiteFileManager manager, Lab10.White.White[] tasks = null) : base("")
+        public White(Lab10.White.WhiteFileManager manager, Lab10.White.White[] tasks = null) : base("")
         {
             _manager = manager;
             _tasks = tasks ?? new Lab10.White.White[0];
             _text = "";
         }
 
-        public White(Lab10.White.White[] tasks, WhiteFileManager manager) : base("")
+        public White(Lab10.White.White[] tasks, Lab10.White.WhiteFileManager manager) : base("")
         {
             _tasks = tasks ?? new Lab10.White.White[0];
             _manager = manager;
@@ -53,7 +52,7 @@ namespace Lab10.White
 
         public new void ChangeText(string newText)
         {
-            this._text = newText;
+            _text = newText;
         }
 
         public void Add(Lab10.White.White task)
@@ -69,6 +68,17 @@ namespace Lab10.White
             foreach (var t in tasks) Add(t);
         }
 
+        public void Remove(Lab10.White.White task)
+        {
+            if (task == null || _tasks.Length == 0) return;
+            int index = Array.IndexOf(_tasks, task);
+            if (index == -1) return;
+            var newTasks = new Lab10.White.White[_tasks.Length - 1];
+            Array.Copy(_tasks, 0, newTasks, 0, index);
+            Array.Copy(_tasks, index + 1, newTasks, index, newTasks.Length - index - 1);
+            _tasks = newTasks;
+        }
+
         public void Clear()
         {
             _tasks = new Lab10.White.White[0];
@@ -81,22 +91,19 @@ namespace Lab10.White
         public void SaveTasks()
         {
             if (_manager == null || _tasks == null) return;
-            
             for (int i = 0; i < _tasks.Length; i++)
             {
                 if (_tasks[i] == null) continue;
                 _manager.ChangeFileName($"Task_{i}");
-                _manager.Serialize(_tasks[i]); 
+                _manager.Serialize(_tasks[i]);
             }
         }
 
         public void LoadTasks()
         {
             if (_manager == null || !Directory.Exists(_manager.FolderPath)) return;
-            
             string[] files = Directory.GetFiles(_manager.FolderPath);
             _tasks = new Lab10.White.White[0];
-            
             foreach (var file in files)
             {
                 _manager.ChangeFileName(Path.GetFileNameWithoutExtension(file));
@@ -107,7 +114,7 @@ namespace Lab10.White
 
         public override void Review() { }
 
-        public void ChangeManager(WhiteFileManager newManager)
+        public void ChangeManager(Lab10.White.WhiteFileManager newManager)
         {
             if (newManager == null) return;
             _manager = newManager;
