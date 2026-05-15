@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab10", "Lab10\Lab10.csproj", "{F7D3CF83-6EB8-4585-A16A-D96A7B55E4BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab10", "Lab10.csproj", "{F7D3CF83-6EB8-4585-A16A-D96A7B55E4BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab10Test", "Lab10Test\Lab10Test.csproj", "{D47D932C-8019-45D6-8ECC-0D383B4FEE0E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab10Test", "Lab10Test.csproj", "{D47D932C-8019-45D6-8ECC-0D383B4FEE0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab9", "..\BIVT-25-Lab-9\Lab9\Lab9.csproj", "{5680CE55-A1B9-4175-8536-AEC461813870}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab9", "..Lab9\Lab9.csproj", "{5680CE55-A1B9-4175-8536-AEC461813870}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
