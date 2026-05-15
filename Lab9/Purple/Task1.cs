@@ -34,38 +34,38 @@
 //                     {
 //                         _output += word + _input[i];
 //                         word = "";
-                        rev = true;
-                    }
-                    else
-                    {
-                        revWord = new string(word.Reverse().ToArray());
-                        _output += revWord + _input[i];
-                        word = "";
-                    }
-                }
-                continue;
+//                         rev = true;
+//                     }
+//                     else
+//                     {
+//                         revWord = new string(word.Reverse().ToArray());
+//                         _output += revWord + _input[i];
+//                         word = "";
+//                     }
+//                 }
+//                 continue;
 
-            } 
+//             } 
 
-            if (char.IsDigit(_input[i]))
-            {
-                rev = false;
-                word += _input[i];
-                continue;
-            }
+//             if (char.IsDigit(_input[i]))
+//             {
+//                 rev = false;
+//                 word += _input[i];
+//                 continue;
+//             }
             
-            word += _input[i];
+//             word += _input[i];
             
-        }
-    }
+//         }
+//     }
 
 
 
    
     
     
-    public override string ToString()
-    {
-        return _output;
-    }
-}
+//     public override string ToString()
+//     {
+//         return _output;
+//     }
+// }
