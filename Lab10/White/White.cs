@@ -25,7 +25,7 @@ namespace Lab10.White
             _tasks = new Lab10.White.White[0];
         }
 
-        public void ChangeText(string newText)
+        public new void ChangeText(string newText)
         {
             this._text  = newText;
         }
@@ -113,7 +113,11 @@ namespace Lab10.White
                 if (task != null) Add(task);
             }
         }
-
+        public override void Review()
+        {
+        
+        }
+        
         public void ChangeManager(WhiteFileManager newManager)
         {
             if (newManager == null) return;
