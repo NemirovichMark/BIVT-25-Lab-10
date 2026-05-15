@@ -5,7 +5,7 @@ using Lab10;
 
 namespace Lab10.White
 {
-    public class White
+    public class White : Lab9.White.White
     {
         private WhiteFileManager _manager;
         private Lab10.White.White[] _tasks;
@@ -17,19 +17,19 @@ namespace Lab10.White
         {
             get => _text;
             set => _text = value;
-        
         }
-        public void ChangeText(string newText)
-        {
-            this._text  = newText;
-        }
-        
-        public White(string text)
+
+        public White(string text) : base()
         {
             text = _text;
             _tasks = new Lab10.White.White[0];
         }
 
+        public void ChangeText(string newText)
+        {
+            this._text  = newText;
+        }
+        
         public White()
         {
             _tasks = new Lab10.White.White[0];
