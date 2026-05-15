@@ -34,12 +34,7 @@ namespace Lab10.White
         {
             this._text  = newText;
         }
-        
-        public White()
-        {
-            _tasks = new Lab10.White.White[0];
-            _text = "";
-        }
+
         public White(Lab10.White.White[] tasks)
         {
             _tasks = tasks ?? new Lab10.White.White[0];
