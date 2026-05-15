@@ -3,9 +3,9 @@ using Lab10;
 
 namespace Lab10.White
 {
-    public interface IWhiteSerializer 
+    public interface IWhiteSerializer
     {
-        Lab10.White.White Deserialize();
-        void Serialize(Lab10.White.White obj);
+        void Serialize(Lab9.White.White obj); 
+        Lab9.White.White Deserialize();       
     }
 }
