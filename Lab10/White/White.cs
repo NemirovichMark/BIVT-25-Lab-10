@@ -17,6 +17,11 @@ namespace Lab10.White
         {
             get => _text;
             set => _text = value;
+        
+        }
+        public void ChangeText(string newText)
+        {
+            this._text  = newText;
         }
         
         public White()
