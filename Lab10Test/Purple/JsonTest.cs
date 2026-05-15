@@ -23,8 +23,8 @@
 
 //            _input = json.GetProperty("Task4").GetProperty("input").Deserialize<string[]>();
 
-//            // Правильная десериализация codes — массив массивов объектов
-//            var codesJson = json.GetProperty("Task4").GetProperty("codes");
+//            Правильная десериализация codes — массив массивов объектов
+//           var codesJson = json.GetProperty("Task4").GetProperty("codes");
 //            var codesArray = codesJson.Deserialize<CodePair[][]>();
 
 //            _codes = new (string pair, char code)[codesArray.Length][];

@@ -1,4 +1,4 @@
-﻿//using Lab10;
+﻿//using Lab10.Purple;
 //using System.IO;
 
 //namespace Lab10Test.Purple
@@ -75,9 +75,9 @@
 //			var nameProp = managerType.GetProperty("Name");
 //			Assert.IsNotNull(nameProp, "Property 'Name' is missing");
 //			Assert.IsTrue(nameProp.CanRead, "Name must have getter");
-//            Assert.IsTrue(!nameProp.CanWrite || !nameProp.SetMethod!.IsPublic, "Name should be read-only");
+//			Assert.IsTrue(!nameProp.CanWrite || !nameProp.SetMethod!.IsPublic, "Name should be read-only");
 
-//            Assert.IsTrue(typeof(IFileManager).IsAssignableFrom(managerType));
+//			Assert.IsTrue(typeof(IFileManager).IsAssignableFrom(managerType));
 //			Assert.IsTrue(typeof(IFileLifeController).IsAssignableFrom(managerType));
 //		}
 
