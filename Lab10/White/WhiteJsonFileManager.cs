@@ -1,7 +1,7 @@
 using System.IO;
 using System.Text.Json;
 using Lab10;
-using Lab9.White;
+using Lab10.White;
 
 namespace Lab10.White 
 {
