@@ -6,10 +6,10 @@ namespace Lab10.White
 {
     public class White
     {
-        private WhiteFileManager _manager;
+        private Lab10.White.WhiteFileManager _manager;
         private Lab9.White.White[] _tasks;
 
-        public WhiteFileManager Manager => _manager;
+        public Lab10.White.WhiteFileManager Manager => _manager;
         public Lab9.White.White[] Tasks => _tasks;
 
         public White(Lab9.White.White[] tasks)
@@ -17,13 +17,13 @@ namespace Lab10.White
             _tasks = tasks?.ToArray() ?? Array.Empty<Lab9.White.White>();
         }
 
-        public White(WhiteFileManager manager, Lab9.White.White[] tasks = null)
+        public White(Lab10.White.WhiteFileManager manager, Lab9.White.White[] tasks = null)
         {
             _manager = manager;
             _tasks = tasks?.ToArray() ?? Array.Empty<Lab9.White.White>();
         }
 
-        public White(Lab9.White.White[] tasks, WhiteFileManager manager)
+        public White(Lab9.White.White[] tasks, Lab10.White.WhiteFileManager manager)
         {
             _manager = manager;
             _tasks = tasks?.ToArray() ?? Array.Empty<Lab9.White.White>();
@@ -44,7 +44,7 @@ namespace Lab10.White
 
         public void Remove(Lab9.White.White task)
         {
-            if (task == null) return;
+            if (task == null || _tasks == null) return;
             _tasks = _tasks.Where(t => t != task).ToArray();
         }
 
@@ -57,9 +57,10 @@ namespace Lab10.White
 
         public void SaveTasks()
         {
-            if (_manager == null) return;
+            if (_manager == null || _tasks == null) return;
             for (int i = 0; i < _tasks.Length; i++)
             {
+                if (_tasks[i] == null) continue;
                 _manager.ChangeFileName($"task_{i}");
                 _manager.Serialize(_tasks[i]);
             }
@@ -77,7 +78,7 @@ namespace Lab10.White
             }
         }
 
-        public void ChangeManager(WhiteFileManager newManager)
+        public void ChangeManager(Lab10.White.WhiteFileManager newManager)
         {
             _manager = newManager;
             if (_manager != null)
