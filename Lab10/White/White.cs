@@ -11,6 +11,10 @@ namespace Lab10.White
 
         public Lab10.White.WhiteFileManager Manager => _manager;
         public Lab9.White.White[] Tasks => _tasks;
+        public White()
+        {
+            _tasks = Array.Empty<Lab9.White.White>();
+        }
 
         public White(Lab9.White.White[] tasks)
         {
