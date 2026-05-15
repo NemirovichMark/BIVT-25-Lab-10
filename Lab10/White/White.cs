@@ -19,10 +19,15 @@ namespace Lab10.White
             set => _text = value;
         }
 
-        public White(string text) : base()
+        public White(string text) : base(text)
         {
             text = _text;
-            _tasks = new Lab10.White.White["0"];
+            _tasks = new Lab10.White.White[0];
+        }
+        public White() : base("") 
+        {
+            _tasks = new Lab10.White.White[0];
+            _text = "";
         }
 
         public new void ChangeText(string newText)
@@ -32,12 +37,12 @@ namespace Lab10.White
         
         public White()
         {
-            _tasks = new Lab10.White.White["0"];
+            _tasks = new Lab10.White.White[0];
             _text = "";
         }
         public White(Lab10.White.White[] tasks)
         {
-            _tasks = tasks ?? new Lab10.White.White["0"];
+            _tasks = tasks ?? new Lab10.White.White[0];
             _text = "";
             _manager = null;
         }
@@ -45,12 +50,12 @@ namespace Lab10.White
         public White(WhiteFileManager manager, Lab10.White.White[] tasks = null)
         {
             _manager = manager;
-            _tasks = tasks ?? new Lab10.White.White["0"];
+            _tasks = tasks ?? new Lab10.White.White[0];
         }
 
         public White(Lab10.White.White[] tasks, WhiteFileManager manager)
         {
-            _tasks = tasks ?? new Lab10.White.White["0"];
+            _tasks = tasks ?? new Lab10.White.White[0];
             _manager = manager;
         }
 
@@ -113,10 +118,8 @@ namespace Lab10.White
                 if (task != null) Add(task);
             }
         }
-        public override void Review()
-        {
         
-        }
+        public override void Review() {}
         
         public void ChangeManager(WhiteFileManager newManager)
         {
