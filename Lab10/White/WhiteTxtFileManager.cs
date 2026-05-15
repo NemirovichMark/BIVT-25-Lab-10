@@ -17,8 +17,9 @@ namespace Lab10.White
 
         public override Lab10.White.White Deserialize() 
         {
-            if (!File.Exists(Path.Combine(_folderPath, _fileName + ".txt")) return null;
-            string content = File.ReadAllText(Path.Combine(_folderPath, _fileName + ".txt"));
+            string path = Path.Combine(_folderPath, _fileName + ".txt");
+            if (!File.Exists(path) return null;
+            string content = File.ReadAllText(path);
             return new Lab10.White.White(content);
         }
     }
