@@ -28,14 +28,16 @@ namespace Lab10.White
         public override void Serialize(Lab9.White.White obj)
         {
             if (obj == null) return;
-            File.WriteAllText(FullPath, JsonSerializer.Serialize(obj));
+            string json = JsonSerializer.Serialize(obj);
+            File.WriteAllText(FullPath, json);
         }
 
         public override Lab9.White.White Deserialize()
         {
             if (!File.Exists(FullPath)) return null;
             string json = File.ReadAllText(FullPath);
-            return JsonSerializer.Deserialize<Lab9.White.White>(json);
+            // Используем конкретный тип Lab10.White.White для десериализации
+            return JsonSerializer.Deserialize<Lab10.White.White>(json);
         }
     }
 }
