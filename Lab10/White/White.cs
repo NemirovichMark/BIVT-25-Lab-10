@@ -38,7 +38,8 @@ namespace Lab10.White
         public White(Lab10.White.White[] tasks)
         {
             _tasks = tasks ?? new Lab10.White.White[0];
-            _manager = "";
+            text = "";
+            _manager = null;
         }
 
         public White(WhiteFileManager manager, Lab10.White.White[] tasks = null)
