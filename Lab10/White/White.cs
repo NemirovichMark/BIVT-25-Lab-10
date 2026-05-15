@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using Lab10.White;
 using Lab9.White;
 
 namespace Lab10.White
@@ -13,7 +12,8 @@ namespace Lab10.White
 
         public WhiteFileManager Manager => _manager;
         public Lab10.White.White[] Tasks => _tasks;
-        public string Text
+        
+        public new string Text
         {
             get => _text;
             set => _text = value;
@@ -21,37 +21,39 @@ namespace Lab10.White
 
         public White(string text) : base(text)
         {
-            text = _text;
+            _text = text;
             _tasks = new Lab10.White.White[0];
-        }
-        public White() : base("") 
-        {
-            _tasks = new Lab10.White.White[0];
-            _text = "";
         }
 
-        public new void ChangeText(string newText)
+        public White() : base("")
         {
-            this._text  = newText;
+            _text = "";
+            _tasks = new Lab10.White.White[0];
         }
 
         public White(Lab10.White.White[] tasks) : base("")
         {
             _tasks = tasks ?? new Lab10.White.White[0];
             _text = "";
-            _manager = null;
         }
 
         public White(WhiteFileManager manager, Lab10.White.White[] tasks = null) : base("")
         {
             _manager = manager;
             _tasks = tasks ?? new Lab10.White.White[0];
+            _text = "";
         }
 
         public White(Lab10.White.White[] tasks, WhiteFileManager manager) : base("")
         {
             _tasks = tasks ?? new Lab10.White.White[0];
             _manager = manager;
+            _text = "";
+        }
+
+        public new void ChangeText(string newText)
+        {
+            this._text = newText;
         }
 
         public void Add(Lab10.White.White task)
@@ -63,22 +65,8 @@ namespace Lab10.White
 
         public void Add(Lab10.White.White[] tasks)
         {
-            if  (tasks == null) return;
-            foreach (var t in tasks)
-            {
-                Add(t);
-            }
-        }
-
-        public void Remove(Lab10.White.White task)
-        {
-            if (task == null || _tasks.Length == 0) return;
-            int index = Array.IndexOf(_tasks, task);
-            if (index == -1) return;
-            var newTasks = new Lab10.White.White[_tasks.Length - 1];
-            Array.Copy(_tasks, 0, newTasks, 0, index);
-            Array.Copy(_tasks, index + 1, newTasks, index, newTasks.Length - index - 1);
-            _tasks = newTasks;
+            if (tasks == null) return;
+            foreach (var t in tasks) Add(t);
         }
 
         public void Clear()
@@ -92,35 +80,37 @@ namespace Lab10.White
 
         public void SaveTasks()
         {
-            if (_manager != null || _tasks != null) return;
-            foreach (var task in _tasks)
+            if (_manager == null || _tasks == null) return;
+            
+            for (int i = 0; i < _tasks.Length; i++)
             {
-                if (task == null) continue;
-                _manager.ChangeFileName("Task_" + Array.IndexOf(_tasks, task));
-                _manager.Serialize(task);
+                if (_tasks[i] == null) continue;
+                _manager.ChangeFileName($"Task_{i}");
+                _manager.Serialize(_tasks[i]); 
             }
         }
 
         public void LoadTasks()
         {
             if (_manager == null || !Directory.Exists(_manager.FolderPath)) return;
+            
             string[] files = Directory.GetFiles(_manager.FolderPath);
             _tasks = new Lab10.White.White[0];
+            
             foreach (var file in files)
             {
                 _manager.ChangeFileName(Path.GetFileNameWithoutExtension(file));
-                var task = _manager.Deserialize();
+                var task = _manager.Deserialize() as Lab10.White.White;
                 if (task != null) Add(task);
             }
         }
-        
-        public override void Review() {}
-        
+
+        public override void Review() { }
+
         public void ChangeManager(WhiteFileManager newManager)
         {
             if (newManager == null) return;
             _manager = newManager;
-
             if (!string.IsNullOrEmpty(_manager.FolderPath))
             {
                 Directory.CreateDirectory(_manager.FolderPath);
