@@ -9,8 +9,8 @@ namespace Lab10.White
         public WhiteFileManager(string name) : base(name) {}
         public WhiteFileManager(string name, string folder, string file, string ext = "") : base(name, folder, file, ext) { }
         
-        public abstract Lab9.White.White Deserialize();
-        public abstract void Serialize(Lab9.White.White obj);
+        public abstract Lab10.White.White Deserialize();
+        public abstract void Serialize(Lab10.White.White obj);
 
         public override void EditFile(string content) 
         {
