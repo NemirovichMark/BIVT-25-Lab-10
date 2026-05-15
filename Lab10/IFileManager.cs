@@ -1,13 +1,11 @@
-using Lab10;
-
 namespace Lab10
 {
-    public interface IFileManager : IFileLifeController
+    public interface IFileManager
     {
-        string FileName { get; }
         string FolderPath { get; }
-        string FullPath { get; }
+        string FileName { get; }
         string FileExtension { get; }
+        string FullPath { get; }
         void SelectFolder(string path);
         void ChangeFileName(string name);
         void ChangeFileFormat(string extension);
