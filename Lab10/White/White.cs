@@ -15,24 +15,24 @@ namespace Lab10.White
 
         public White()
         {
-            _tasks = new Lab9.White.White[0];
+            _tasks = new Lab10.White.White[0];
         }
 
         public White(Lab10.White.White[] tasks)
         {
-            _tasks = tasks ?? new Lab9.White.White[0];
+            _tasks = tasks ?? new Lab10.White.White[0];
             _manager = null;
         }
 
         public White(WhiteFileManager manager, Lab10.White.White[] tasks = null)
         {
             _manager = manager;
-            _tasks = tasks ?? new Lab9.White.White[0];
+            _tasks = tasks ?? new Lab10.White.White[0];
         }
 
         public White(Lab10.White.White[] tasks, WhiteFileManager manager)
         {
-            _tasks = tasks ?? new Lab9.White.White[0];
+            _tasks = tasks ?? new Lab10.White.White[0];
             _manager = manager;
         }
 
@@ -57,7 +57,7 @@ namespace Lab10.White
             if (task == null || _tasks.Length == 0) return;
             int index = Array.IndexOf(_tasks, task);
             if (index == -1) return;
-            var newTasks = new Lab9.White.White[_tasks.Length - 1];
+            var newTasks = new Lab10.White.White[_tasks.Length - 1];
             Array.Copy(_tasks, 0, newTasks, 0, index);
             Array.Copy(_tasks, index + 1, newTasks, index, newTasks.Length - index - 1);
             _tasks = newTasks;
@@ -65,7 +65,7 @@ namespace Lab10.White
 
         public void Clear()
         {
-            _tasks = new Lab9.White.White[0];
+            _tasks = new Lab10.White.White[0];
             if (_manager != null && Directory.Exists(_manager.FolderPath))
             {
                 Directory.Delete(_manager.FolderPath, true);
@@ -87,7 +87,7 @@ namespace Lab10.White
         {
             if (_manager == null || !Directory.Exists(_manager.FolderPath)) return;
             string[] files = Directory.GetFiles(_manager.FolderPath);
-            _tasks = new Lab9.White.White[0];
+            _tasks = new Lab10.White.White[0];
             foreach (var file in files)
             {
                 _manager.ChangeFileName(Path.GetFileNameWithoutExtension(file));
