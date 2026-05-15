@@ -1,11 +1,11 @@
 using System;
 using System.IO;
 using Lab10.White;
-using Lab10;
+using Lab9.White;
 
 namespace Lab10.White
 {
-    public class White 
+    public class White : Lab9.White.White
     {
         private WhiteFileManager _manager;
         private Lab10.White.White[] _tasks;
@@ -19,7 +19,7 @@ namespace Lab10.White
             set => _text = value;
         }
 
-        public White(string text)
+        public White(string text) : base()
         {
             text = _text;
             _tasks = new Lab10.White.White[0];
