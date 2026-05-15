@@ -1,6 +1,6 @@
 using System.IO;
 using Lab10;
-using Lab9.White;
+using Lab10.White;
 
 namespace Lab10.White 
 {
