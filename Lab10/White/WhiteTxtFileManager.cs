@@ -34,8 +34,7 @@ namespace Lab10.White
         {
             if (!File.Exists(FullPath)) return null;
             string content = File.ReadAllText(FullPath);
-            // Создаем экземпляр Lab10.White.White, так как Lab9 - абстрактный
-            return new Lab9.White.White(content);
+            return new Lab9.White.Task1(content);
         }
     }
 }
