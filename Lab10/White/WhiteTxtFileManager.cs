@@ -39,4 +39,3 @@ namespace Lab10.White
         }
     }
 }
-[cite_start]
