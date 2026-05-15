@@ -36,14 +36,14 @@ namespace Lab10.White
             _manager = manager;
         }
 
-        public void Add(Lab9.White.White task)
+        public void Add(Lab10.White.White task)
         {
             if (task == null) return;
             Array.Resize(ref _tasks, _tasks.Length + 1);
             _tasks[_tasks.Length - 1] = task;
         }
 
-        public void Add(Lab9.White.White[] tasks)
+        public void Add(Lab10.White.White[] tasks)
         {
             if  (tasks == null) return;
             foreach (var t in tasks)
@@ -52,7 +52,7 @@ namespace Lab10.White
             }
         }
 
-        public void Remove(Lab9.White.White task)
+        public void Remove(Lab10.White.White task)
         {
             if (task == null || _tasks.Length == 0) return;
             int index = Array.IndexOf(_tasks, task);
