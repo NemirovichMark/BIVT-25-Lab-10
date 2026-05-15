@@ -10,14 +10,14 @@ namespace Lab10.White
         public WhiteJsonFileManager(string name) : base(name) {}
         public WhiteJsonFileManager(string name, string folder, string file) : base(name, folder, file, ".json") { }
 
-        public override void Serialize(Lab9.White.White obj) 
+        public override void Serialize(Lab10.White.White obj) 
         {
             if (obj == null || string.IsNullOrEmpty(FullPath)) return;
             string json = JsonSerializer.Serialize(obj);
             File.WriteAllText(FullPath, json);
         }
 
-        public override Lab9.White.White Deserialize() 
+        public override Lab10.White.White Deserialize() 
         {
             if (!File.Exists(FullPath)) return null;
             string json = File.ReadAllText(FullPath);
