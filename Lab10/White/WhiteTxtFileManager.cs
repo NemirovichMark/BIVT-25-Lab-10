@@ -19,7 +19,7 @@ namespace Lab10.White
         {
             if (!File.Exists(FullPath)) return null;
             string content = File.ReadAllText(FullPath);
-            return new Lab9.White.Task1(content);
+            return new Lab10.White.Task1(content);
         }
     }
 }
