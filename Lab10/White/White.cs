@@ -9,10 +9,16 @@ namespace Lab10.White
     {
         private WhiteFileManager _manager;
         private Lab10.White.White[] _tasks;
-        
+        private string _text;
+
         public WhiteFileManager Manager => _manager;
         public Lab10.White.White[] Tasks => _tasks;
-
+        public string Text
+        {
+            get => _text;
+            set => _text = value;
+        }
+        
         public White()
         {
             _tasks = new Lab10.White.White[0];
