@@ -37,7 +37,7 @@ namespace Lab10.White
             if (!File.Exists(FullPath)) return null;
             string json = File.ReadAllText(FullPath);
             // Используем конкретный тип Lab10.White.White для десериализации
-            return JsonSerializer.Deserialize<Lab10.White.White>(json);
+            return JsonSerializer.Deserialize<Lab9.White.White>(json);
         }
     }
 }
