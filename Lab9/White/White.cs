@@ -4,6 +4,10 @@ namespace Lab9.White
     {
         private string _input;
         public string Input =>  _input;
+        protected White()
+        {
+            _input = "";
+        }
 
         protected White(string text)
         {
