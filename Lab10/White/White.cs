@@ -35,20 +35,20 @@ namespace Lab10.White
             this._text  = newText;
         }
 
-        public White(Lab10.White.White[] tasks)
+        public White(Lab10.White.White[] tasks) : base("")
         {
             _tasks = tasks ?? new Lab10.White.White[0];
             _text = "";
             _manager = null;
         }
 
-        public White(WhiteFileManager manager, Lab10.White.White[] tasks = null)
+        public White(WhiteFileManager manager, Lab10.White.White[] tasks = null) : base("")
         {
             _manager = manager;
             _tasks = tasks ?? new Lab10.White.White[0];
         }
 
-        public White(Lab10.White.White[] tasks, WhiteFileManager manager)
+        public White(Lab10.White.White[] tasks, WhiteFileManager manager) : base("")
         {
             _tasks = tasks ?? new Lab10.White.White[0];
             _manager = manager;
