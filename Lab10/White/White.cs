@@ -8,29 +8,29 @@ namespace Lab10.White
     public class White
     {
         private WhiteFileManager _manager;
-        private Lab9.White.White[] _tasks;
+        private Lab10.White.White[] _tasks;
         
         public WhiteFileManager Manager => _manager;
-        public Lab9.White.White[] Tasks => _tasks;
+        public Lab10.White.White[] Tasks => _tasks;
 
         public White()
         {
             _tasks = new Lab9.White.White[0];
         }
 
-        public White(Lab9.White.White[] tasks)
+        public White(Lab10.White.White[] tasks)
         {
             _tasks = tasks ?? new Lab9.White.White[0];
             _manager = null;
         }
 
-        public White(WhiteFileManager manager, Lab9.White.White[] tasks = null)
+        public White(WhiteFileManager manager, Lab10.White.White[] tasks = null)
         {
             _manager = manager;
             _tasks = tasks ?? new Lab9.White.White[0];
         }
 
-        public White(Lab9.White.White[] tasks, WhiteFileManager manager)
+        public White(Lab10.White.White[] tasks, WhiteFileManager manager)
         {
             _tasks = tasks ?? new Lab9.White.White[0];
             _manager = manager;
