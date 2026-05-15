@@ -27,15 +27,14 @@ namespace Lab10.White
         public override void Serialize(Lab9.White.White obj)
         {
             if (obj == null) return;
-            File.WriteAllText(FullPath, $"Type:{obj.GetType().Name};Text:{obj.ToString()}");
+            File.WriteAllText(FullPath, obj.ToString());
         }
 
         public override Lab9.White.White Deserialize()
         {
             if (!File.Exists(FullPath)) return null;
             string content = File.ReadAllText(FullPath);
-            string text = content.Split("Text:")[1];
-            return new Lab9.White.White(text);
+            return new Lab9.White.White(content);
         }
     }
 }
