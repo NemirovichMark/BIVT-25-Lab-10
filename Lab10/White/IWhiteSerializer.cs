@@ -1,4 +1,4 @@
-using Lab9.White;
+using Lab10.White;
 using Lab10;
 
 namespace Lab10
