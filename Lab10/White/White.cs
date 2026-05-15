@@ -24,15 +24,21 @@ namespace Lab10.White
             this._text  = newText;
         }
         
-        public White()
+        public White(string text)
         {
+            text = _text;
             _tasks = new Lab10.White.White[0];
         }
 
+        public White()
+        {
+            _tasks = new Lab10.White.White[0];
+            _text = "";
+        }
         public White(Lab10.White.White[] tasks)
         {
             _tasks = tasks ?? new Lab10.White.White[0];
-            _manager = null;
+            _manager = "";
         }
 
         public White(WhiteFileManager manager, Lab10.White.White[] tasks = null)
