@@ -11,8 +11,4 @@
     <ProjectReference Include="..\Lab9\Lab9.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.5-beta1" />
-  </ItemGroup>
-
 </Project>
