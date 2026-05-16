@@ -1,0 +1,15 @@
+/Users/darinadordzhieva/RiderProjects/BIVT-25-Lab-9/Lab9/bin/Debug/net8.0/Lab9
+/Users/darinadordzhieva/RiderProjects/BIVT-25-Lab-9/Lab9/bin/Debug/net8.0/Lab9.deps.json
+/Users/darinadordzhieva/RiderProjects/BIVT-25-Lab-9/Lab9/bin/Debug/net8.0/Lab9.runtimeconfig.json
+/Users/darinadordzhieva/RiderProjects/BIVT-25-Lab-9/Lab9/bin/Debug/net8.0/Lab9.dll
+/Users/darinadordzhieva/RiderProjects/BIVT-25-Lab-9/Lab9/bin/Debug/net8.0/Lab9.pdb
+/Users/darinadordzhieva/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/Lab9.GeneratedMSBuildEditorConfig.editorconfig
+/Users/darinadordzhieva/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/Lab9.AssemblyInfoInputs.cache
+/Users/darinadordzhieva/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/Lab9.AssemblyInfo.cs
+/Users/darinadordzhieva/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/Lab9.csproj.CoreCompileInputs.cache
+/Users/darinadordzhieva/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/Lab9.sourcelink.json
+/Users/darinadordzhieva/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/Lab9.dll
+/Users/darinadordzhieva/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/refint/Lab9.dll
+/Users/darinadordzhieva/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/Lab9.pdb
+/Users/darinadordzhieva/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/Lab9.genruntimeconfig.cache
+/Users/darinadordzhieva/RiderProjects/BIVT-25-Lab-9/Lab9/obj/Debug/net8.0/ref/Lab9.dll
