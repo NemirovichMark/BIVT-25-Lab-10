@@ -59,7 +59,7 @@ namespace Lab10.Purple
         }
         public override T Deserialize()
         {
-            if (!File.Exists(FullPath))
+            if (File.Exists(FullPath))
             {
                 var dict = new Dictionary<string, string>();
                 bool isA = false;

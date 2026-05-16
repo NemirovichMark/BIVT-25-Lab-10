@@ -10,7 +10,7 @@ namespace Lab9.Purple
     {
         private (string, char)[] _codes;
 
-        public (string, char)[] Codes;
+        public (string, char)[] Codes => _codes;
         public Task4(string text, (string, char)[] codes) : base(text)
         {
             _codes = codes;

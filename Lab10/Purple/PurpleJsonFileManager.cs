@@ -28,31 +28,69 @@ namespace Lab10.Purple
         }
         public override void ChangeFileExtension(string extension)
         {
-            ChangeFileFormat("json");
+            base.ChangeFileExtension("json");
         }
         public override void Serialize(T obj)
         {
             if (obj != null && !string.IsNullOrWhiteSpace(FullPath))
             {
                 JObject json = JObject.FromObject(obj);
-                json.Add("Type", obj.GetType().Name);
+                json["Type"] = obj.GetType().Name;
                 File.WriteAllText(FullPath, json.ToString());
-            }   
+            }
         }
         public override T Deserialize()
         {
-            if (File.Exists(FullPath))
+            if (!string.IsNullOrEmpty(FullPath) && File.Exists(FullPath))
             {
                 string content = File.ReadAllText(FullPath);
                 JObject obj = JObject.Parse(content);
-                string jsonObjectType = obj["Type"].ToString();
-                Type? type = Type.GetType(jsonObjectType);
-                obj.Remove("Type");
-                var purple = obj.ToObject(type);
-                return purple as T;
+                string jsonObjectType = obj["Type"]?.ToString() ?? "";
+                string input = obj["Input"]?.ToString() ?? "";
+
+                Lab9.Purple.Purple result = null;
+
+                switch (jsonObjectType)
+                {
+                    case "Task1": result = new Task1(input); break;
+                    case "Task2": result = new Task2(input); break;
+                    case "Task3": result = new Task3(input); break;
+                    case "Task4":
+                        var codesArray = obj["Codes"] as JArray;
+                        (string, char)[] codes = null;
+                        if (codesArray != null)
+                        {
+                            codes = new (string, char)[codesArray.Count];
+                            for (int i = 0; i < codesArray.Count; i++)
+                            {
+                                var item = codesArray[i];
+                                string item1 = item["Item1"]?.ToString() ?? "";
+                                string item2Str = item["Item2"]?.ToString() ?? " ";
+                                char item2 = item2Str.Length > 0 ? item2Str[0] : ' ';
+                                codes[i] = (item1, item2);
+                            }
+                        }
+                        result = new Task4(input, codes);
+                        break;
+                }
+
+                if (result == null)
+                {
+                    Type type = typeof(Lab9.Purple.Purple).Assembly.GetType($"Lab9.Purple.{jsonObjectType}");
+                    if (type != null)
+                    {
+                        obj.Remove("Type");
+                        try { result = obj.ToObject(type) as Lab9.Purple.Purple; } catch { }
+                    }
+                }
+
+                if (result != null)
+                {
+                    result.Review();
+                    return result as T;
+                }
             }
-            else
-                return null;
+            return null;
         }
     }
 }

@@ -26,7 +26,10 @@ namespace Lab10.Purple
         }
         public override void ChangeFileExtension(string extension)
         {
+            T obj = Deserialize();
             ChangeFileFormat("xml");
+            if (obj != null)
+                Serialize(obj);
         }
         public override void Serialize(T obj)
         {
@@ -59,7 +62,7 @@ namespace Lab10.Purple
                         result = new Task3(d.Input);
                         break;
                     case "Task4":
-                        result = new Task4(d.Input, d.Codes ?? Array.Empty<(string, char)>());
+                        result = new Task4(d.Input, d.GetDecodedCodes());
                         break;
                     default:
                         return null;

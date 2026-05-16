@@ -18,7 +18,15 @@ namespace Lab10.Purple
         public string FolderPath => _folderPath;
         public string FileName => _fileName;
         public string FileExtension => _fileExtension;
-        public string FullPath => Path.Combine(_folderPath, _fileName, _fileExtension);
+        public string FullPath
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_folderPath) || string.IsNullOrWhiteSpace(_fileName))
+                    return "";
+                return Path.Combine(_folderPath, $"{_fileName}.{_fileExtension}");
+            }
+        }
 
         public MyFileManager(string name) 
         {
@@ -45,13 +53,18 @@ namespace Lab10.Purple
 
         public virtual void ChangeFileFormat(string format) 
         {
-            string newPath = Path.ChangeExtension(FullPath, format);
             _fileExtension = format;
+            if (!File.Exists(FullPath))
+            {
+                if (!string.IsNullOrEmpty(FolderPath))
+                    Directory.CreateDirectory(FolderPath);
+                File.Create(FullPath).Close();
+            }
         }
 
         public void CreateFile() 
         {
-            if (!File.Exists(FullPath))
+            if (!string.IsNullOrEmpty(FullPath) && !File.Exists(FullPath))
             {
                 File.Create(FullPath).Close();
             }
@@ -67,7 +80,7 @@ namespace Lab10.Purple
 
         public virtual void EditFile(string content)
         {
-            if (File.Exists(FullPath))
+            if (!string.IsNullOrEmpty(FullPath) && File.Exists(FullPath))
             {
                 File.WriteAllText(FullPath, content);
             }
@@ -77,7 +90,7 @@ namespace Lab10.Purple
         {
             if (File.Exists(FullPath))
             {
-                string newPath = Path.Combine(FolderPath, FileName, extension);
+                string newPath = Path.Combine(FolderPath, $"{FileName}.{extension}");
 
                 File.Move(FullPath, newPath);
             }

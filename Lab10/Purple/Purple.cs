@@ -76,9 +76,7 @@ namespace Lab10.Purple
         {
             _tasks = Array.Empty<T>();
             if (Directory.Exists(_manager.FolderPath) && !string.IsNullOrEmpty(_manager.FolderPath) && _manager != null)
-            {
                 Directory.Delete(_manager.FolderPath, true);
-            }
         }
 
         public void SaveTasks()
