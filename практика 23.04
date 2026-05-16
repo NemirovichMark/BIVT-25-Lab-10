@@ -1,0 +1,68 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            Console.WriteLine(folderPath);
+
+            string fileName = "example.txt";
+
+            string fullPath = Path.Combine(folderPath, fileName);
+            Console.WriteLine(fullPath);
+
+            File.Create(fullPath).Close();
+            File.WriteAllText(fullPath, "hello" + Environment.NewLine);
+            File.AppendAllText(fullPath, "word");
+            File.WriteAllText(fullPath, "hi again"); //удаляет старое 
+            string[] words = new string[] { "wohoo", "so", "funny" };
+            File.WriteAllLines(fullPath, words);
+            File.AppendAllLines(fullPath, words);
+            File.AppendAllText(fullPath, "text");
+
+            string content = File.ReadAllText(fullPath);
+            string[] lines = File.ReadAllLines(fullPath);
+            Console.WriteLine(content);
+
+            foreach(string line in lines)
+            {
+                Console.WriteLine(line);
+            }
+
+            string folderPath2 = Path.Combine(folderPath, "ExampleFolder");//создали папку
+            string filePath = Path.Combine(folderPath2, "anotherExample.txt");
+
+            
+            if (!Directory.Exists(folderPath2))
+            {
+                Directory.CreateDirectory(folderPath2);
+            }
+            string ext = "txt";
+            if(!File.Exists(filePath))
+            {
+                File.Create(filePath).Close();
+            }
+            else
+            {
+                File.WriteAllText(filePath, " ");
+            }
+
+
+            Directory.CreateDirectory(folderPath2);
+            File.Create(filePath).Close();
+
+            string folderPath3 = Path.GetDirectoryName(filePath);
+            string fileName2 = Path.GetFileName(filePath);
+            Console.WriteLine(folderPath3);
+            Console.WriteLine(fileName2);
+        }
+    }
+}
