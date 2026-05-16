@@ -3,6 +3,12 @@
   "WorkspaceRootPath": "C:\\MisisStudyCS\\BIVT-25-Lab-10-Afanasev\\Lab10\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{85550AA9-DA5E-BD60-410D-03AD4FCFF877}|..\\Lab10Test\\Lab10Test.csproj|c:\\misisstudycs\\bivt-25-lab-10-afanasev\\lab10test\\lab10test.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{85550AA9-DA5E-BD60-410D-03AD4FCFF877}|..\\Lab10Test\\Lab10Test.csproj|c:\\misisstudycs\\bivt-25-lab-10-afanasev\\lab10test\\purple\\jsontest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab10.csproj|c:\\misisstudycs\\bivt-25-lab-10-afanasev\\lab10\\purple\\myfilemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab10.csproj|solutionrelative:purple\\myfilemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -40,9 +46,6 @@
       "RelativeMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab10.csproj|solutionrelative:purple\\dtopurple.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{85550AA9-DA5E-BD60-410D-03AD4FCFF877}|..\\Lab10Test\\Lab10Test.csproj|c:\\misisstudycs\\bivt-25-lab-10-afanasev\\lab10test\\purple\\jsontest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{85550AA9-DA5E-BD60-410D-03AD4FCFF877}|..\\Lab10Test\\Lab10Test.csproj|c:\\misisstudycs\\bivt-25-lab-10-afanasev\\lab10test\\purple\\xmltest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -56,11 +59,27 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 1,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "Lab10Test",
+              "DocumentMoniker": "C:\\MisisStudyCS\\BIVT-25-Lab-10-Afanasev\\Lab10Test\\Lab10Test.csproj",
+              "RelativeDocumentMoniker": "..\\Lab10Test\\Lab10Test.csproj",
+              "ToolTip": "C:\\MisisStudyCS\\BIVT-25-Lab-10-Afanasev\\Lab10Test\\Lab10Test.csproj",
+              "RelativeToolTip": "..\\Lab10Test\\Lab10Test.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-16T10:03:58.905Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "PurpleTxtFileManager.cs",
               "DocumentMoniker": "C:\\MisisStudyCS\\BIVT-25-Lab-10-Afanasev\\Lab10\\Purple\\PurpleTxtFileManager.cs",
               "RelativeDocumentMoniker": "Purple\\PurpleTxtFileManager.cs",
@@ -68,12 +87,11 @@
               "RelativeToolTip": "Purple\\PurpleTxtFileManager.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAowBsAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T09:06:58.121Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-16T09:06:58.121Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "PurpleJsonFileManager.cs",
               "DocumentMoniker": "C:\\MisisStudyCS\\BIVT-25-Lab-10-Afanasev\\Lab10\\Purple\\PurpleJsonFileManager.cs",
               "RelativeDocumentMoniker": "Purple\\PurpleJsonFileManager.cs",
@@ -81,12 +99,11 @@
               "RelativeToolTip": "Purple\\PurpleJsonFileManager.cs",
               "ViewState": "AgIAADEAAAAAAAAAAAAuwDwAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T09:04:42.918Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-16T09:04:42.918Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Purple.cs",
               "DocumentMoniker": "C:\\MisisStudyCS\\BIVT-25-Lab-10-Afanasev\\Lab10\\Purple\\Purple.cs",
               "RelativeDocumentMoniker": "Purple\\Purple.cs",
@@ -94,12 +111,11 @@
               "RelativeToolTip": "Purple\\Purple.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAmwE4AAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T09:02:30.143Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-16T09:02:30.143Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "Task3.cs",
               "DocumentMoniker": "C:\\MisisStudyCS\\BIVT-25-Lab-10-Afanasev\\Lab9\\Purple\\Task3.cs",
               "RelativeDocumentMoniker": "..\\Lab9\\Purple\\Task3.cs",
@@ -107,12 +123,11 @@
               "RelativeToolTip": "..\\Lab9\\Purple\\Task3.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAxwBMAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T08:51:47.117Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-16T08:51:47.117Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "Task4.cs",
               "DocumentMoniker": "C:\\MisisStudyCS\\BIVT-25-Lab-10-Afanasev\\Lab9\\Purple\\Task4.cs",
               "RelativeDocumentMoniker": "..\\Lab9\\Purple\\Task4.cs",
@@ -120,12 +135,11 @@
               "RelativeToolTip": "..\\Lab9\\Purple\\Task4.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T08:51:42.012Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-16T08:51:42.012Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "PurpleXmlFileManager.cs",
               "DocumentMoniker": "C:\\MisisStudyCS\\BIVT-25-Lab-10-Afanasev\\Lab10\\Purple\\PurpleXmlFileManager.cs",
               "RelativeDocumentMoniker": "Purple\\PurpleXmlFileManager.cs",
@@ -133,12 +147,11 @@
               "RelativeToolTip": "Purple\\PurpleXmlFileManager.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAA9wB4AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T08:43:48.796Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-16T08:43:48.796Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "DTOPurple.cs",
               "DocumentMoniker": "C:\\MisisStudyCS\\BIVT-25-Lab-10-Afanasev\\Lab10\\Purple\\DTOPurple.cs",
               "RelativeDocumentMoniker": "Purple\\DTOPurple.cs",
@@ -146,12 +159,11 @@
               "RelativeToolTip": "Purple\\DTOPurple.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAowBYAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T08:39:55.913Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-16T08:39:55.913Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "TxtTest.cs",
               "DocumentMoniker": "C:\\MisisStudyCS\\BIVT-25-Lab-10-Afanasev\\Lab10Test\\Purple\\TxtTest.cs",
               "RelativeDocumentMoniker": "..\\Lab10Test\\Purple\\TxtTest.cs",
@@ -159,12 +171,11 @@
               "RelativeToolTip": "..\\Lab10Test\\Purple\\TxtTest.cs",
               "ViewState": "AgIAAKAAAAAAAAAAAAAIwJIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T08:33:52.241Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-16T08:33:52.241Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "XmlTest.cs",
               "DocumentMoniker": "C:\\MisisStudyCS\\BIVT-25-Lab-10-Afanasev\\Lab10Test\\Purple\\XmlTest.cs",
               "RelativeDocumentMoniker": "..\\Lab10Test\\Purple\\XmlTest.cs",
@@ -172,12 +183,11 @@
               "RelativeToolTip": "..\\Lab10Test\\Purple\\XmlTest.cs",
               "ViewState": "AgIAAIkAAAAAAAAAAAAwwKgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T08:33:48.533Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-16T08:33:48.533Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 1,
               "Title": "JsonTest.cs",
               "DocumentMoniker": "C:\\MisisStudyCS\\BIVT-25-Lab-10-Afanasev\\Lab10Test\\Purple\\JsonTest.cs",
               "RelativeDocumentMoniker": "..\\Lab10Test\\Purple\\JsonTest.cs",
@@ -189,12 +199,8 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "GeneralTest.cs",
               "DocumentMoniker": "C:\\MisisStudyCS\\BIVT-25-Lab-10-Afanasev\\Lab10Test\\Purple\\GeneralTest.cs",
               "RelativeDocumentMoniker": "..\\Lab10Test\\Purple\\GeneralTest.cs",
@@ -202,25 +208,24 @@
               "RelativeToolTip": "..\\Lab10Test\\Purple\\GeneralTest.cs",
               "ViewState": "AgIAAIgAAAAAAAAAAAAqwJoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T08:33:35.415Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-16T08:33:35.415Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "MyFileManager.cs",
               "DocumentMoniker": "C:\\MisisStudyCS\\BIVT-25-Lab-10-Afanasev\\Lab10\\Purple\\MyFileManager.cs",
               "RelativeDocumentMoniker": "Purple\\MyFileManager.cs",
-              "ToolTip": "C:\\MisisStudyCS\\BIVT-25-Lab-10-Afanasev\\Lab10\\Purple\\MyFileManager.cs*",
-              "RelativeToolTip": "Purple\\MyFileManager.cs*",
-              "ViewState": "AgIAACkAAAAAAAAAAAAuwDsAAAA4AAAAAAAAAA==",
+              "ToolTip": "C:\\MisisStudyCS\\BIVT-25-Lab-10-Afanasev\\Lab10\\Purple\\MyFileManager.cs",
+              "RelativeToolTip": "Purple\\MyFileManager.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAYwEIAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-16T08:28:03.828Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "PurpleFileManager.cs",
               "DocumentMoniker": "C:\\MisisStudyCS\\BIVT-25-Lab-10-Afanasev\\Lab10\\Purple\\PurpleFileManager.cs",
               "RelativeDocumentMoniker": "Purple\\PurpleFileManager.cs",
@@ -228,8 +233,7 @@
               "RelativeToolTip": "Purple\\PurpleFileManager.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAA0wBQAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-15T20:11:25.643Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-15T20:11:25.643Z"
             }
           ]
         }
