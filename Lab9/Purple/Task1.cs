@@ -1,71 +1,86 @@
-namespace Lab9.Purple;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class Task1 : Purple
+namespace Lab9.Purple
 {
-    private string _output;
-    public string Output => _output;
-
-    public Task1(string text) : base(text)
-    { 
-        _output = "";
-        
-    }
-
-    public override void Review()
+    public class Task1 : Purple
     {
-        char[] chars = {'.', '!', '?', ',', ':', '\"', ';', '–', '(', ')', '[', ']', '{', '}', '/', ' '};
-        int n = _input.Length;
-        string word = "";
-        string revWord;
-        bool rev = true;
+        private string _output;
+        public string Output => _output;
 
-
-        for (int i = 0; i < n; i++)
+        public Task1(string text) : base(text)
         {
-            if (chars.Contains(_input[i]))
+            _output = "";
+        }
+
+        public override void Review()
+        {
+            char[] punc = { '.', '!', '?', ',', ';', ':', '\"', '\'', '-', '(', ')', '[', ']', '{', '}', '/' };
+
+            string result = "";
+            string currentWord = "";
+
+            bool hasDigit = false;
+            for (int i = 0; i < _input.Length; i++)
             {
-                if (char.IsDigit(_input[i - 1]) && i + 1 < n && char.IsDigit(_input[i + 1]) && _input[i] == ',')
+                char c = _input[i];
+                bool isSep = char.IsWhiteSpace(c);
+                if (!isSep)
                 {
-                    word += _input[i];
+                    foreach (char p in punc)
+                    {
+                        if (c == p && c != '-' && c != '\'')
+                        {
+                            isSep = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!isSep)
+                {
+                    currentWord += c;
+                    if (c >= '0' && c <= '9') hasDigit = true;
                 }
                 else
-                {
-                    if (rev == false)
+                { 
+                    if (currentWord != "")
                     {
-                        _output += word + _input[i];
-                        word = "";
-                        rev = true;
+                        if (hasDigit)
+                        {
+                            result += currentWord;
+                        }
+                        else
+                        {
+                            for (int j = currentWord.Length - 1; j >= 0; j--)
+                                result += currentWord[j];
+                        }
+                        currentWord = ""; 
+                        hasDigit = false;
                     }
-                    else
-                    {
-                        revWord = new string(word.Reverse().ToArray());
-                        _output += revWord + _input[i];
-                        word = "";
-                    }
+                    result += c; 
                 }
-                continue;
-
-            } 
-
-            if (char.IsDigit(_input[i]))
-            {
-                rev = false;
-                word += _input[i];
-                continue;
             }
-            
-            word += _input[i];
-            
+
+            if (currentWord != "")
+            {
+                if (hasDigit) result += currentWord;
+                else
+                {
+                    for (int j = currentWord.Length - 1; j >= 0; j--)
+                        result += currentWord[j];
+                }
+            }
+
+            _output = result;
         }
-    }
 
-
-
-   
-    
-    
-    public override string ToString()
-    {
-        return _output;
+        public override string ToString()
+        {
+            return _output;
+        }
     }
 }
