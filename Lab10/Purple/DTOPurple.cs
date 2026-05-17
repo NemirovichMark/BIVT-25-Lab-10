@@ -12,11 +12,11 @@
         {
             TypeName = obj.GetType().Name;
             Input = obj.Input;
-            if (obj is Lab9.Purple.Task4 task4 && task4.Codes != null)
+            if (obj is Lab9.Purple.Task4 task4 && task4.Table != null)
             {
-                Codes = new string[task4.Codes.Length];
+                Codes = new string[task4.Table.Length];
                 for (int i = 0; i < Codes.Length; i++)
-                    Codes[i] = task4.Codes[i].Item1 + "|" + task4.Codes[i].Item2;
+                    Codes[i] = task4.Table[i].Item1 + "|" + task4.Table[i].Item2;
             }
         }
 
