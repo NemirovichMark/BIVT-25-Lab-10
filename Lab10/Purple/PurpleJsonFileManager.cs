@@ -1,26 +1,30 @@
+using Lab9.Purple;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
-using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Lab10.Purple
 {
-    public class PurpleJsonFileManager<T> : PurpleFileManager<T> where T : Lab9.Purple.Purple
+    public class PurpleJsonFileManager<T> : PurpleFileManager<T>
+        where T : Lab9.Purple.Purple
     {
         public PurpleJsonFileManager(string name) : base(name) { }
-        public PurpleJsonFileManager(string name, string folderPath, string fileName, string fileExtension = "txt")
-            : base(name, folderPath, fileName, fileExtension) { }
 
-        public override void EditFile(string text)
+        public PurpleJsonFileManager(string name, string folderName, string fileName, string fileExtension = "txt") : base(name, folderName, fileName, fileExtension) { }
+
+        public override void EditFile(string content)
         {
-            var obj = Deserialize();
-            if (obj == null) return;
-            obj.ChangeText(text);
-            Serialize(obj);
+            T obj = Deserialize();
+            if(obj != null)
+            {
+                obj.ChangeText(content);
+                Serialize(obj);
+            }
         }
         public override void ChangeFileExtension(string extension)
         {
@@ -28,65 +32,65 @@ namespace Lab10.Purple
         }
         public override void Serialize(T obj)
         {
-            if (obj == null) return;
-
-            var jsonObject = new JObject();
-            jsonObject["Type"] = obj.GetType().Name;
-            jsonObject["Input"] = obj.Input;
-
-            if (obj is Lab9.Purple.Task4 task4 && task4.Codes != null)
+            if (obj != null && !string.IsNullOrWhiteSpace(FullPath))
             {
-                var arr = new JArray();
-                foreach (var c in task4.Codes)
-                {
-                    var o = new JObject();
-                    o["pair"] = c.Item1;
-                    o["code"] = c.Item2.ToString();
-                    arr.Add(o);
-                }
-                jsonObject["Codes"] = arr;
+                JObject json = JObject.FromObject(obj);
+                json["Type"] = obj.GetType().Name;
+                File.WriteAllText(FullPath, json.ToString());
             }
-
-            File.WriteAllText(FullPath, jsonObject.ToString());
         }
         public override T Deserialize()
         {
-            if (!File.Exists(FullPath)) return null;
-
-            string jsonString = File.ReadAllText(FullPath);
-            JObject jsonObject = JObject.Parse(jsonString);
-
-            string typeName = jsonObject["Type"]?.ToString();
-            if (typeName == null) return null;
-
-            string input = jsonObject["Input"]?.ToString() ?? "";
-
-            T obj = null;
-            if (typeName == "Task1") obj = new Lab9.Purple.Task1(input) as T;
-            else if (typeName == "Task2") obj = new Lab9.Purple.Task2(input) as T;
-            else if (typeName == "Task3") obj = new Lab9.Purple.Task3(input) as T;
-            else if (typeName == "Task4")
+            if (!string.IsNullOrEmpty(FullPath) && File.Exists(FullPath))
             {
-                (string, char)[] codes = null;
+                string content = File.ReadAllText(FullPath);
+                JObject obj = JObject.Parse(content);
+                string jsonObjectType = obj["Type"]?.ToString() ?? "";
+                string input = obj["Input"]?.ToString() ?? "";
 
-                if (jsonObject["Codes"] is JArray codesArr && codesArr.Count > 0)
+                Lab9.Purple.Purple result = null;
+
+                switch (jsonObjectType)
                 {
-                    codes = codesArr
-                        .Select(x =>
+                    case "Task1": result = new Task1(input); break;
+                    case "Task2": result = new Task2(input); break;
+                    case "Task3": result = new Task3(input); break;
+                    case "Task4":
+                        var codesArray = obj["Codes"] as JArray;
+                        (string, char)[] codes = null;
+                        if (codesArray != null)
                         {
-                            var pair = x["pair"]?.ToString();
-                            var code = x["code"]?.ToString();
-                            if (pair == null || code == null || code.Length == 0) return (null, '\0');
-                            return (pair, code[0]);
-                        })
-                        .ToArray();
+                            codes = new (string, char)[codesArray.Count];
+                            for (int i = 0; i < codesArray.Count; i++)
+                            {
+                                var item = codesArray[i];
+                                string item1 = item["Item1"]?.ToString() ?? "";
+                                string item2Str = item["Item2"]?.ToString() ?? " ";
+                                char item2 = item2Str.Length > 0 ? item2Str[0] : ' ';
+                                codes[i] = (item1, item2);
+                            }
+                        }
+                        result = new Task4(input, codes);
+                        break;
                 }
-                obj = new Lab9.Purple.Task4(input, codes) as T;
-            }
 
-            if (obj == null) return null;
-            obj.Review();
-            return obj;
+                if (result == null)
+                {
+                    Type type = typeof(Lab9.Purple.Purple).Assembly.GetType($"Lab9.Purple.{jsonObjectType}");
+                    if (type != null)
+                    {
+                        obj.Remove("Type");
+                        try { result = obj.ToObject(type) as Lab9.Purple.Purple; } catch { }
+                    }
+                }
+
+                if (result != null)
+                {
+                    result.Review();
+                    return result as T;
+                }
+            }
+            return null;
         }
     }
 }
