@@ -1,32 +1,44 @@
-namespace Lab9.Purple;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class Task4 : Purple
+namespace Lab9.Purple
 {
-    private string _output;
-    private (string, char)[] _table;
-
-    public string Output => _output;
-    public (string, char)[] Table => _table;
-    public Task4(string input, (string, char)[] table) : base(input)
+    public class Task4 : Purple
     {
-        _output = default;
-        _table = table;
-    }
-
-
-    public override string ToString()
-    {
-        return _output;
-    }
-
-    public override void Review()
-    {
-        if (_table == null || _table.Length == 0)
+        private string _output;
+        private (string, char)[] _codes;
+        public string Output => _output;
+        public (string, char)[] Codes => _codes;
+        public Task4(string input, (string, char)[] codes) : base(input)
         {
-            return;
+            _output = "";
+            if (codes != null && codes.Length != 0)
+            {
+                _codes = new (string, char)[codes.Length];
+                for (int i = 0; i < codes.Length; i++) _codes[i] = codes[i];
+            }
         }
 
-        var codes = _table.ToDictionary(item => item.Item2, item => item.Item1);
-        _output = string.Concat(_input.Select(ch => codes.TryGetValue(ch, out var pair) ? pair : ch.ToString()));
+        public override void Review()
+        {
+            string result = Input;
+
+            for (int i = 0; i < _codes.Length; i++)
+            {
+                string pair = _codes[i].Item1;
+                char code = _codes[i].Item2;
+
+                result = result.Replace(code.ToString(), pair);
+            }
+
+            _output = result;
+        }
+        public override string ToString()
+        {
+            return _output;
+        }
     }
 }
