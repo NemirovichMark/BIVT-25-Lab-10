@@ -1,10 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ConsoleApp22
+namespace Lab9.White
 {
-    internal class White
+    public abstract class White
     {
+        public string Input { get; private set; }
+
+        protected White(string input)
+        {
+            Input = input;
+        }
+    
+        public abstract void Review();
+
+        public virtual void ChangeText(string text)
+        {
+            Input = text;
+            Review();
+        }
     }
 }
