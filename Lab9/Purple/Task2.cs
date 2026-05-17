@@ -1,102 +1,102 @@
-namespace Lab9.Purple;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class Task2 : Purple
-{ 
-    private string[] _output;
-
+namespace Lab9.Purple
+{
+    public class Task2 : Purple
+    {
+        private string[] _output;
         public string[] Output => _output;
-
-
-        public Task2(string text) : base(text)
+        public Task2(string input) : base(input)
         {
             _output = new string[0];
         }
-
-        public override string ToString()
+        public override void Review()
         {
-            return string.Join(Environment.NewLine, _output);
-        }
+            string[] words = _input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-        private void Print(string[] arr)
-        {
-            for (int i = 0; i < arr.Length; i++)
+            int lineCount = 0, currentLength = 0, wordCount = 0;
+            for (int i = 0; i < words.Length; i++)
             {
-                Console.WriteLine(arr[i]);
-            }
-        }
-
-
-        private void DoWordsFromInput()
-        {
-            string[] words = _input.Split(' ');
-
-            Array.Resize(ref _output, _output.Length + 1);
-            _output[^1] = words[0];
-            string substring = _output[^1];
-
-            for (int i = 1; i < words.Length; i++)
-            {
-                substring += " " + words[i];
-                if (substring.Length <= 50)
+                int space = 0;
+                if (wordCount != 0) space = 1;
+                
+                if (currentLength + space + words[i].Length <= 50)
                 {
-                    _output[^1] = substring;
+                    currentLength += space + words[i].Length;
+                    wordCount++;
                 }
                 else
                 {
-                    Array.Resize(ref _output, _output.Length + 1);
-                    _output[^1] = words[i];
-                    substring = _output[^1];
+                    lineCount++;
+                    currentLength = words[i].Length;
+                    wordCount = 1;
                 }
             }
-        }
 
-        private string AddTrimInString(string sentence)
-        {
-            int len = sentence.Length;
-            if (len == 50 || len == 0)
+            if (wordCount > 0) lineCount++;
+            _output = new string[lineCount];
+
+            int currentWordIndex = 0;
+            for (int i = 0; i < lineCount; i++)
             {
-                return sentence;
-            }
+                int start = currentWordIndex;
+                int countInLine = 0;
+                int lettersOnlyLen = 0;
 
-            string[] words = sentence.Split(' ');
-            int cntGap = words.Length - 1;
-
-            if (cntGap == 0)
-            {
-                return sentence;
-            }
-            string ans = words[0];
-
-            int cntNecesSpace = 50 - len;
-            int SpaceOnEveryWord = cntNecesSpace / cntGap;
-
-            for (int i = 1; i < words.Length; i++)
-            {
-                ans += AddSpaces(SpaceOnEveryWord + 1); 
-                if (i - 1 < cntNecesSpace % cntGap)
+                while (currentWordIndex < words.Length)
                 {
-                    ans += " ";
+                    if (lettersOnlyLen + countInLine + words[currentWordIndex].Length <= 50)
+                    {
+                        lettersOnlyLen += words[currentWordIndex].Length;
+                        countInLine++;
+                        currentWordIndex++;
+                    }
+                    else break;
                 }
-                ans += words[i];
-            }
-            return ans;
-        }
 
-        private string AddSpaces(int cnt)
+                if (countInLine == 1)
+                {
+                    _output[i] = words[start];
+                }
+                else
+                {
+                    int totalSpaces = 50 - lettersOnlyLen;
+                    int gaps = countInLine - 1;
+                    int baseSpaces = totalSpaces / gaps;
+                    int extraSpaces = totalSpaces % gaps;
+
+                    string line = "";
+                    for (int j = 0; j < countInLine; j++)
+                    {
+                        line += words[start + j];
+                        if (j < gaps)
+                        {
+                            int spacesCount = baseSpaces;
+                            if (j < extraSpaces)
+                                spacesCount += 1;
+
+                            for (int k = 0; k < spacesCount; k++) line += " ";
+                        }
+                    }
+                    _output[i] = line; 
+                }
+            }
+        }
+        public override string ToString()
         {
-            string ans = "";
-            for (int i = 0; i < cnt; i++)
+            if (_output == null || _output.Length == 0) return "";
+
+            string output = "";
+            for (int i = 0; i < _output.Length; i++)
             {
-                ans += " ";
+                output += _output[i];
+                if (i < _output.Length - 1) output += Environment.NewLine;
             }
-            return ans;
+            return output;
         }
-
-        public override void Review()
-        {
-            DoWordsFromInput();
-            _output = _output.Select(AddTrimInString).ToArray();
-        }
-
-        
     }
+}
