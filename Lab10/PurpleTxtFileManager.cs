@@ -16,6 +16,54 @@ namespace Lab10.Purple
             : base(name, folderPath, fileName, fileExtension)
         { }
 
+        public override T Deserialize()
+        {
+            if (string.IsNullOrEmpty(FullPath) || !File.Exists(FullPath)) return null;
+
+            var pairs = new Dictionary<string, string>();
+            bool enc = false;
+
+            using (StreamReader reader = new StreamReader(FullPath))
+            {
+                string line;
+                
+                while ((line = reader.ReadLine()) != null)
+                {
+                    int ind = line.IndexOf(':');
+                    if (ind >= 0)
+                        pairs[line.Substring(0, ind)] = line.Substring(ind + 1);
+
+                }
+            }
+
+            if (!pairs.ContainsKey("Type") || !pairs.ContainsKey("Input")) return null;
+
+            string typeName = pairs["Type"];
+            string input = pairs["Input"];
+
+            (string, char)[] codes = null;
+            if (pairs.ContainsKey("Count"))
+            {
+                int count = int.Parse(pairs["Count"]);
+                codes = new (string, char)[count];
+                for (int i = 0; i < count; i++)
+                {
+                    string value = pairs[$"Code{i}"];
+                    
+                    codes[i] = (value.Split("|")[0], value[value.Length-1]);
+                }
+            }
+
+            Lab9.Purple.Purple obj;
+            if (typeName == "Task1") obj = new Task1(input);
+            else if (typeName == "Task2") obj = new Task2(input);
+            else if (typeName == "Task3") obj = new Task3(input);
+            else if (typeName == "Task4") obj = new Task4(input, codes);
+            else return null;
+            
+            obj.Review();
+            return (T)obj;
+        }
         public override void Serialize(T obj)
         {
             if (obj == null || FullPath == null) return;
@@ -48,61 +96,10 @@ namespace Lab10.Purple
 
             File.WriteAllLines(FullPath, lines);
         }
-
-        public override T Deserialize()
+        public override void ChangeFileExtension(string ext)
         {
-            if (string.IsNullOrEmpty(FullPath) || !File.Exists(FullPath)) return null;
-
-            var pairs = new Dictionary<string, string>();
-            bool enc = false;
-
-            using (StreamReader reader = new StreamReader(FullPath))
-            {
-                string line;
-
-                while ((line = reader.ReadLine()) != null)
-                {
-                    int ind = line.IndexOf(':');
-                    if (ind >= 0)
-                        pairs[line.Substring(0, ind)] = line.Substring(ind + 1);
-
-                }
-            }
-
-            if (!pairs.ContainsKey("Type") || !pairs.ContainsKey("Input")) return null;
-
-            string typeName = pairs["Type"];
-            string input = pairs["Input"];
-
-            (string, char)[] codes = null;
-            if (pairs.ContainsKey("Count"))
-            {
-                int count = int.Parse(pairs["Count"]);
-                codes = new (string, char)[count];
-                for (int i = 0; i < count; i++)
-                {
-                    string value = pairs[$"Code{i}"];
-
-                    codes[i] = (value.Split("|")[0], value[value.Length - 1]);
-                }
-            }
-
-            Lab9.Purple.Purple obj;
-            if (typeName == "Task1") obj = new Task1(input);
-
-            else if (typeName == "Task2") obj = new Task2(input);
-
-            else if (typeName == "Task3") obj = new Task3(input);
-
-            else if (typeName == "Task4") obj = new Task4(input, codes);
-
-            else return null;
-
-            obj.Review();
-            return (T)obj;
+            if (ext == "txt") ChangeFileFormat(ext);
         }
-
-
         public override void EditFile(string input)
         {
             if (string.IsNullOrEmpty(FullPath) || !File.Exists(FullPath)) return;
@@ -110,11 +107,6 @@ namespace Lab10.Purple
             if (obj == null) return;
             obj.ChangeText(input);
             Serialize(obj);
-        }
-
-        public override void ChangeFileExtension(string ext)
-        {
-            if (ext == "txt") ChangeFileFormat(ext);
         }
     }
 }
