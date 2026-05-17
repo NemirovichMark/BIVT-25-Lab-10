@@ -13,7 +13,7 @@ namespace Lab10.Green
 
         public override void EditFile(string text)
         {
-            var obj = Deserialize<Green>();
+            var obj = Deserialize<Lab9.Green.Green>();
             obj?.ChangeText(text);
             Serialize(obj);
         }
