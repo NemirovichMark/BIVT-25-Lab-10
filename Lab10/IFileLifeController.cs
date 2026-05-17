@@ -9,8 +9,8 @@ namespace Lab10.Purple
     public interface IFileLifeController
     {
         void CreateFile();
-        void DeleteFile();
         void EditFile(string filename);
+        void DeleteFile();
         void ChangeFileExtension(string ext);
     }
 }
