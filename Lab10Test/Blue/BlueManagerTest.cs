@@ -1,8 +1,6 @@
 using Lab10.Blue;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text.Json;
-using System.IO;
-using System.Linq;
 
 namespace Lab10Test.Blue
 {
@@ -65,7 +63,7 @@ namespace Lab10Test.Blue
             {
                 Init(i);
 
-                var w = new Lab10.Blue.Blue<Lab9.Blue.Blue>(_tasks);
+                var w = new Lab10.Blue.Blue<Lab9.Blue.Blue>();
 
                 w.Add(_tasks);
                 Assert.AreEqual(_tasks.Length, w.Tasks.Length, $"Add failed test {i}");
@@ -155,13 +153,11 @@ namespace Lab10Test.Blue
 
                 bool allNull = true;
                 bool allSame = true;
-
                 for (int j = 0; j < w.Tasks.Length; j++)
                 {
                     if (w.Tasks[j] != null)
                     {
                         allNull = false;
-
                         if (w.Tasks[j].Input == _tasks[j].Input)
                             allSame = false;
                     }
