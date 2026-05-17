@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab10.Lab10.Blue
+namespace Lab10.Blue
 {
     public abstract class MyFileManager : IFileManager, IFileLifeController
     {
