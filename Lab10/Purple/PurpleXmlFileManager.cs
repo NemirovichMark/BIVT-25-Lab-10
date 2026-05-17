@@ -8,69 +8,68 @@ using System.Xml.Serialization;
 
 namespace Lab10.Purple
 {
-    public class PurpleXmlFileManager<T> : PurpleFileManager<T> where T : Lab9.Purple.Purple
+    public class PurpleXmlFileManager<T> : PurpleFileManager<T>
+        where T : Lab9.Purple.Purple
     {
         public PurpleXmlFileManager(string name) : base(name) { }
-        public PurpleXmlFileManager(string name, string folderPath, string fileName, string fileExtension = "txt")
-            : base(name, folderPath, fileName, fileExtension) { }
 
-        public override void EditFile(string text)
+        public PurpleXmlFileManager(string name, string folderPath, string fileName, string fileExtension = "txt") : base(name, folderPath, fileName, fileExtension) { }
+
+        public override void EditFile(string content)
         {
             T obj = Deserialize();
-            obj.ChangeText(text);
-            Serialize(obj);
+            if (obj != null)
+            {
+                obj.ChangeText(content);
+                Serialize(obj);
+            }
         }
         public override void ChangeFileExtension(string extension)
         {
-            base.ChangeFileExtension("xml");
+            T obj = Deserialize();
+            ChangeFileFormat("xml");
+            if (obj != null)
+                Serialize(obj);
         }
         public override void Serialize(T obj)
         {
-            if (obj == null) return;
-
-            DTOPurple dtopurple = new DTOPurple(obj);
-
-            var serializer = new XmlSerializer(typeof(DTOPurple));
-            using (var writer = new StreamWriter(FullPath))
+            if (obj != null && FullPath != null)
             {
-                serializer.Serialize(writer, dtopurple);
+                var d = new DTOPurple(obj);
+                var serializer = new XmlSerializer(typeof(DTOPurple));
+                using (var sw = new StreamWriter(FullPath))
+                    serializer.Serialize(sw, d);
             }
         }
+
         public override T Deserialize()
         {
-            if (!File.Exists(FullPath)) return null;
-
-            DTOPurple objDTO;
-            T obj = null;
-
             var serializer = new XmlSerializer(typeof(DTOPurple));
-            using (var reader = new StreamReader(FullPath))
+            if (string.IsNullOrEmpty(FullPath) || !File.Exists(FullPath)) return null;
+            using (var sr = new StreamReader(FullPath))
             {
-                objDTO = (DTOPurple)serializer.Deserialize(reader);
+                var d = (DTOPurple)serializer.Deserialize(sr);
+                Lab9.Purple.Purple result;
+                switch (d.TypeName)
+                {
+                    case "Task1":
+                        result = new Task1(d.Input);
+                        break;
+                    case "Task2":
+                        result = new Task2(d.Input);
+                        break;
+                    case "Task3":
+                        result = new Task3(d.Input);
+                        break;
+                    case "Task4":
+                        result = new Task4(d.Input, d.GetDecodedCodes());
+                        break;
+                    default:
+                        return null;
+                }
+                result.Review();
+                return (T)result;
             }
-            if (objDTO == null) return null; 
-
-            if (objDTO.Type == "Task1")
-            {
-                obj = (new Task1(objDTO.Input) as T);
-            }
-            else if (objDTO.Type == "Task2")
-            {
-                obj = (new Task2(objDTO.Input) as T);
-            }
-            else if (objDTO.Type == "Task3")
-            {
-                obj = (new Task3(objDTO.Input) as T);
-            }
-            else if (objDTO.Type == "Task4")
-            {
-                obj = (new Task4(objDTO.Input, objDTO.CodesT4) as T);
-            }
-            
-            if (obj == null) return null;
-            obj.Review();
-
-            return obj;
         }
     }
 }
