@@ -63,7 +63,7 @@ namespace Lab10Test.Blue
             {
                 Init(i);
 
-                var w = new Lab10.Blue.Blue<Lab9.Blue.Blue>();
+                var w = new Lab10.Blue.Blue<Lab9.Blue.Blue>(_tasks);
 
                 w.Add(_tasks);
                 Assert.AreEqual(_tasks.Length, w.Tasks.Length, $"Add failed test {i}");
