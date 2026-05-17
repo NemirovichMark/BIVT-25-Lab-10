@@ -1,8 +1,10 @@
-using lab10.blue;
-using microsoft.visualstudio.testtools.unittesting;
-using system.text.json;
+using Lab10.Blue;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Text.Json;
+using System.IO;
+using System.Linq;
 
-namespace lab10test.blue
+namespace Lab10Test.Blue
 {
     [testclass]
     public sealed class bluemanagertest
