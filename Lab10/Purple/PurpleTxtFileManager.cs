@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,35 +42,47 @@ namespace Lab10.Purple
 
                 if (obj is Task3 task3)
                 {
-                    if (task3.Table != null)
+                    var codesField = typeof(Task3).GetField("_codes", BindingFlags.NonPublic | BindingFlags.Instance);
+                    if (codesField != null)
                     {
-                        dict["Count"] = task3.Table.Length.ToString();
-                        for (int i = 0; i < task3.Table.Length; i++)
+                        var codes = codesField.GetValue(task3) as (string, char)[];
+                        if (codes != null && codes.Length > 0)
                         {
-                            dict[$"Code{i}"] = task3.Table[i].Item1 + "|" + task3.Table[i].Item2;
+                            dict["Count"] = codes.Length.ToString();
+                            for (int i = 0; i < codes.Length; i++)
+                            {
+                                dict[$"Code{i}"] = codes[i].Item1 + "|" + codes[i].Item2;
+                            }
                         }
                     }
                 }
                 else if (obj is Task4 task4)
                 {
-                    if (task4.Table != null)
+                    var tableField = typeof(Task4).GetField("_table", BindingFlags.NonPublic | BindingFlags.Instance);
+                    if (tableField != null)
                     {
-                        dict["Count"] = task4.Table.Length.ToString();
-                        for (int i = 0; i < task4.Table.Length; i++)
+                        var table = tableField.GetValue(task4) as (string, char)[];
+                        if (table != null && table.Length > 0)
                         {
-                            dict[$"Code{i}"] = task4.Table[i].Item1 + "|" + task4.Table[i].Item2;
+                            dict["Count"] = table.Length.ToString();
+                            for (int i = 0; i < table.Length; i++)
+                            {
+                                dict[$"Code{i}"] = table[i].Item1 + "|" + table[i].Item2;
+                            }
                         }
                     }
                 }
 
-                string[] result = new string[dict.Count];
-                int z = 0;
-                foreach (var el in dict)
+                if (dict.Count > 0)
                 {
-                    result[z++] = el.Key + ": " + el.Value;
+                    string[] result = new string[dict.Count];
+                    int z = 0;
+                    foreach (var el in dict)
+                    {
+                        result[z++] = el.Key + ": " + el.Value;
+                    }
+                    File.WriteAllLines(FullPath, result);
                 }
-
-                File.WriteAllLines(FullPath, result);
             }
         }
 
@@ -95,18 +108,21 @@ namespace Lab10.Purple
                 string type = dict["Type"];
                 string input = dict["Input"];
 
-                (string, char)[] table = null;
+                (string, char)[] codes = null;
                 if (dict.ContainsKey("Count"))
                 {
                     int count = int.Parse(dict["Count"]);
-                    table = new (string, char)[count];
+                    codes = new (string, char)[count];
                     for (int x = 0; x < count; x++)
                     {
-                        string temp = dict[$"Code{x}"];
-                        var parts = temp.Split('|');
-                        if (parts.Length == 2 && parts[1].Length > 0)
+                        if (dict.ContainsKey($"Code{x}"))
                         {
-                            table[x] = (parts[0], parts[1][0]);
+                            string temp = dict[$"Code{x}"];
+                            var parts = temp.Split('|');
+                            if (parts.Length == 2 && parts[1].Length > 0)
+                            {
+                                codes[x] = (parts[0], parts[1][0]);
+                            }
                         }
                     }
                 }
@@ -124,7 +140,7 @@ namespace Lab10.Purple
                         obj = new Task3(input);
                         break;
                     case "Task4":
-                        obj = new Task4(input, table);
+                        obj = new Task4(input, codes);
                         break;
                     default:
                         return null;
@@ -133,8 +149,7 @@ namespace Lab10.Purple
                 obj.Review();
                 return (T)obj;
             }
-            else
-                return null;
+            return null;
         }
     }
 }
