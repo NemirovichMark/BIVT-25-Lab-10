@@ -1,144 +1,97 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Lab9.White;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Lab9.White
+namespace Lab10.White
 {
     public class WhiteTxtFileManager : WhiteFileManager
     {
-        public WhiteTxtFileManager(string name) : base(name) { }
-
-        public WhiteTxtFileManager(string name, string folderPath, string fileName, string fileExtension = "txt")
-            : base(name, folderPath, fileName, fileExtension) { }
-
-        public override void EditFile(string content)
+        public WhiteTxtFileManager(string name) : base(name)
         {
-            White obj = Deserialize();
-            obj?.ChangeText(content);
-            Serialize(obj);
+            ChangeFileName("tasks");
+            ChangeFileFormat("txt");
         }
 
-        public override void ChangeFileExtension(string newExtension)
+        public override void SaveTasks(White[] tasks)
         {
-            if (newExtension?.ToLower() != "txt")
-                ChangeFileFormat("txt");
-            else
-                base.ChangeFileExtension(newExtension);
-        }
-
-        public override void Serialize(White obj)
-        {
-            if (obj == null) return;
-
+            if (tasks == null) return;
             var sb = new StringBuilder();
-            sb.AppendLine($"TypeName:{obj.GetType().AssemblyQualifiedName}");
-
-            // Сохраняем Input (основные данные)
-            if (obj is Task1 t1)
-                sb.AppendLine($"Input:{EscapeString(t1.Input)}");
-            else if (obj is Task2 t2)
-                sb.AppendLine($"Input:{EscapeString(t2.Input)}");
-            else if (obj is Task3 t3)
+            foreach (var t in tasks)
             {
-                sb.AppendLine($"Input:{EscapeString(t3.Input)}");
-                // Для Task3 нужно сохранить таблицу кодов
-                var field = typeof(Task3).GetField("_codeTable", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                var codeTable = field?.GetValue(t3) as string[,];
-                if (codeTable != null)
+                if (t is Task1 t1)
+                    sb.AppendLine($"Task1|{t1.Input}");
+                else if (t is Task2 t2)
+                    sb.AppendLine($"Task2|{t2.Input}");
+                else if (t is Task3 t3)
                 {
-                    sb.AppendLine($"CodeTableRows:{codeTable.GetLength(0)}");
-                    for (int i = 0; i < codeTable.GetLength(0); i++)
-                    {
-                        sb.AppendLine($"CodeTable:{EscapeString(codeTable[i, 0])}:{EscapeString(codeTable[i, 1])}");
-                    }
+                    string codesStr = SerializeCodes(t3.Codes);
+                    sb.AppendLine($"Task3|{t3.Input}|{codesStr}");
                 }
+                else if (t is Task4 t4)
+                    sb.AppendLine($"Task4|{t4.Input}");
             }
-            else if (obj is Task4 t4)
-                sb.AppendLine($"Input:{EscapeString(t4.Input)}");
-
             EditFile(sb.ToString());
         }
 
-        public override White Deserialize()
+        public override White[] LoadTasks()
         {
-            if (!File.Exists(FullPath)) return null;
+            var path = FullPath;
+            if (!File.Exists(path)) return Array.Empty<White>();
 
-            try
+            var lines = File.ReadAllLines(path);
+            var tasks = new List<White>();
+
+            foreach (var line in lines)
             {
-                string[] lines = File.ReadAllLines(FullPath);
-                string typeName = null;
-                string input = null;
-                string[,] codeTable = null;
+                if (string.IsNullOrWhiteSpace(line)) continue;
+                var parts = line.Split('|');
+                if (parts.Length < 2) continue;
 
-                foreach (string line in lines)
+                string type = parts[0];
+                string input = parts[1];
+                switch (type)
                 {
-                    if (string.IsNullOrWhiteSpace(line)) continue;
-
-                    if (line.StartsWith("TypeName:"))
-                        typeName = line.Substring(9);
-                    else if (line.StartsWith("Input:"))
-                        input = UnescapeString(line.Substring(6));
-                    else if (line.StartsWith("CodeTableRows:"))
-                    {
-                        int rows = int.Parse(line.Substring(14));
-                        codeTable = new string[rows, 2];
-                    }
-                    else if (line.StartsWith("CodeTable:") && codeTable != null)
-                    {
-                        string parts = line.Substring(10);
-                        int colonIndex = parts.IndexOf(':');
-                        if (colonIndex > 0)
+                    case "Task1":
+                        tasks.Add(new Task1(input));
+                        break;
+                    case "Task2":
+                        tasks.Add(new Task2(input));
+                        break;
+                    case "Task3":
+                        if (parts.Length >= 3)
                         {
-                            string key = UnescapeString(parts.Substring(0, colonIndex));
-                            string value = UnescapeString(parts.Substring(colonIndex + 1));
-                            for (int i = 0; i < codeTable.GetLength(0); i++)
-                            {
-                                if (codeTable[i, 0] == null)
-                                {
-                                    codeTable[i, 0] = key;
-                                    codeTable[i, 1] = value;
-                                    break;
-                                }
-                            }
+                            var codes = DeserializeCodes(parts[2]);
+                            tasks.Add(new Task3(input, codes));
                         }
-                    }
+                        break;
+                    case "Task4":
+                        tasks.Add(new Task4(input));
+                        break;
                 }
-
-                if (string.IsNullOrEmpty(typeName) || string.IsNullOrEmpty(input))
-                    return null;
-
-                Type type = Type.GetType(typeName);
-                if (type == null) return null;
-
-                if (type == typeof(Task1))
-                    return new Task1(input);
-                else if (type == typeof(Task2))
-                    return new Task2(input);
-                else if (type == typeof(Task3) && codeTable != null)
-                    return new Task3(input, codeTable);
-                else if (type == typeof(Task4))
-                    return new Task4(input);
-
-                return null;
             }
-            catch
+            return tasks.ToArray();
+        }
+
+        private string SerializeCodes(string[,] codes)
+        {
+            if (codes == null) return "";
+            var list = new List<string>();
+            for (int i = 0; i < codes.GetLength(0); i++)
+                list.Add($"{codes[i,0]},{codes[i,1]}");
+            return string.Join(";", list);
+        }
+
+        private string[,] DeserializeCodes(string data)
+        {
+            if (string.IsNullOrEmpty(data)) return new string[0, 0];
+            var pairs = data.Split(';');
+            var codes = new string[pairs.Length, 2];
+            for (int i = 0; i < pairs.Length; i++)
             {
-                return null;
+                var pair = pairs[i].Split(',');
+                codes[i, 0] = pair[0];
+                codes[i, 1] = pair[1];
             }
-        }
-
-        private string EscapeString(string s)
-        {
-            if (s == null) return "";
-            return s.Replace("\\", "\\\\").Replace("\n", "\\n").Replace("\r", "\\r");
-        }
-
-        private string UnescapeString(string s)
-        {
-            if (s == null) return "";
-            return s.Replace("\\r", "\r").Replace("\\n", "\n").Replace("\\\\", "\\");
+            return codes;
         }
     }
 }
