@@ -6,6 +6,7 @@ public class Task4 : Purple
     private (string, char)[] _table;
 
     public string Output => _output;
+    public (string, char)[] Table => _table;
     public Task4(string input, (string, char)[] table) : base(input)
     {
         _output = default;
