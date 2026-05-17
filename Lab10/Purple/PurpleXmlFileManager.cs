@@ -73,20 +73,4 @@ namespace Lab10.Purple
             return obj;
         }
     }
-    public class DTOPurple
-    {
-        public string Type { get; set; }
-        public string Input { get; set; }
-        public (string, char)[] CodesT4 { get; set; }
-        public DTOPurple() { }
-        public DTOPurple(Lab9.Purple.Purple obj)
-        {
-            Type = obj.GetType().Name;
-            Input = obj.Input;
-            if (obj is Task4 o)
-            {
-                CodesT4 = o.Codes;
-            }
-        }
-    }
 }
