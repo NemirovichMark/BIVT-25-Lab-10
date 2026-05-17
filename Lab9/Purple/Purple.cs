@@ -1,26 +1,18 @@
-namespace Lab9.Purple;
-
-public abstract class Purple
+namespace Lab9.Purple
 {
-    protected string _input;
-    public string Input => _input;
-
-    protected Purple(string input = "")
+    public abstract class Purple
     {
-        if (input == null)
+        protected string _input;
+        public string Input => _input;
+        protected Purple(string input)
         {
-            _input = "";
-            return;
+            _input = input;
         }
-
-        _input = input;
-    }
-
-    public abstract void Review();
-
-    public virtual void ChangeText(string text)
-    {
-        _input = text;
-        Review();
+        public abstract void Review();
+        public void ChangeText(string text)
+        {
+            _input = text;
+            Review();
+        }
     }
 }
