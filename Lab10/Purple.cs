@@ -13,36 +13,37 @@ namespace Lab10.Purple
         private PurpleFileManager<T> _manager;
 
         public PurpleFileManager<T> Manager => _manager;
-        public T[] Tasks => _tasks?.ToArray() ?? Array.Empty<T>();
+        public T[] Tasks => _tasks?.ToArray() ?? new T[0];
 
         public Purple(T[] tasks = null)
         {
-            _tasks = tasks ?? Array.Empty<T>();
+            _tasks = tasks?.ToArray() ?? new T[0];
             _manager = null;
         }
-
-        public Purple(PurpleFileManager<T> manager, T[] tasks = null)
-        {
-            _manager = manager;
-            _tasks = tasks ?? Array.Empty<T>();
-        }
-
         public Purple(T[] tasks, PurpleFileManager<T> manager)
         {
             _manager = manager;
-            _tasks = tasks ?? Array.Empty<T>();
-        }
+            _tasks = tasks?.ToArray() ?? new T[0];
 
+        }
+        public Purple(PurpleFileManager<T> manager, T[] tasks = null)
+        {
+            _manager = manager;
+            _tasks = tasks?.ToArray() ?? new T[0];
+
+        }
         public void Add(T item)
         {
             if (item == null) return;
             Array.Resize(ref _tasks, _tasks.Length + 1);
-            _tasks[^1] = item;  // Использование индекса от конца массива
+            _tasks[_tasks.Length - 1] = item;
         }
-
         public void Add(T[] tasks)
         {
-            if (tasks == null || tasks.Length == 0) return;
+            if (tasks == null || tasks.Length == 0)
+            {
+                return;
+            }
             foreach (T item in tasks)
             {
                 Add(item);
@@ -57,20 +58,12 @@ namespace Lab10.Purple
             T[] newTasks = new T[_tasks.Length - 1];
             Array.Copy(_tasks, 0, newTasks, 0, index);
             Array.Copy(_tasks, index + 1, newTasks, index, _tasks.Length - index - 1);
-            _tasks = newTasks;
-        }
 
-        public void Clear()
-        {
-            _tasks = Array.Empty<T>();
-            if (_manager != null && !string.IsNullOrEmpty(_manager.FolderPath) && Directory.Exists(_manager.FolderPath))
-                Directory.Delete(_manager.FolderPath, true);
+            _tasks = newTasks;
         }
 
         public void LoadTasks()
         {
-            if (_manager == null) return;
-
             for (int i = 0; i < _tasks.Length; i++)
             {
                 string nameFile = $"task{i}";
@@ -78,11 +71,15 @@ namespace Lab10.Purple
                 _tasks[i] = _manager.Deserialize();
             }
         }
-
+        public void Clear()
+        {
+            _tasks = new T[0];
+            if (_manager != null && !string.IsNullOrEmpty(_manager.FolderPath) && Directory.Exists(_manager.FolderPath))
+                Directory.Delete(_manager.FolderPath, true);
+        }
         public void SaveTasks()
         {
             if (_manager == null || _tasks == null || _tasks.Length == 0) return;
-
             for (int i = 0; i < _tasks.Length; i++)
             {
                 _manager.ChangeFileName($"task{i}");
@@ -90,10 +87,10 @@ namespace Lab10.Purple
             }
         }
 
+
         public void ChangeManager(PurpleFileManager<T> newManager)
         {
             if (newManager == null) return;
-
             _manager = newManager;
             if (!string.IsNullOrEmpty(_manager.Name))
             {
@@ -101,9 +98,10 @@ namespace Lab10.Purple
 
                 if (!Directory.Exists(folderPath))
                     Directory.CreateDirectory(folderPath);
-
                 _manager.SelectFolder(folderPath);
+
             }
         }
+
     }
 }
