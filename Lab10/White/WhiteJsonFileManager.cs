@@ -1,76 +1,53 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Lab9.White;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
-namespace Lab9.White
+namespace Lab10.White
 {
     public class WhiteJsonFileManager : WhiteFileManager
     {
-        public WhiteJsonFileManager(string name) : base(name) { }
-
-        public WhiteJsonFileManager(string name, string folderPath, string fileName, string fileExtension = "json")
-            : base(name, folderPath, fileName, fileExtension) { }
-
-        public override void EditFile(string content)
+        public WhiteJsonFileManager(string name) : base(name)
         {
-            White obj = Deserialize();
-            obj?.ChangeText(content);
-            Serialize(obj);
+            ChangeFileName("tasks");
+            ChangeFileFormat("json");
         }
 
-        public override void ChangeFileExtension(string newExtension)
+        public override void SaveTasks(White[] tasks)
         {
-            if (newExtension?.ToLower() != "json")
-                ChangeFileFormat("json");
-            else
-                base.ChangeFileExtension(newExtension);
-        }
-
-        public override void Serialize(White obj)
-        {
-            if (obj == null) return;
-
-            var wrapper = new WhiteWrapper
+            var items = tasks.Select(t => new
             {
-                TypeName = obj.GetType().AssemblyQualifiedName,
-                Data = JsonSerializer.Serialize(obj, obj.GetType())
-            };
-
-            string json = JsonSerializer.Serialize(wrapper);
+                Type = t.GetType().Name,
+                Data = t
+            });
+            var json = JsonSerializer.Serialize(items);
             EditFile(json);
         }
 
-        public override White Deserialize()
+        public override White[] LoadTasks()
         {
-            if (!File.Exists(FullPath)) return null;
+            var path = FullPath;
+            if (!File.Exists(path)) return Array.Empty<White>();
 
-            try
+            var json = File.ReadAllText(path);
+            using var doc = JsonDocument.Parse(json);
+            var root = doc.RootElement;
+            var tasks = new List<White>();
+
+            foreach (var item in root.EnumerateArray())
             {
-                string json = File.ReadAllText(FullPath);
-                var wrapper = JsonSerializer.Deserialize<WhiteWrapper>(json);
+                string typeName = item.GetProperty("Type").GetString();
+                JsonElement data = item.GetProperty("Data");
 
-                if (wrapper == null || string.IsNullOrEmpty(wrapper.TypeName) || string.IsNullOrEmpty(wrapper.Data))
-                    return null;
-
-                Type type = Type.GetType(wrapper.TypeName);
-                if (type == null) return null;
-
-                return (White)JsonSerializer.Deserialize(wrapper.Data, type);
+                White task = typeName switch
+                {
+                    "Task1" => JsonSerializer.Deserialize<Task1>(data.GetRawText()),
+                    "Task2" => JsonSerializer.Deserialize<Task2>(data.GetRawText()),
+                    "Task3" => JsonSerializer.Deserialize<Task3>(data.GetRawText()),
+                    "Task4" => JsonSerializer.Deserialize<Task4>(data.GetRawText()),
+                    _ => null
+                };
+                if (task != null) tasks.Add(task);
             }
-            catch
-            {
-                return null;
-            }
-        }
-
-        private class WhiteWrapper
-        {
-            public string TypeName { get; set; }
-            public string Data { get; set; }
+            return tasks.ToArray();
         }
     }
 }
