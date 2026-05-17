@@ -18,6 +18,20 @@
                 for (int i = 0; i < Codes.Length; i++)
                     Codes[i] = task4.Table[i].Item1 + "|" + task4.Table[i].Item2;
             }
+            if (obj is Task3 task3)
+            {
+                var codesField = typeof(Task3).GetField("_codes", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                if (codesField != null)
+                {
+                    var codes = codesField.GetValue(task3) as (string, char)[];
+                    if (codes != null)
+                {
+                    Codes = new string[codes.Length];
+                    for (int i = 0; i < Codes.Length; i++)
+                        Codes[i] = codes[i].Item1 + " " + codes[i].Item2;
+        }
+    }
+}
         }
 
         internal (string, char)[] GetDecodedCodes()
