@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Lab10Test.Blue
 {
-    [testclass]
+    [TestClass]
     public sealed class bluemanagertest
     {
         private lab9.blue.blue[] _tasks;
@@ -39,7 +39,7 @@ namespace Lab10Test.Blue
                 t.review();
         }
 
-        [testmethod]
+        [TestMethod]
         public void test_00_oop()
         {
             var type = typeof(lab10.blue.blue<lab9.blue.blue>);
@@ -58,7 +58,7 @@ namespace Lab10Test.Blue
             assert.isnotnull(type.getmethod("changemanager"));
         }
 
-        [testmethod]
+        [TestMethod]
         public void test_01_add_remove_alltasks()
         {
             for (int i = 0; i < _input.length; i++)
@@ -75,7 +75,7 @@ namespace Lab10Test.Blue
             }
         }
 
-        [testmethod]
+        [TestMethod]
         public void test_02_save_load_txt()
         {
             for (int i = 0; i < _input.length; i++)
@@ -103,7 +103,7 @@ namespace Lab10Test.Blue
             }
         }
 
-        [testmethod]
+        [TestMethod]
         public void test_03_save_load_json()
         {
             for (int i = 0; i < _input.length; i++)
@@ -131,7 +131,7 @@ namespace Lab10Test.Blue
             }
         }
 
-        [testmethod]
+        [TestMethod]
         public void test_04_changemanager_and_format()
         {
             for (int i = 0; i < _input.length; i++)
@@ -172,7 +172,7 @@ namespace Lab10Test.Blue
             }
         }
 
-        [testmethod]
+        [TestMethod]
         public void test_05_clear_all()
         {
             for (int i = 0; i < _input.length; i++)
