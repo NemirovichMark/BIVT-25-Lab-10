@@ -10,10 +10,10 @@ namespace Lab10.Purple
     {
         string FolderPath { get; }
         string FileExtension { get; }
-        string FileName { get; }
         string FullPath { get; }
-        void SelectFolder(string folder);
+        string FileName { get; }
         void ChangeFileName(string name);
+        void SelectFolder(string folder);
         void ChangeFileFormat(string format);
     }
 }
