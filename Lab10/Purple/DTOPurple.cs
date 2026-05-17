@@ -1,4 +1,5 @@
-﻿namespace Lab10.Purple
+using System.Reflection;
+namespace Lab10.Purple
 {
     public class DTOPurple
     {
