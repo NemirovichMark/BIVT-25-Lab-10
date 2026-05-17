@@ -1,111 +1,92 @@
-using System.Xml.Serialization;
 using Lab9.Purple;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
 
-namespace Lab10.Purple;
-
-public class PurpleXmlFileManager<T> : PurpleFileManager<T>
-    where T : Lab9.Purple.Purple
+namespace Lab10.Purple
 {
-    public PurpleXmlFileManager(string name) : base(name) { }
-
-    public PurpleXmlFileManager(string name, string folderPath, string fileName, string fileExtension = "xml")
-        : base(name, folderPath, fileName, fileExtension) { }
-
-    public override void EditFile(string text)
+    public class PurpleXmlFileManager<T> : PurpleFileManager<T> where T : Lab9.Purple.Purple
     {
-        if (string.IsNullOrWhiteSpace(text) || !File.Exists(FullPath))
-            return;
+        public PurpleXmlFileManager(string name) : base(name) { }
+        public PurpleXmlFileManager(string name, string folderPath, string fileName, string fileExtension = "txt")
+            : base(name, folderPath, fileName, fileExtension) { }
 
-        T obj = Deserialize();
-        if (obj == null)
-            return;
-
-        obj.ChangeText(text);
-        Serialize(obj);
-    }
-
-    public override void ChangeFileExtension(string extension)
-    {
-        if (string.IsNullOrWhiteSpace(extension) || extension != "xml")
-            return;
-
-        if (!File.Exists(FullPath))
+        public override void EditFile(string text)
         {
-            ChangeFileFormat("xml");
-            return;
-        }
-
-        T obj = Deserialize();
-        ChangeFileFormat("xml");
-        if (obj != null)
-        {
+            T obj = Deserialize();
+            obj.ChangeText(text);
             Serialize(obj);
         }
+        public override void ChangeFileExtension(string extension)
+        {
+            base.ChangeFileExtension("xml");
+        }
+        public override void Serialize(T obj)
+        {
+            if (obj == null) return;
+
+            DTOPurple dtopurple = new DTOPurple(obj);
+
+            var serializer = new XmlSerializer(typeof(DTOPurple));
+            using (var writer = new StreamWriter(FullPath))
+            {
+                serializer.Serialize(writer, dtopurple);
+            }
+        }
+        public override T Deserialize()
+        {
+            if (!File.Exists(FullPath)) return null;
+
+            DTOPurple objDTO;
+            T obj = null;
+
+            var serializer = new XmlSerializer(typeof(DTOPurple));
+            using (var reader = new StreamReader(FullPath))
+            {
+                objDTO = (DTOPurple)serializer.Deserialize(reader);
+            }
+            if (objDTO == null) return null; 
+
+            if (objDTO.Type == "Task1")
+            {
+                obj = (new Task1(objDTO.Input) as T);
+            }
+            else if (objDTO.Type == "Task2")
+            {
+                obj = (new Task2(objDTO.Input) as T);
+            }
+            else if (objDTO.Type == "Task3")
+            {
+                obj = (new Task3(objDTO.Input) as T);
+            }
+            else if (objDTO.Type == "Task4")
+            {
+                obj = (new Task4(objDTO.Input, objDTO.CodesT4) as T);
+            }
+            
+            if (obj == null) return null;
+            obj.Review();
+
+            return obj;
+        }
     }
-
-    public override void Serialize(T obj)
+    public class DTOPurple
     {
-        if (obj == null)
-            return;
-
-        if (!Directory.Exists(FolderPath))
-            Directory.CreateDirectory(FolderPath);
-
-        try
+        public string Type { get; set; }
+        public string Input { get; set; }
+        public (string, char)[] CodesT4 { get; set; }
+        public DTOPurple() { }
+        public DTOPurple(Lab9.Purple.Purple obj)
         {
-            var table = GetTask4Table(obj);
-            DTOItem[] items = table.Length == 0
-                ? Array.Empty<DTOItem>()
-                : table.Select(item => new DTOItem(item.Item1, item.Item2)).ToArray();
-
-            DTOPurple dto = new DTOPurple(obj.GetType().Name, obj.Input, items);
-            XmlSerializer serializer = new XmlSerializer(typeof(DTOPurple));
-
-            using (StreamWriter sw = new StreamWriter(FullPath))
+            Type = obj.GetType().Name;
+            Input = obj.Input;
+            if (obj is Task4 o)
             {
-                serializer.Serialize(sw, dto);
+                CodesT4 = o.Codes;
             }
         }
-        catch
-        {
-        }
-    }
-
-    public override T Deserialize()
-    {
-        if (!File.Exists(FullPath))
-            return null;
-
-        try
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(DTOPurple));
-            DTOPurple dto = null;
-
-            using (StreamReader sr = new StreamReader(FullPath))
-            {
-                object deserialized = serializer.Deserialize(sr);
-                dto = deserialized as DTOPurple;
-            }
-
-            if (dto == null || string.IsNullOrEmpty(dto.TypeName) || string.IsNullOrEmpty(dto.Input))
-                return null;
-
-            var codes = dto.Items == null || dto.Items.Length == 0
-                ? Array.Empty<(string, char)>()
-                : dto.Items.Select(item => (item.Key, item.Value)).ToArray();
-
-            var obj = CreateTask(dto.TypeName, dto.Input, codes);
-            if (obj != null)
-            {
-                obj.Review();
-                return (T)obj;
-            }
-        }
-        catch
-        {
-            return null;
-        }
-
-        return null;
     }
 }
