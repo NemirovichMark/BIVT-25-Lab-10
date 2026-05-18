@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Lab10\Lab10.csproj" />
+    <ProjectReference Include="..\Lab9\Lab9.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,4 +39,10 @@
     <Using Include="System.Threading.Tasks" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+</PropertyGroup>
+
 </Project>
+
+
