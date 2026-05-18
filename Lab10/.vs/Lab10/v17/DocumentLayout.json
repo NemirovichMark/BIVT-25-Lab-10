@@ -1,0 +1,141 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab10\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B2E3F85B-E0BB-5DAC-B080-DF387544CAE1}|..\\Lab9Test\\Lab9Test.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-10\\lab9test\\green\\task1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{41531F6B-24EF-D19B-DA6E-C5609054F868}|..\\Lab9\\Lab9.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-10\\lab9\\green\\green.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{85550AA9-DA5E-BD60-410D-03AD4FCFF877}|..\\Lab10Test\\Lab10Test.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-10\\lab10test\\green\\generaltest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab10.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-10\\lab10\\green\\greentxtfilemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab10.csproj|solutionrelative:green\\greentxtfilemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab10.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-10\\lab10\\green\\greenjsonfilemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab10.csproj|solutionrelative:green\\greenjsonfilemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab10.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-10\\lab10\\green\\green.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab10.csproj|solutionrelative:green\\green.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab10.csproj|c:\\users\\root\\source\\repos\\bivt-25-lab-10\\lab10\\iserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab10.csproj|solutionrelative:iserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Task1.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab9Test\\Green\\Task1.cs",
+              "RelativeDocumentMoniker": "..\\Lab9Test\\Green\\Task1.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab9Test\\Green\\Task1.cs",
+              "RelativeToolTip": "..\\Lab9Test\\Green\\Task1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-06T16:15:42.353Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Green.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab9\\Green\\Green.cs",
+              "RelativeDocumentMoniker": "..\\Lab9\\Green\\Green.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab9\\Green\\Green.cs",
+              "RelativeToolTip": "..\\Lab9\\Green\\Green.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-06T16:13:51.908Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GeneralTest.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab10Test\\Green\\GeneralTest.cs",
+              "RelativeDocumentMoniker": "..\\Lab10Test\\Green\\GeneralTest.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab10Test\\Green\\GeneralTest.cs",
+              "RelativeToolTip": "..\\Lab10Test\\Green\\GeneralTest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-06T16:13:47.522Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GreenTxtFileManager.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab10\\Green\\GreenTxtFileManager.cs",
+              "RelativeDocumentMoniker": "Green\\GreenTxtFileManager.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab10\\Green\\GreenTxtFileManager.cs",
+              "RelativeToolTip": "Green\\GreenTxtFileManager.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAAAHUAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-06T15:34:30.524Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GreenJsonFileManager.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab10\\Green\\GreenJsonFileManager.cs",
+              "RelativeDocumentMoniker": "Green\\GreenJsonFileManager.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab10\\Green\\GreenJsonFileManager.cs",
+              "RelativeToolTip": "Green\\GreenJsonFileManager.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAwwCgAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-06T15:34:06.754Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ISerializer.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab10\\ISerializer.cs",
+              "RelativeDocumentMoniker": "ISerializer.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab10\\ISerializer.cs",
+              "RelativeToolTip": "ISerializer.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAUAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-06T15:29:28.422Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Green.cs",
+              "DocumentMoniker": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab10\\Green\\Green.cs",
+              "RelativeDocumentMoniker": "Green\\Green.cs",
+              "ToolTip": "C:\\Users\\root\\source\\repos\\BIVT-25-Lab-10\\Lab10\\Green\\Green.cs",
+              "RelativeToolTip": "Green\\Green.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-06T15:28:50.828Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
