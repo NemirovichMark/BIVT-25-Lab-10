@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\trefa\\source\\repos\\BIVT-25-Lab-10\\Lab10\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab10.csproj|c:\\users\\trefa\\source\\repos\\bivt-25-lab-10\\lab10\\lab10.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{AD97B326-12F8-4762-A670-462DCBC5A11E}|Lab10.csproj|solutionrelative:lab10.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{85550AA9-DA5E-BD60-410D-03AD4FCFF877}|..\\Lab10Test\\Lab10Test.csproj|c:\\users\\trefa\\source\\repos\\bivt-25-lab-10\\lab10test\\green\\ifilelifecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{85550AA9-DA5E-BD60-410D-03AD4FCFF877}|..\\Lab10Test\\Lab10Test.csproj|c:\\users\\trefa\\source\\repos\\bivt-25-lab-10\\lab10test\\green\\ifilemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Lab10",
+              "DocumentMoniker": "C:\\Users\\trefa\\source\\repos\\BIVT-25-Lab-10\\Lab10\\Lab10.csproj",
+              "RelativeDocumentMoniker": "Lab10.csproj",
+              "ToolTip": "C:\\Users\\trefa\\source\\repos\\BIVT-25-Lab-10\\Lab10\\Lab10.csproj",
+              "RelativeToolTip": "Lab10.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-04T09:43:09.577Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IFileLifeController.cs",
+              "DocumentMoniker": "C:\\Users\\trefa\\source\\repos\\BIVT-25-Lab-10\\Lab10Test\\Green\\IFileLifeController.cs",
+              "RelativeDocumentMoniker": "..\\Lab10Test\\Green\\IFileLifeController.cs",
+              "ToolTip": "C:\\Users\\trefa\\source\\repos\\BIVT-25-Lab-10\\Lab10Test\\Green\\IFileLifeController.cs",
+              "RelativeToolTip": "..\\Lab10Test\\Green\\IFileLifeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T09:41:14.965Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IFileManager.cs",
+              "DocumentMoniker": "C:\\Users\\trefa\\source\\repos\\BIVT-25-Lab-10\\Lab10Test\\Green\\IFileManager.cs",
+              "RelativeDocumentMoniker": "..\\Lab10Test\\Green\\IFileManager.cs",
+              "ToolTip": "C:\\Users\\trefa\\source\\repos\\BIVT-25-Lab-10\\Lab10Test\\Green\\IFileManager.cs",
+              "RelativeToolTip": "..\\Lab10Test\\Green\\IFileManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T09:37:59.846Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

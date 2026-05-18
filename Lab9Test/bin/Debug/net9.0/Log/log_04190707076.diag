@@ -1,0 +1,16 @@
+2026-04-19T07:57:07.0874860+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.4.3+c252b64ad913ea9411fc5d17bfd5580d2d061497
+2026-04-19T07:57:07.1224544+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-04-19T07:57:07.1245775+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-04-19T07:57:07.1245839+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 07:57:07.038
+2026-04-19T07:57:07.1274624+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 4620
+2026-04-19T07:57:07.1275361+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 9.0.15
+2026-04-19T07:57:07.1275586+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\9.0.15\System.Private.CoreLib.dll
+2026-04-19T07:57:07.1275766+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-04-19T07:57:07.1275808+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\trefa\source\repos\BIVT-25-Lab-9\Lab9Test\bin\Debug\net9.0\Lab9Test.dll
+2026-04-19T07:57:07.1277455+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\trefa\source\repos\BIVT-25-Lab-9\Lab9Test\bin\Debug\net9.0\Log --results-directory C:\Users\trefa\source\repos\BIVT-25-Lab-9\Lab9\TestResults --client-port 65010'
+2026-04-19T07:57:07.1300209+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-04-19T07:57:07.1798379+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-04-19T07:57:07.1867047+00:00 Microsoft.Testing.Platform.Configurations.JsonConfigurationSource+JsonConfigurationProvider INFORMATION Config file 'C:\Users\trefa\source\repos\BIVT-25-Lab-9\Lab9Test\bin\Debug\net9.0\Lab9Test.testconfig.json' not found.
+2026-04-19T07:57:07.1892860+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable:  VSTest mode: False
+2026-04-19T07:57:07.4724213+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: 'MSTestExtension' Version: '3.6.4' DisplayName: 'MSTest' Description: 'MSTest Framework for Microsoft Testing Platform'
+2026-04-19T07:57:07.6643507+00:00 Microsoft.Testing.Extensions.VSTestBridge.ObjectModel.MessageLoggerAdapter INFORMATION Включена параллелизация тестов для C:\Users\trefa\source\repos\BIVT-25-Lab-9\Lab9Test\bin\Debug\net9.0\Lab9Test.dll (рабочие роли: 1, область: MethodLevel)
