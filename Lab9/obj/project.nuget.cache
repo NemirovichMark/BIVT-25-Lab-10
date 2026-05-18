@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "KRJASLPvay0=",
+  "success": true,
+  "projectFilePath": "/Users/vinograd/RiderProjects/BIVT-25-Lab-9/Lab9/Lab9.csproj",
+  "expectedPackageFiles": [
+    "/Users/vinograd/.nuget/packages/microsoft.netcore.app.ref/8.0.26/microsoft.netcore.app.ref.8.0.26.nupkg.sha512",
+    "/Users/vinograd/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.26/microsoft.aspnetcore.app.ref.8.0.26.nupkg.sha512",
+    "/Users/vinograd/.nuget/packages/microsoft.netcore.app.host.osx-arm64/8.0.26/microsoft.netcore.app.host.osx-arm64.8.0.26.nupkg.sha512"
+  ],
+  "logs": []
+}
