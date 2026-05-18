@@ -1,0 +1,118 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
+
+namespace XMLinClass
+{
+    public class Movie
+    {
+        private string _name;
+        private int _duration;
+        private int[] _review;
+        public string Name => _name;
+        public int Duration => _duration;
+        public int[] Review => _review.ToArray();
+        public Movie(string name, int duration)
+        {
+            _name = name;
+            _duration = duration;
+            _review = new int[0];
+        }
+
+        public void AddReview(int stars)
+        {
+            Array.Resize(ref _review, _review.Length+1);
+            _review[_review.Length-1] = stars;
+        }
+    }
+    public class MovieDTO
+    {
+        //Свойства публичного сеттера
+        public string MovieType { get; set; }
+        public string Name { get; set; }
+        public int Duration { get; set; }
+        public int[] Review { get; set; }
+
+        //Конструктор без параметров
+        public MovieDTO()
+        {
+
+        }
+        //Movie -> MovieDTO
+        public MovieDTO(string name, int duration, int[] review)
+        {
+            MovieType = nameof(Movie);
+            Name = name;
+            Duration = duration;
+            Review = review;
+        }
+
+        public MovieDTO(Movie movie) // movie.GetType() == typeof(Movie)
+                                     // movie.GetType().Name == nameof(Movie)
+        {
+            MovieType = movie.GetType().Name;
+            Name = movie.Name;
+            Duration = movie.Duration;
+            Review = movie.Review;
+        }
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Movie movie1 = new Movie("Harry Potter", 120);
+            movie1.AddReview(5);
+            movie1.AddReview(4);
+            movie1.AddReview(3);
+            movie1.AddReview(5);
+
+            MovieDTO movieDTO1 = new MovieDTO(movie1.Name, movie1.Duration, movie1.Review);
+            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string filePath = Path.Combine(folderPath, "movie.xml");
+
+            var serializer = new XmlSerializer(typeof(MovieDTO));
+            //Сериализация
+            using (var writer  = new StreamWriter(filePath))
+            {
+                serializer.Serialize(writer, movieDTO1);
+            }
+
+            //Десериализация
+            MovieDTO movieDTO2;
+            using (var reader = new StreamReader(filePath))
+            {
+                movieDTO2 = (MovieDTO)serializer.Deserialize(reader);
+            }
+
+            Movie movie2 = new Movie(movieDTO2.Name, movieDTO2.Duration);
+            Console.WriteLine(string.Join(" ", movieDTO2.Review));
+            Console.WriteLine(string.Join(" ", movie2.Review));
+
+            foreach (int star in movieDTO2.Review)
+            {
+                movie2.AddReview(star);
+            }
+
+            if (CompareMovies(movie1, movie2))
+            {
+                Console.WriteLine("Succes");
+            }
+            else
+            {
+                Console.WriteLine("Not succes");
+            }
+        }
+
+        public static bool CompareMovies(Movie m1, Movie m2)
+        {
+            if (m1.Name != m2.Name) return false;
+            if (m1.Duration != m2.Duration) return false;
+
+            return true;
+        }
+    }
+}
