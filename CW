@@ -1,0 +1,133 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
+
+namespace MySerialization
+{
+    public class MyXMLSerializator : MySerializator
+    {
+        public new void Serialize()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(DTOStudent[]));
+
+            _path = Path.Combine(_desktopPath, "students.xml");
+
+            DTOStudent[] data = new DTOStudent[_students.Count];
+
+            for (int i = 0; i < _students.Count; i++)
+            {
+                data[i] = new DTOStudent(_students[i]);
+            }
+
+            using (StreamWriter writer = new StreamWriter(_path))
+            {
+                serializer.Serialize(writer, data);
+            }
+        }
+
+        public new void Deserialize()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(DTOStudent[]));
+
+            using (StreamReader reader = new StreamReader(_path))
+            {
+                DTOStudent[] data = serializer.Deserialize(reader) as DTOStudent[];
+
+                _students = new List<Student>();
+
+                if (data != null)
+                {
+                    for (int i = 0; i < data.Length; i++)
+                    {
+                        _students.Add(data[i].ToStudent());
+                    }
+                }
+            }
+        }
+    }
+
+    public class DTOStudent
+    {
+        public int ID { get; set; }
+
+        public string Name { get; set; }
+
+        public string Surname { get; set; }
+
+        [XmlElement("Subject")]
+        public DTOSubject[] Subjects { get; set; }
+
+        public DTOStudent()
+        {
+            Name = string.Empty;
+            Surname = string.Empty;
+            Subjects = new DTOSubject[0];
+        }
+
+        public DTOStudent(Student student)
+        {
+            ID = student.Id;
+            Name = student.Name;
+            Surname = student.Surname;
+
+            Subjects = new DTOSubject[student.Subjects.Length];
+
+            for (int i = 0; i < student.Subjects.Length; i++)
+            {
+                Subjects[i] = new DTOSubject(student.Subjects[i]);
+            }
+        }
+
+        public Student ToStudent()
+        {
+            Subject[] subjects = new Subject[Subjects.Length];
+
+            for (int i = 0; i < Subjects.Length; i++)
+            {
+                subjects[i] = Subjects[i].ToSubject();
+            }
+
+            return new Student(ID, Name, Surname, subjects);
+        }
+    }
+
+    public class DTOSubject
+    {
+        public string Name { get; set; }
+
+        public int[] Marks { get; set; }
+
+        public DTOSubject()
+        {
+            Name = string.Empty;
+            Marks = new int[0];
+        }
+
+        public DTOSubject(Subject subject)
+        {
+            Name = subject.Name;
+            Marks = subject.Marks;
+        }
+
+        public Subject ToSubject()
+        {
+            return new Subject(Name, Marks);
+        }
+    }
+
+    public class Courses : Subject
+    {
+        public int Duration { get; private set; }
+
+        public Courses(string name, int duration) : base(name)
+        {
+            Duration = duration;
+        }
+
+        public Courses(string name, int[] marks, int duration) : base(name, marks)
+        {
+            Duration = duration;
+        }
+    }
+}
