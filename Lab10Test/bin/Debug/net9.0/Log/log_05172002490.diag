@@ -1,0 +1,16 @@
+2026-05-17T20:07:02.4951100+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.4.3+c252b64ad913ea9411fc5d17bfd5580d2d061497
+2026-05-17T20:07:02.5049934+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-05-17T20:07:02.5058824+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-05-17T20:07:02.5058852+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 20:07:02.474
+2026-05-17T20:07:02.5072520+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 31552
+2026-05-17T20:07:02.5072709+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 9.0.11
+2026-05-17T20:07:02.5072795+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\9.0.11\System.Private.CoreLib.dll
+2026-05-17T20:07:02.5072872+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-05-17T20:07:02.5072886+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: F:\UE_projects\BIVT-25-Lab-10\Lab10Test\bin\Debug\net9.0\Lab10Test.dll
+2026-05-17T20:07:02.5073601+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory F:\UE_projects\BIVT-25-Lab-10\Lab10Test\bin\Debug\net9.0\Log --client-port 55563'
+2026-05-17T20:07:02.5083707+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-05-17T20:07:02.5281769+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-05-17T20:07:02.5309212+00:00 Microsoft.Testing.Platform.Configurations.JsonConfigurationSource+JsonConfigurationProvider INFORMATION Config file 'F:\UE_projects\BIVT-25-Lab-10\Lab10Test\bin\Debug\net9.0\Lab10Test.testconfig.json' not found.
+2026-05-17T20:07:02.5319477+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable:  VSTest mode: False
+2026-05-17T20:07:02.6371756+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: 'MSTestExtension' Version: '3.6.4' DisplayName: 'MSTest' Description: 'MSTest Framework for Microsoft Testing Platform'
+2026-05-17T20:07:02.7176138+00:00 Microsoft.Testing.Extensions.VSTestBridge.ObjectModel.MessageLoggerAdapter INFORMATION Test Parallelization enabled for F:\UE_projects\BIVT-25-Lab-10\Lab10Test\bin\Debug\net9.0\Lab10Test.dll (Workers: 1, Scope: MethodLevel)

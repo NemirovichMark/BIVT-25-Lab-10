@@ -1,0 +1,15 @@
+F:\UE_projects\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\Lab9.GeneratedMSBuildEditorConfig.editorconfig
+F:\UE_projects\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\Lab9.AssemblyInfoInputs.cache
+F:\UE_projects\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\Lab9.AssemblyInfo.cs
+F:\UE_projects\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\Lab9.csproj.CoreCompileInputs.cache
+F:\UE_projects\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\Lab9.sourcelink.json
+F:\UE_projects\BIVT-25-Lab-10\Lab9\bin\Debug\net8.0\Lab9.exe
+F:\UE_projects\BIVT-25-Lab-10\Lab9\bin\Debug\net8.0\Lab9.deps.json
+F:\UE_projects\BIVT-25-Lab-10\Lab9\bin\Debug\net8.0\Lab9.runtimeconfig.json
+F:\UE_projects\BIVT-25-Lab-10\Lab9\bin\Debug\net8.0\Lab9.dll
+F:\UE_projects\BIVT-25-Lab-10\Lab9\bin\Debug\net8.0\Lab9.pdb
+F:\UE_projects\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\Lab9.dll
+F:\UE_projects\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\refint\Lab9.dll
+F:\UE_projects\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\Lab9.pdb
+F:\UE_projects\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\Lab9.genruntimeconfig.cache
+F:\UE_projects\BIVT-25-Lab-10\Lab9\obj\Debug\net8.0\ref\Lab9.dll
