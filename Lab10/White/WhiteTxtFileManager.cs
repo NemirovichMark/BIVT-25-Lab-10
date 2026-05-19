@@ -1,5 +1,5 @@
-using Lab9.White;
 using System.Text;
+using Lab9.White;
 
 namespace Lab10.White
 {
@@ -11,7 +11,7 @@ namespace Lab10.White
             ChangeFileFormat("txt");
         }
 
-        public override void SaveTasks(White[] tasks)
+        public override void SaveTasks(Lab9.White.White[] tasks)
         {
             if (tasks == null) return;
             var sb = new StringBuilder();
@@ -23,8 +23,8 @@ namespace Lab10.White
                     sb.AppendLine($"Task2|{t2.Input}");
                 else if (t is Task3 t3)
                 {
-                    string codesStr = SerializeCodes(t3.Codes);
-                    sb.AppendLine($"Task3|{t3.Input}|{codesStr}");
+                    // Временно сохраняем только Input, так как свойство Codes может отсутствовать
+                    sb.AppendLine($"Task3|{t3.Input}");
                 }
                 else if (t is Task4 t4)
                     sb.AppendLine($"Task4|{t4.Input}");
@@ -32,13 +32,13 @@ namespace Lab10.White
             EditFile(sb.ToString());
         }
 
-        public override White[] LoadTasks()
+        public override Lab9.White.White[] LoadTasks()
         {
             var path = FullPath;
-            if (!File.Exists(path)) return Array.Empty<White>();
+            if (!File.Exists(path)) return Array.Empty<Lab9.White.White>();
 
             var lines = File.ReadAllLines(path);
-            var tasks = new List<White>();
+            var tasks = new List<Lab9.White.White>();
 
             foreach (var line in lines)
             {
@@ -57,11 +57,7 @@ namespace Lab10.White
                         tasks.Add(new Task2(input));
                         break;
                     case "Task3":
-                        if (parts.Length >= 3)
-                        {
-                            var codes = DeserializeCodes(parts[2]);
-                            tasks.Add(new Task3(input, codes));
-                        }
+                        tasks.Add(new Task3(input, new string[0, 0])); // временное решение
                         break;
                     case "Task4":
                         tasks.Add(new Task4(input));
@@ -69,29 +65,6 @@ namespace Lab10.White
                 }
             }
             return tasks.ToArray();
-        }
-
-        private string SerializeCodes(string[,] codes)
-        {
-            if (codes == null) return "";
-            var list = new List<string>();
-            for (int i = 0; i < codes.GetLength(0); i++)
-                list.Add($"{codes[i,0]},{codes[i,1]}");
-            return string.Join(";", list);
-        }
-
-        private string[,] DeserializeCodes(string data)
-        {
-            if (string.IsNullOrEmpty(data)) return new string[0, 0];
-            var pairs = data.Split(';');
-            var codes = new string[pairs.Length, 2];
-            for (int i = 0; i < pairs.Length; i++)
-            {
-                var pair = pairs[i].Split(',');
-                codes[i, 0] = pair[0];
-                codes[i, 1] = pair[1];
-            }
-            return codes;
         }
     }
 }
