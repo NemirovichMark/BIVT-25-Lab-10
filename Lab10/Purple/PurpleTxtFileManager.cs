@@ -82,7 +82,7 @@ namespace Lab10.Purple
 
             if (type == typeof(Lab9.Purple.Task4))
             {
-                List<(string, char)> codes_list = new List<(string, char)>();
+                List<(string, char)> codes_list = [];
                 if (!string.IsNullOrEmpty(codes_json))
                 {
                     var deserialized = JsonConvert.DeserializeObject<List<dynamic>>(codes_json);

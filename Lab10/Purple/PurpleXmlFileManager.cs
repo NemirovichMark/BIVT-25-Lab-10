@@ -18,7 +18,7 @@ namespace Lab10.Purple
             if (!string.IsNullOrEmpty(this.FolderPath))
                 Directory.CreateDirectory(this.FolderPath);
 
-            DTOPurple dto = new DTOPurple
+            var dto = new DTOPurple
             {
                 Type = obj.GetType().AssemblyQualifiedName ?? "",
                 Input = obj.Input ?? "",
@@ -45,9 +45,8 @@ namespace Lab10.Purple
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(DTOPurple));
                 using FileStream stream = new FileStream(this.FullPath, FileMode.Open);
-                DTOPurple? dto = serializer.Deserialize(stream) as DTOPurple;
 
-                if (dto == null || string.IsNullOrEmpty(dto.Type))
+                if (serializer.Deserialize(stream) is not DTOPurple dto || string.IsNullOrEmpty(dto.Type))
                     return null!;
 
                 Type? type = Type.GetType(dto.Type);
@@ -58,7 +57,7 @@ namespace Lab10.Purple
 
                 if (type == typeof(Lab9.Purple.Task4))
                 {
-                    List<(string, char)> codes_list = new List<(string, char)>();
+                    List<(string, char)> codes_list = [];
                     if (!string.IsNullOrEmpty(dto.Codes))
                     {
                         var deserialized = JsonConvert.DeserializeObject<List<dynamic>>(dto.Codes);

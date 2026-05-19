@@ -3,33 +3,32 @@ namespace Lab10.Purple
     public class Purple<T> where T : Lab9.Purple.Purple
     {
         private T[] tasks;
-        private PurpleFileManager<T>? manager;
 
-        public PurpleFileManager<T>? Manager => this.manager;
+        public PurpleFileManager<T>? Manager { get; private set; }
         public T[] Tasks => this.tasks;
 
         public Purple()
         {
-            this.tasks = Array.Empty<T>();
-            this.manager = null;
+            this.tasks = [];
+            Manager = null;
         }
 
         public Purple(T[] tasks)
         {
             this.tasks = tasks == null ? [] : (T[])tasks.Clone();
-            this.manager = null;
+            Manager = null;
         }
 
         public Purple(PurpleFileManager<T> manager, T[]? tasks = null)
         {
-            this.manager = manager;
-            this.tasks = tasks == null ? Array.Empty<T>() : (T[])tasks.Clone();
+            Manager = manager;
+            this.tasks = tasks == null ? [] : (T[])tasks.Clone();
         }
 
         public Purple(T[] tasks, PurpleFileManager<T> manager)
         {
-            this.tasks = tasks == null ? Array.Empty<T>() : (T[])tasks.Clone();
-            this.manager = manager;
+            this.tasks = tasks == null ? [] : (T[])tasks.Clone();
+            Manager = manager;
         }
 
         public void Add(T task)
@@ -39,7 +38,7 @@ namespace Lab10.Purple
                 return;
             }
             Array.Resize(ref this.tasks, this.tasks.Length + 1);
-            this.tasks[this.tasks.Length - 1] = task;
+            this.tasks[^1] = task;
         }
 
         public void Add(T[] tasks)
@@ -73,36 +72,36 @@ namespace Lab10.Purple
 
         public void Clear()
         {
-            this.tasks = Array.Empty<T>();
-            if (this.manager != null && !string.IsNullOrEmpty(this.manager.FolderPath) && Directory.Exists(this.manager.FolderPath))
+            this.tasks = [];
+            if (Manager != null && !string.IsNullOrEmpty(Manager.FolderPath) && Directory.Exists(Manager.FolderPath))
             {
-                Directory.Delete(this.manager.FolderPath, true);
+                Directory.Delete(Manager.FolderPath, true);
             }
         }
 
         public void SaveTasks()
         {
-            if (this.manager == null)
+            if (Manager == null)
             {
                 return;
             }
             for (int i = 0; i < this.tasks.Length; i++)
             {
-                this.manager.ChangeFileName($"task{i}");
-                this.manager.Serialize(this.tasks[i]);
+                Manager.ChangeFileName($"task{i}");
+                Manager.Serialize(this.tasks[i]);
             }
         }
 
         public void LoadTasks()
         {
-            if (this.manager == null)
+            if (Manager == null)
             {
                 return;
             }
             for (int i = 0; i < this.tasks.Length; i++)
             {
-                this.manager.ChangeFileName($"task{i}");
-                this.tasks[i] = this.manager.Deserialize();
+                Manager.ChangeFileName($"task{i}");
+                this.tasks[i] = Manager.Deserialize();
             }
         }
 
@@ -112,12 +111,12 @@ namespace Lab10.Purple
             {
                 return;
             }
-            string folder_path = this.manager != null && !string.IsNullOrEmpty(this.manager.FolderPath)
-                ? this.manager.FolderPath
+            string folder_path = Manager != null && !string.IsNullOrEmpty(Manager.FolderPath)
+                ? Manager.FolderPath
                 : Path.Combine(Directory.GetCurrentDirectory(), manager.Name);
             Directory.CreateDirectory(folder_path);
             manager.SelectFolder(folder_path);
-            this.manager = manager;
+            Manager = manager;
         }
     }
 }

@@ -4,58 +4,53 @@ namespace Lab10
 {
     public abstract class MyFileManager : IFileManager, IFileLifeController
     {
-        private readonly string name;
-        private string folder_path = string.Empty;
-        private string file_name = string.Empty;
-        private string file_extension = string.Empty;
-
-        public string Name => this.name;
-        public string FolderPath => this.folder_path;
-        public string FileName => this.file_name;
-        public string FileExtension => this.file_extension;
+        public string Name { get; }
+        public string FolderPath { get; private set; } = string.Empty;
+        public string FileName { get; private set; } = string.Empty;
+        public string FileExtension { get; private set; } = string.Empty;
 
         public string FullPath
         {
             get
             {
-                if (string.IsNullOrEmpty(this.folder_path) || string.IsNullOrEmpty(this.file_name))
+                if (string.IsNullOrEmpty(FolderPath) || string.IsNullOrEmpty(FileName))
                 {
                     return string.Empty;
                 }
-                if (string.IsNullOrEmpty(this.file_extension))
+                if (string.IsNullOrEmpty(FileExtension))
                 {
-                    return Path.Combine(this.folder_path, this.file_name);
+                    return Path.Combine(FolderPath, FileName);
                 }
-                return Path.Combine(this.folder_path, $"{this.file_name}.{this.file_extension}");
+                return Path.Combine(FolderPath, $"{FileName}.{FileExtension}");
             }
         }
 
         public MyFileManager(string name)
         {
-            this.name = name;
+            Name = name;
         }
 
         public MyFileManager(string name, string folder_path, string file_name, string file_extension = "")
         {
-            this.name = name;
-            this.folder_path = folder_path;
-            this.file_name = file_name;
-            this.file_extension = file_extension;
+            Name = name;
+            FolderPath = folder_path;
+            FileName = file_name;
+            FileExtension = file_extension;
         }
 
         public void SelectFolder(string folder_path)
         {
-            this.folder_path = folder_path;
+            FolderPath = folder_path;
         }
 
         public void ChangeFileName(string file_name)
         {
-            this.file_name = file_name;
+            FileName = file_name;
         }
 
         public void ChangeFileFormat(string file_extension)
         {
-            this.file_extension = file_extension;
+            FileExtension = file_extension;
             if (!string.IsNullOrEmpty(this.FullPath))
             {
                 this.CreateFile();
@@ -68,9 +63,9 @@ namespace Lab10
             {
                 return;
             }
-            if (!string.IsNullOrEmpty(this.folder_path))
+            if (!string.IsNullOrEmpty(FolderPath))
             {
-                Directory.CreateDirectory(this.folder_path);
+                Directory.CreateDirectory(FolderPath);
             }
             if (!File.Exists(this.FullPath))
             {
