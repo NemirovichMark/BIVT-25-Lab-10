@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace Lab10.White
 {
     public class White
