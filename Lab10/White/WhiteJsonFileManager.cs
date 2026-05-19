@@ -11,52 +11,49 @@ namespace Lab10.White
             ChangeFileFormat("json");
         }
 
-        public override void SaveTasks(Lab9.White.White[] tasks)
+        // Массовая сериализация
+        public override void SaveTasks(White[] tasks)
         {
-            var items = tasks.Select(t => new
-            {
-                Type = t.GetType().Name,
-                Input = t.Input
-            });
+            var items = tasks.Select(t => new { Type = t.GetType().Name, Input = t.Input });
             var json = JsonSerializer.Serialize(items);
             EditFile(json);
         }
 
-        public override Lab9.White.White[] LoadTasks()
+        public override White[] LoadTasks()
         {
             var path = FullPath;
-            if (!File.Exists(path)) return Array.Empty<Lab9.White.White>();
+            if (!File.Exists(path)) return Array.Empty<White>();
 
             var json = File.ReadAllText(path);
             var items = JsonSerializer.Deserialize<List<JsonItem>>(json);
-            if (items == null) return Array.Empty<Lab9.White.White>();
+            if (items == null) return Array.Empty<White>();
 
-            var tasks = new List<Lab9.White.White>();
-            foreach (var item in items)
+            return items.Select(item => item.Type switch
             {
-                switch (item.Type)
-                {
-                    case "Task1":
-                        tasks.Add(new Task1(item.Input));
-                        break;
-                    case "Task2":
-                        tasks.Add(new Task2(item.Input));
-                        break;
-                    case "Task3":
-                        tasks.Add(new Task3(item.Input, new string[0, 0]));
-                        break;
-                    case "Task4":
-                        tasks.Add(new Task4(item.Input));
-                        break;
-                }
-            }
-            return tasks.ToArray();
+                "Task1" => new Task1(item.Input),
+                "Task2" => new Task2(item.Input),
+                "Task3" => new Task3(item.Input, new string[0, 0]),
+                "Task4" => new Task4(item.Input),
+                _ => null
+            }).Where(t => t != null).ToArray()!;
+        }
+
+        // Одиночная сериализация
+        public override void Serialize(White obj)
+        {
+            SaveTasks(new[] { obj });
+        }
+
+        public override White Deserialize()
+        {
+            var tasks = LoadTasks();
+            return tasks.Length > 0 ? tasks[0] : null;
         }
 
         private class JsonItem
         {
-            public string Type { get; set; }
-            public string Input { get; set; }
+            public string Type { get; set; } = "";
+            public string Input { get; set; } = "";
         }
     }
 }
