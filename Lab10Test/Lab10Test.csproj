@@ -22,9 +22,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Lab9\Lab9.csproj" />
     <ProjectReference Include="..\Lab10\Lab10.csproj" />
+    <ProjectReference Include="..\Lab9\Lab9.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Using Include="Lab9" />
     <Using Include="Lab10" />
     <Using Include="Lab10.Interfaces" />
     <Using Include="Lab10.Purple" />
