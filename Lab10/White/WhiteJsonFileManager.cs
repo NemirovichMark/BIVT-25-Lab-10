@@ -1,5 +1,5 @@
-using Lab9.White;
 using System.Text.Json;
+using Lab9.White;
 
 namespace Lab10.White
 {
@@ -11,43 +11,52 @@ namespace Lab10.White
             ChangeFileFormat("json");
         }
 
-        public override void SaveTasks(White[] tasks)
+        public override void SaveTasks(Lab9.White.White[] tasks)
         {
             var items = tasks.Select(t => new
             {
                 Type = t.GetType().Name,
-                Data = t
+                Input = t.Input
             });
             var json = JsonSerializer.Serialize(items);
             EditFile(json);
         }
 
-        public override White[] LoadTasks()
+        public override Lab9.White.White[] LoadTasks()
         {
             var path = FullPath;
-            if (!File.Exists(path)) return Array.Empty<White>();
+            if (!File.Exists(path)) return Array.Empty<Lab9.White.White>();
 
             var json = File.ReadAllText(path);
-            using var doc = JsonDocument.Parse(json);
-            var root = doc.RootElement;
-            var tasks = new List<White>();
+            var items = JsonSerializer.Deserialize<List<JsonItem>>(json);
+            if (items == null) return Array.Empty<Lab9.White.White>();
 
-            foreach (var item in root.EnumerateArray())
+            var tasks = new List<Lab9.White.White>();
+            foreach (var item in items)
             {
-                string typeName = item.GetProperty("Type").GetString();
-                JsonElement data = item.GetProperty("Data");
-
-                White task = typeName switch
+                switch (item.Type)
                 {
-                    "Task1" => JsonSerializer.Deserialize<Task1>(data.GetRawText()),
-                    "Task2" => JsonSerializer.Deserialize<Task2>(data.GetRawText()),
-                    "Task3" => JsonSerializer.Deserialize<Task3>(data.GetRawText()),
-                    "Task4" => JsonSerializer.Deserialize<Task4>(data.GetRawText()),
-                    _ => null
-                };
-                if (task != null) tasks.Add(task);
+                    case "Task1":
+                        tasks.Add(new Task1(item.Input));
+                        break;
+                    case "Task2":
+                        tasks.Add(new Task2(item.Input));
+                        break;
+                    case "Task3":
+                        tasks.Add(new Task3(item.Input, new string[0, 0]));
+                        break;
+                    case "Task4":
+                        tasks.Add(new Task4(item.Input));
+                        break;
+                }
             }
             return tasks.ToArray();
+        }
+
+        private class JsonItem
+        {
+            public string Type { get; set; }
+            public string Input { get; set; }
         }
     }
 }
