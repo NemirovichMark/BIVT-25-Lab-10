@@ -11,7 +11,8 @@ namespace Lab10.White
             ChangeFileFormat("txt");
         }
 
-        public override void SaveTasks(Lab9.White.White[] tasks)
+        // Массовая сериализация (для WhiteManagerTest)
+        public override void SaveTasks(White[] tasks)
         {
             if (tasks == null) return;
             var sb = new StringBuilder();
@@ -22,23 +23,20 @@ namespace Lab10.White
                 else if (t is Task2 t2)
                     sb.AppendLine($"Task2|{t2.Input}");
                 else if (t is Task3 t3)
-                {
-                    // Временно сохраняем только Input, так как свойство Codes может отсутствовать
                     sb.AppendLine($"Task3|{t3.Input}");
-                }
                 else if (t is Task4 t4)
                     sb.AppendLine($"Task4|{t4.Input}");
             }
             EditFile(sb.ToString());
         }
 
-        public override Lab9.White.White[] LoadTasks()
+        public override White[] LoadTasks()
         {
             var path = FullPath;
-            if (!File.Exists(path)) return Array.Empty<Lab9.White.White>();
+            if (!File.Exists(path)) return Array.Empty<White>();
 
             var lines = File.ReadAllLines(path);
-            var tasks = new List<Lab9.White.White>();
+            var tasks = new List<White>();
 
             foreach (var line in lines)
             {
@@ -57,7 +55,7 @@ namespace Lab10.White
                         tasks.Add(new Task2(input));
                         break;
                     case "Task3":
-                        tasks.Add(new Task3(input, new string[0, 0])); // временное решение
+                        tasks.Add(new Task3(input, new string[0, 0]));
                         break;
                     case "Task4":
                         tasks.Add(new Task4(input));
@@ -65,6 +63,18 @@ namespace Lab10.White
                 }
             }
             return tasks.ToArray();
+        }
+
+        // Одиночная сериализация (для GeneralTest)
+        public override void Serialize(White obj)
+        {
+            SaveTasks(new[] { obj });
+        }
+
+        public override White Deserialize()
+        {
+            var tasks = LoadTasks();
+            return tasks.Length > 0 ? tasks[0] : null;
         }
     }
 }
