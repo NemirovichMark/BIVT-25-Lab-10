@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Lab10
 {
-    internal interface IFileManager
+    public interface IFileManager
     {
         string FolderPath { get; }
         string FileName { get; }
@@ -15,6 +9,6 @@ namespace Lab10
 
         void SelectFolder(string folderPath);
         void ChangeFileName(string fileName);
-        void ChangeFileFormat(string extension);
+        void ChangeFileFormat(string fileExtension);
     }
 }
