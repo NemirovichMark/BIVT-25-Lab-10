@@ -22,25 +22,38 @@ namespace Lab10.White
         public override White[] LoadTasks()
         {
             var path = FullPath;
-            if (!File.Exists(path)) return Array.Empty<White>();
+            if (!File.Exists(path)) return System.Array.Empty<White>();
 
             var json = File.ReadAllText(path);
             var items = JsonSerializer.Deserialize<List<JsonItem>>(json);
-            if (items == null) return Array.Empty<White>();
+            if (items == null) return System.Array.Empty<White>();
 
-            return items.Select(item => item.Type switch
+            var result = new List<White>();
+            foreach (var item in items)
             {
-                "Task1" => new Task1(item.Input),
-                "Task2" => new Task2(item.Input),
-                "Task3" => new Task3(item.Input, new string[0, 0]),
-                "Task4" => new Task4(item.Input),
-                _ => null
-            }).Where(t => t != null).ToArray()!;
+                switch (item.Type)
+                {
+                    case "Task1":
+                        result.Add(new Task1(item.Input));
+                        break;
+                    case "Task2":
+                        result.Add(new Task2(item.Input));
+                        break;
+                    case "Task3":
+                        result.Add(new Task3(item.Input, new string[0, 0]));
+                        break;
+                    case "Task4":
+                        result.Add(new Task4(item.Input));
+                        break;
+                }
+            }
+            return result.ToArray();
         }
 
         // Одиночная сериализация
         public override void Serialize(White obj)
         {
+            if (obj == null) return;
             SaveTasks(new[] { obj });
         }
 
