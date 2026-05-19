@@ -1,5 +1,3 @@
-using Lab9.White;
-
 namespace Lab10.White
 {
     public class White
@@ -7,12 +5,12 @@ namespace Lab10.White
         public WhiteFileManager Manager { get; private set; }
         public Lab9.White.White[] Tasks { get; private set; }
 
-        public White() : this(new WhiteTxtFileManager("txt"), Array.Empty<Lab9.White.White>()) { }
+        public White() : this(new WhiteTxtFileManager("txt"), System.Array.Empty<Lab9.White.White>()) { }
 
         public White(WhiteFileManager manager, Lab9.White.White[] tasks)
         {
             Manager = manager;
-            Tasks = tasks ?? Array.Empty<Lab9.White.White>();
+            Tasks = tasks ?? System.Array.Empty<Lab9.White.White>();
         }
 
         public void Add(Lab9.White.White task)
@@ -41,7 +39,7 @@ namespace Lab10.White
 
         public void Clear()
         {
-            Tasks = Array.Empty<Lab9.White.White>();
+            Tasks = System.Array.Empty<Lab9.White.White>();
             Manager?.DeleteFile();
         }
 
@@ -52,7 +50,8 @@ namespace Lab10.White
 
         public void LoadTasks()
         {
-            Tasks = Manager?.LoadTasks() ?? Array.Empty<Lab9.White.White>();
+            var loaded = Manager?.LoadTasks();
+            Tasks = loaded ?? System.Array.Empty<Lab9.White.White>();
         }
 
         public void ChangeManager(WhiteFileManager newManager)
