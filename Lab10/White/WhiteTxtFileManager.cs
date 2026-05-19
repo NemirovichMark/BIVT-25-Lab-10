@@ -11,7 +11,7 @@ namespace Lab10.White
             ChangeFileFormat("txt");
         }
 
-        // Массовая сериализация (для WhiteManagerTest)
+        // Массовая сериализация
         public override void SaveTasks(White[] tasks)
         {
             if (tasks == null) return;
@@ -33,7 +33,7 @@ namespace Lab10.White
         public override White[] LoadTasks()
         {
             var path = FullPath;
-            if (!File.Exists(path)) return Array.Empty<White>();
+            if (!File.Exists(path)) return System.Array.Empty<White>();
 
             var lines = File.ReadAllLines(path);
             var tasks = new List<White>();
@@ -68,6 +68,7 @@ namespace Lab10.White
         // Одиночная сериализация (для GeneralTest)
         public override void Serialize(White obj)
         {
+            if (obj == null) return;
             SaveTasks(new[] { obj });
         }
 
