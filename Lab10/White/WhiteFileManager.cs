@@ -8,12 +8,10 @@ namespace Lab10.White
         protected WhiteFileManager(string name, string folderPath, string fileName, string fileExtension)
             : base(name, folderPath, fileName, fileExtension) { }
 
-        // Методы для массовой сериализации (для WhiteManagerTest)
-        public abstract void SaveTasks(White[] tasks);
-        public abstract White[] LoadTasks();
-
-        // Методы для одиночной сериализации (для GeneralTest)
-        public abstract void Serialize(White obj);
-        public abstract White Deserialize();
+        public abstract void SaveTasks(Lab9.White.White[] tasks);
+        public abstract Lab9.White.White[] LoadTasks();
+        public abstract void Serialize(Lab9.White.White obj);
+        public abstract Lab9.White.White Deserialize();
+        
     }
 }
