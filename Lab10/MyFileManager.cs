@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace Lab10
 {
@@ -68,17 +65,14 @@ namespace Lab10
 
         public void CreateFile()
         {
-            if (string.IsNullOrEmpty(_folderPath) || string.IsNullOrEmpty(_fileName) || string.IsNullOrEmpty(_fileExtension))
-            {
+            if (string.IsNullOrEmpty(_folderPath) || string.IsNullOrEmpty(_fileName) || string.IsNullOrEmpty(_fileExtension)){
                 return;
             }
-            if (!Directory.Exists(_folderPath))
-            {
+            if (!Directory.Exists(_folderPath)){
                 Directory.CreateDirectory(_folderPath);
             }
             var path = FullPath;
-            if (!File.Exists(path))
-            {
+            if (!File.Exists(path)){
                 File.Create(path).Dispose();
             }
         }
