@@ -45,7 +45,7 @@ namespace Lab9.White
                 {
                     if (currentWord.Length > 0)
                     {
-                    string word = currentWord.ToString();
+                        string word = currentWord.ToString();
                         string code = FindCode(word);
                         result.Append(code);
                         currentWord.Clear();
