@@ -11,6 +11,7 @@ namespace Lab9.White
         public Task3(string text, string[,] codes) : base(text)
         {
             _codes = codes;
+            _output = "";
         }
 
         public string Output
