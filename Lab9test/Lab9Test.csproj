@@ -1,13 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <EnableMSTestRunner>true</EnableMSTestRunner>
     <OutputType>Exe</OutputType>
     <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+    <!--
+      Displays error on console in addition to the log file. Note that this feature comes with a performance impact.
+      For more information, visit https://learn.microsoft.com/dotnet/core/testing/unit-testing-platform-integration-dotnet-test#show-failure-per-test
+      -->
     <TestingPlatformShowTestsFailure>true</TestingPlatformShowTestsFailure>
   </PropertyGroup>
 
@@ -21,19 +25,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Lab9\Lab9.csproj" />
-    <ProjectReference Include="..\Lab10\Lab10.csproj" />
-    <ProjectReference Include="..\Lab9\Lab9.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="Lab9" />
-    <Using Include="Lab10" />
-    <Using Include="Lab10.Interfaces" />
-    <Using Include="Lab10.Purple" />
+    <Using Include="Microsoft.Playwright.MSTest" />
     <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
-    <Using Include="System.IO" />
-    <Using Include="System.Linq" />
-    <Using Include="System.Text.Json" />
+    <Using Include="System.Text.RegularExpressions" />
+    <Using Include="System.Threading.Tasks" />
   </ItemGroup>
 
 </Project>
