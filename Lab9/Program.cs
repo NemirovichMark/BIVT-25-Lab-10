@@ -1,4 +1,4 @@
-namespace Lab10
+﻿namespace Lab9
 {
     public class Program
     {
